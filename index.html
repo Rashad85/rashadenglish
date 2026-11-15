@@ -1917,7 +1917,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     if(false) errs.push({s:t.length-1,e:t.length,msg:'Cümlənin sonunda nöqtə',r:'end',fix:''});
     if(ext&&ext.length){ ext.forEach(function(m){ var cat=m.rule&&m.rule.category&&m.rule.category.id||'MISC', id=m.rule&&m.rule.id||'';
         if(SKIPCAT.test(cat)||/WHITESPACE|COMMA|PUNCT|QUOTE/.test(id)) return; var st=m.offset,en=m.offset+m.length, w=t.slice(st,en);
-        if(cat==='TYPOS'&&/^[A-ZƏ]/.test(w)&&st>0&&!/[.!?]\s*$/.test(t.slice(0,st))) return; /* xüsusi adlar */
+        if(cat==='TYPOS'&&/^[A-ZƏ]/.test(w)) return; /* xüsusi adlar */
         if(errs.some(function(e){return st<e.e&&en>e.s})) return;
         var az=LTAZ[id]||LTAZ[id.replace(/_\d+$/,'')], rep=(m.replacements||[]).slice(0,2).map(function(r){return r.value}).join(' / ');
         if(rep&&rep.replace(/\s/g,'')===w.replace(/\s/g,'')){ var ns=st; while(ns>0&&st-ns<8&&!/\s/.test(t.charAt(ns-1))) ns--; rep=t.slice(ns,st)+(m.replacements[0].value); w=t.slice(ns,en); st=ns; }
@@ -1930,10 +1930,13 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     function markRe(re){var r=new RegExp(re.source,'gi'),m;while((m=r.exec(t))){marks.push([m.index,m.index+m[0].length,'ok']);if(!m[0].length)r.lastIndex++}}
     var A=0,B=0,C=0,D=0;
     /* D: vocabulary */
-    var content=W.map(function(w){return w.toLowerCase().replace(/[’']s$/,'')}).filter(function(w){return STOP.indexOf(w)<0&&w.length>2});
+    var PROP={}; (t.match(/[^.!?\s]\s+[A-Z][a-z]+/g)||[]).forEach(function(x){var n=x.trim().split(/\s+/).pop().toLowerCase(); if(n!=='i') PROP[n]=1});
+    (t.match(/\b[A-Z][a-z]+/g)||[]).forEach(function(n){ if(t.indexOf(n.toLowerCase())<0&&!/^(The|They|He|She|It|We|His|Her|Their|Then|When|First|Firstly|Finally|Suddenly|Last|One|After|In|On|At|But|And|So|There|This|That|A|An|My|Our|Secondly|Moreover|However|To|For|Some|Many|Also)$/.test(n)) PROP[n.toLowerCase()]=1 });
+    var PRON=/^(he|she|it|they|him|her|them|his|hers|its|their|theirs|you|your|we|our|us|me|my|i|boy|girl|man|woman|children|child|kids?|friends?|ball|dog|cat|family|mother|father|brother|sister|students?|school|people|uniforms?)$/;
+    var content=W.map(function(w){return w.toLowerCase().replace(/[’']s$/,'')}).filter(function(w){return STOP.indexOf(w)<0&&w.length>2&&!PROP[w]&&!(kind==='st'&&PRON.test(w))});
     var uniq={};content.forEach(function(w){uniq[w]=(uniq[w]||0)+1});
     var ttr=content.length?Object.keys(uniq).length/content.length:0;
-    var overused=Object.keys(uniq).filter(function(w){return uniq[w]>=4&&!/^(students?|school|people|uniforms?|children)$/.test(w)});
+    var overused=Object.keys(uniq).filter(function(w){return uniq[w]>=(kind==='st'?5:4)&&!/^(students?|school|people|uniforms?|children)$/.test(w)});
     var longw=content.filter(function(w){return w.length>=8}).length/Math.max(1,content.length);
     D=Math.min(1,(ttr>=.75?.7:ttr>=.62?.55:ttr>=.5?.4:.2)+(longw>.18?.3:longw>.1?.2:.1)-(overused.length?.15:0));
     if(ttr>=.62) good.push('Söz ehtiyatı müxtəlifdir'); else bad.push('Eyni sözlər çox təkrarlanır, sinonimlərdən istifadə edin');
