@@ -1806,10 +1806,12 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   var $=function(id){return document.getElementById(id)}; if(!$('esText')) return;
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
   var kind='op';
-  var CRIT={A:['Tapşırığın yerinə yetirilməsi',1],B:['Mövzunun əhatəsi və məntiqi ardıcıllıq',2],C:['Qrammatik qaydalara əməl olunma',1],D:['Söz ehtiyatının müxtəlifliyi',1]};
+  var CRITST={A:['Məzmun / tapşırığın yerinə yetirilməsi',2],B:['Ardıcıllıq / məntiqi rabitə',1],C:['Qrammatika',1],D:['Söz ehtiyatı',1]};
+  var CRITOP={A:['Tapşırığın yerinə yetirilməsi',1],B:['Mövzunun əhatəsi və məntiqi ardıcıllıq',2],C:['Qrammatik qaydalara əməl olunma',1],D:['Söz ehtiyatının müxtəlifliyi',1]};
+  var CRIT=CRITOP;
   var INFO={op:{A:'Mövzuya uyğun bir abzas, minimum 100 söz (70–99 söz → 0,5; 70-dən az → 0), topic sentence + dəstəkləyən fikirlər + yekun fikir. A=0 olarsa, yekun bal 0',B:'Azı 2 aydın arqument, nümunə/izah, bağlayıcılar, həm lehinə, həm əleyhinə tərəf, məntiqi rabitə (2 / 1 / 0)',C:'Sadə və mürəkkəb cümlələr düzgün; eyni qaydaya aid təkrarlanan səhv 1 səhv sayılır (1 / 0,5 / 0)',D:'Zəngin, mövzuya uyğun söz ehtiyatı, sinonimlər, söz birləşmələri, təkrar yoxdur (1 / 0,5 / 0)'},
-            st:{A:'Şəkillərə uyğun hekayə, keçmiş zamanda, kifayət qədər həcm',B:'Başlanğıc → hadisələrin ardıcıllığı → sonluq',C:'Keçmiş zaman formaları, uzlaşma, böyük hərf və durğu',D:'Müxtəlif fellər, sifətlər, ardıcıllıq sözləri'}};
-  var TARGET={op:[100,400],st:[60,120]};
+            st:{A:'Ardıcıl 3 şəkilə uyğun hekayə, yaradıcılıq (qəhrəmanlara ad), detallı məlumat; 35+ söz → 2, 20+ söz → 1, 20-dən az → 0',B:'Birləşdirici zərflərlə cümlələr arasında əlaqə, məntiqi ardıcıllıq (1 / 0,5 / 0)',C:'Sadə və mürəkkəb cümlələr, bağlayıcılarla mürəkkəb cümlə qurmaq (1 / 0,5 / 0)',D:'Söz və birləşmələri yerində işlətmək, təkrar yox, sinonimlər, orfoqrafiya (1 / 0,5 / 0). Cərimə: 3–5 səhv −0,5; 6+ səhv −1'}};
+  var TARGET={op:[100,400],st:[35,200]};
   var EX={op:{t:'Some people think that students should wear school uniforms. Do you agree?',x:"In my opinion, students should wear school uniforms for several reasons. Firstly, uniforms make all students look equal, so nobody feels poor or rich at school. Secondly, they save time in the morning because students do not have to choose what to wear every day. Moreover, uniforms help students to concentrate on their lessons instead of fashion. For example, in my school everyone wears the same clothes and we feel like one team. However, some people say that uniforms limit freedom, but students can still show their personality in other ways. To sum up, I strongly believe that school uniforms are useful for both students and teachers."},
           st:{t:'Look at the pictures and write a story.',x:"Last summer Ali and his little sister went to the park near their house. It was a sunny day and they were very happy. First, they played football on the green grass. Then Ali kicked the ball too hard and it fell into the lake. His sister started to cry because it was her favourite ball. Suddenly, an old man came with a long stick and pulled the ball out of the water. The children thanked him politely. Finally, they went home and told their parents about the kind man. They will never forget that day."}};
   var OPIN=/\b(in my opinion|i (strongly |firmly |really )?(think|believe|feel|agree|disagree|suppose|am sure|am convinced)|from my point of view|as far as i am concerned|personally,? i|it seems to me|i would say)\b/i;
@@ -1827,7 +1829,9 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   var PHR={'explain me':'explain to me','discuss about':'discuss','married with':'married to','despite of':'despite','listen music':'listen to music','according to me':'in my opinion'};
   function s3(v){v=v.toLowerCase();return v==='have'?'has':v==='do'?'does':v==='go'?'goes':/(s|sh|ch|x|o)$/.test(v)?v+'es':/[^aeiou]y$/.test(v)?v.slice(0,-1)+'ies':v+'s'}
   function keepCase(src,out){return /^[A-Z]/.test(src)?out.charAt(0).toUpperCase()+out.slice(1):out}
-  var V3='help|play|go|like|want|make|give|need|live|work|have|do|think|say|know|feel|teach|love|take|get|watch|read|study|try|come|use|spend|become|cost';
+  var V3='help|play|go|like|want|make|give|need|live|work|have|do|think|say|know|feel|teach|love|take|get|watch|read|study|try|come|use|spend|become|cost|eat|run|fall|see|cry|kick|jump|swim|walk|find|look|start|sit|stand|bring|catch|throw|fly|drink|sleep|buy|open|close|carry|pull|push|climb|ride';
+  var NSG='the|a|an|this|that|his|her|my|our|their|your';
+  var NN='boy|girl|man|woman|ball|dog|cat|child|kid|teacher|friend|family|father|mother|dad|mum|mom|brother|sister|grandmother|grandfather|baby|bird|bus|car|police|policeman|doctor|driver|student|pupil|team|sun|weather|day';
   /* [regex, qısa ad, izah, düzgün nümunə, düzəliş funksiyası] */
   var ERR=[
     [/(^|[^A-Za-z'])i(?=[\s,.'!?])/g,'“I” həmişə böyük hərflə yazılır','İngilis dilində “I” (mən) əvəzliyi cümlənin harasında olursa olsun, böyük hərflə yazılır.','I think that…',function(){return 'I'}],
@@ -1836,7 +1840,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     [/\bmost (best|worst|biggest|easiest|happiest)\b/gi,'İkiqat üstünlük dərəcəsi','-est (best, biggest) özü üstünlük dərəcəsidir, əlavə “most” işlənmir.','the best, the biggest',function(m){return m[1]}],
     [/\b(didn't|did not|doesn't|does not|don't|do not) (went|saw|came|took|had|made|got|ate|gave|knew|thought|told|said|found|ran|wrote|bought|was|were|likes|goes|has|does|wants|plays)\b/gi,'Köməkçi feildən sonra feilin əsas forması','do / does / did (və inkarı) zamanı və şəxsi özü göstərir, ona görə arxasınca gələn feil dəyişmir: 1-ci forma (go, see, have).','He didn’t go. She doesn’t like it.',function(m){return m[1]+' '+(BASE[m[2].toLowerCase()]||m[2])}],
     [/\b(he|she|it) (don't|do not|haven't|have not)\b/gi,'He / she / it ilə doesn’t, hasn’t','3-cü şəxs təkdə (he, she, it, my friend…) “do” → “does”, “have” → “has” olur.','He doesn’t know. She hasn’t come.',function(m){var x=m[2].toLowerCase();return m[1]+' '+(x==="don't"?"doesn't":x==='do not'?'does not':x==="haven't"?"hasn't":'has not')}],
-    [new RegExp("\\b(he|she|it|my friend|my brother|my sister|my mother|my father|my teacher|our teacher|everyone|everybody|nobody|sport|technology|music|this|the internet) ("+V3+")\\b(?! to\\b)",'gi'),'3-cü şəxs təkdə feilə -s / -es artırılır','Present Simple-da mübtəda he, she, it və ya tək isim (my friend, sport) olduqda feil -s / -es alır: go → goes, have → has, study → studies.','My friend plays football. Sport helps us.',function(m){return m[1]+' '+s3(m[2])}],
+    [new RegExp("\\b(he|she|it|everyone|everybody|nobody|somebody|sport|technology|music|the internet|(?:(?:"+NSG+") (?:\\w+ )?)?(?:"+NN+")) ("+V3+")\\b(?! to\\b)",'gi'),'3-cü şəxs təkdə feilə -s / -es artırılır','Present Simple-da mübtəda he, she, it və ya tək isim (my friend, sport) olduqda feil -s / -es alır: go → goes, have → has, study → studies.','My friend plays football. Sport helps us.',function(m){return m[1]+' '+s3(m[2])}],
     [/\b(people|children|students|teachers|parents|they|we) (is|was|has)\b/gi,'Cəm mübtəda ilə cəm feil','People, children, students cəmdir, ona görə is → are, was → were, has → have işlənir.','People are happy. Children have toys.',function(m){var x=m[2].toLowerCase();return m[1]+' '+(x==='is'?'are':x==='was'?'were':'have')}],
     [/\b(informations|advices|furnitures|homeworks|knowledges|equipments|childs|peoples|womans|mans|tooths|foots|mouses|luggages|breads|moneys|newses)\b/gi,'Səhv cəm forması','Bəzi isimlər sayılmayandır və -s qəbul etmir (information, advice, homework), bəzilərinin isə xüsusi cəm forması var (child → children, man → men).','much information, a lot of homework, two children',function(m){return keepCase(m[0],UNC[m[0].toLowerCase()])}],
     [/\b(can|must|should|could|will|may|might) to\b/gi,'Modal feildən sonra “to” işlənmir','can, must, should, will, may… modal feillərindən sonra feil “to”suz, birbaşa gəlir.','We can go. You must study.',function(m){return m[1]}],
@@ -1854,11 +1858,11 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   function crit(){ $('esCritInfo').innerHTML=Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'<small>'+INFO[kind][k]+'</small></span><span class="m">'+CRIT[k][1]+' bal</span></li>'}).join('') }
   function live(){var t=$('esText').value,w=words(t).length,s=sentences(t).length,T=TARGET[kind];
     $('esWc').textContent=w+' söz';$('esSc').textContent=s+' cümlə';
-    $('esTip').textContent=w===0?'':kind==='op'?(w<70?'Minimum 100 söz (70-dən az → A=0, yekun 0)':w<100?'100-dən azdır → A meyarı 0,5':'Həcm şərtə uyğundur ✓'):w<T[0]?'Tövsiyə: azı '+T[0]+' söz':w>T[1]?'Bir az uzundur, qısaldın':'Həcm yaxşıdır ✓';}
+    $('esTip').textContent=w===0?'':kind==='op'?(w<70?'Minimum 100 söz (70-dən az → A=0, yekun 0)':w<100?'100-dən azdır → A meyarı 0,5':'Həcm şərtə uyğundur ✓'):(w<20?'Minimum 20 söz (20-dən az → Məzmun 0)':w<35?'35-dən azdır → Məzmun maksimum 1 bal':'Həcm şərtə uyğundur ✓');}
   [].forEach.call(document.querySelectorAll('.es-tabs button'),function(b){b.onclick=function(){kind=b.dataset.k;
     [].forEach.call(document.querySelectorAll('.es-tabs button'),function(x){x.setAttribute('aria-selected',x===b)});
     $('esText').placeholder=kind==='op'?'Opinion paragraph-ı buraya yazın və ya yapışdırın…':'Şəkillərə əsasən hekayənizi buraya yazın…';
-    crit();live();reset();}});
+    CRIT=kind==='op'?CRITOP:CRITST;crit();live();reset();}});
   function reset(){$('esOut').innerHTML='<div class="es-empty"><p class="vx-k">DİM meyarları</p><ul class="es-crit" id="esCritInfo"></ul><p class="es-note">Yazını yazın və <b>“Meyarlarla yoxla”</b> düyməsinə basın.</p></div>';crit()}
   $('esText').addEventListener('input',live);
   $('esEx').onclick=function(){$('esTopic').value=EX[kind].t;$('esText').value=EX[kind].x;live();check()};
@@ -1914,7 +1918,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
         if(errs.some(function(e){return st<e.e&&en>e.s})) return;
         var az=LTAZ[id]||LTAZ[id.replace(/_\d+$/,'')], rep=(m.replacements||[]).slice(0,2).map(function(r){return r.value}).join(' / ');
         var key=az?az[0]:(LTCAT[cat]||'Qrammatika')+(m.shortMessage?' — '+m.shortMessage:'');
-        errs.push({s:st,e:en,msg:key,r:'lt',fix:rep,why:az?az[1]:'',en:m.message}); marks.push([st,en,'bad']); }); }
+        errs.push({s:st,e:en,msg:key,r:'lt',cat:cat,id:id,fix:rep,why:az?az[1]:'',en:m.message}); marks.push([st,en,'bad']); }); }
     /* struktur: çox uzun cümlələr */
     S.forEach(function(x){var n=words(x).length;if(n>40){bad.push('Çox uzun cümlə ('+n+' söz): “'+x.slice(0,40)+'…” — iki cümləyə bölün')}});
     /* linkers */
@@ -1933,7 +1937,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     /* C */
     var types={};errs.forEach(function(e){types[e.msg]=1});var nT=Object.keys(types).length;C=Math.max(0,1-nT*0.17);
     if(!errs.length) good.push('Mexaniki və tipik qrammatik səhv tapılmadı');
-    var zeroAll=false, OFF={};
+    var zeroAll=false, OFF={}, PEN=0, PENTXT='';
     if(kind==='op'){
       var first=S[0]||'', last=S[S.length-1]||'';
       var hasOp=OPIN.test(low), opFirst=OPIN.test(first.toLowerCase())||/\b(should|must|agree|disagree|better|believe)\b/i.test(first);
@@ -1972,18 +1976,37 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     } else {
       var past=W.filter(function(w){w=w.toLowerCase();return /ed$/.test(w)&&w.length>3||IRR.indexOf(w)>=0}).length;
       var pres=W.filter(function(w){return /^(am|is|are|do|does|has|go|goes|come|comes|play|plays)$/i.test(w)}).length;
-      var sq=count(SEQ), op=OPEN.test(t.trim()), en=END.test(S.slice(-2).join(' ').toLowerCase());
+      var sqM=low.match(SEQ)||[], sq=sqM.length, sqU=Object.keys(sqM.reduce(function(o,x){o[x]=1;return o},{})).length;
+      var op=OPEN.test(t.trim()), en=END.test(S.slice(-2).join(' ').toLowerCase());
+      var names=(t.match(/(?:^|[^.!?]\s)([A-Z][a-z]{2,})/g)||[]).map(function(x){return x.trim().split(/\s/).pop()}).filter(function(x){return !/^(I|The|They|He|She|It|We|His|Her|Their|Then|When|First|Finally|Suddenly|Last|One|After|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|January|February|March|April|May|June|July|August|September|October|November|December|English|Baku)$/.test(x)});
+      var dial=/["“”]/.test(t), adj=(low.match(/\b(happy|sad|beautiful|big|small|little|old|young|kind|angry|scared|afraid|excited|tired|hungry|sunny|rainy|cold|hot|warm|green|red|blue|favourite|favorite|delicious|funny|lovely|nice|great|wonderful|terrible|surprised|worried|careful|brave|quiet|loud|heavy|long|tall|new)\b/g)||[]).length;
+      var sub=(low.match(/\b(because|when|while|so|but|and|that|who|which|where|if|after|before|as soon as|until)\b/g)||[]).length, avgS=wc/Math.max(1,S.length);
+      var pastOk=past>=4&&past>pres*2;
       markRe(SEQ);
-      A=(past>=6&&past>pres*2?.5:past>=3?.3:.1)+(wc>=T[0]?.5:wc>=T[0]*.75?.33:.15);
-      if(past>=6&&past>pres*2) good.push('Hekayə keçmiş zamanda yazılıb'); else bad.push('Hekayəni keçmiş zamanda yazın (went, saw, was…)');
-      if(wc<T[0]) bad.push('Həcm azdır ('+wc+' söz). Tövsiyə: azı '+T[0]+' söz');
-      B=(op?.5:.15)+Math.min(.9,sq*.22)+(en?.5:.1)-(S.length<4?.3:0);
-      if(op) good.push('Hekayənin yaxşı başlanğıcı var'); else bad.push('Başlanğıc yazın: “Last summer…”, “One day…”');
-      if(sq>=3) good.push('Hadisələr ardıcıllıq sözləri ilə bağlanıb ('+sq+')'); else bad.push('Ardıcıllıq sözləri işlədin: First, Then, Suddenly, After that…');
-      if(en) good.push('Hekayənin sonluğu var'); else bad.push('Sonluq yazın: “Finally…”, “In the end…”, “They will never forget…”');
-      if(!/["“]/.test(t)) bad.push('Hekayəni canlı etmək üçün qısa dialoq və ya hiss bildirən sifətlər əlavə edə bilərsiniz');
+      /* Məzmun (2/1/0) */
+      if(wc<20) A=0; else if(wc>=35&&pastOk&&names.length&&(adj>=2||dial)&&S.length>=5) A=2; else A=1;
+      if(wc<20) bad.push('Həcm '+wc+' sözdür — 20-dən azdır: Məzmun = 0'); else if(wc<35) bad.push('Həcm '+wc+' sözdür — 2 bal üçün 35 söz və daha çox lazımdır'); else good.push('Həcm şərtə uyğundur ('+wc+' söz)');
+      if(pastOk) good.push('Hekayə keçmiş zamanda yazılıb'); else bad.push('Hekayəni keçmiş zamanda yazın (went, saw, was…)');
+      if(names.length) good.push('Qəhrəmanlara ad verilib ('+names.slice(0,3).join(', ')+')'); else bad.push('Yaradıcı olun: qəhrəmanlara ad verin (Ali, Leyla…)');
+      if(adj>=2||dial) good.push('Detallar var (sifətlər, hisslər'+(dial?', dialoq':'')+')'); else bad.push('Detallar əlavə edin: hava, hisslər, rənglər, qısa dialoq — oxucu ətraflı məlumat almalıdır');
+      /* Ardıcıllıq (1/0.5/0) */
+      B=(sqU>=3&&(op||en)&&S.length>=4)?1:(sq>=1||S.length>=3)?.5:0;
+      if(op) good.push('Hekayənin başlanğıcı var'); else bad.push('Başlanğıc yazın: “Last summer…”, “One day…”');
+      if(sqU>=3) good.push('Hadisələr birləşdirici sözlərlə bağlanıb ('+sqU+' fərqli)'); else bad.push('Müxtəlif birləşdirici sözlər işlədin: First, Then, Suddenly, After that, Finally…');
+      if(en) good.push('Hekayənin sonluğu var'); else bad.push('Sonluq yazın: “Finally…”, “In the end…”');
+      /* Qrammatika (1/0.5/0) */
+      C=(sub>=3&&avgS>=7)?1:(avgS>=4&&S.length>=2)?.5:0;
+      if(sub>=3) good.push('Bağlayıcılarla mürəkkəb cümlələr qurulub'); else bad.push('Bağlayıcılarla mürəkkəb cümlələr qurun: because, when, while, so…');
+      /* Söz ehtiyatı (1/0.5/0) */
+      D=(ttr>=.62&&!overused.length)?1:(ttr>=.45)?.5:0;
+      /* Cərimə */
+      var MECH={0:1,14:1,15:1,cap:1,end:1}, nSp=0, nGL=0;
+      errs.forEach(function(e){ if(e.r==='lt'){ if(e.cat==='TYPOS') nSp++; else if(!/^(PUNCTUATION|CASING|TYPOGRAPHY)$/.test(e.cat)&&e.id!=='WHITESPACE_RULE') nGL++; } else if(!MECH[e.r]) nGL++; });
+      var nTot=nGL+(nSp>=3?1:0); PEN=nTot>=6?1:nTot>=3?.5:0;
+      PENTXT='Cərimə: '+nGL+' qrammatik/leksik'+(nSp?' + '+nSp+' orfoqrafik'+(nSp>=3?' (→ +1 səhv)':' (nəzərə alınmır)'):'')+' səhv';
+      if(PEN) bad.push(PENTXT+' → −'+fmt(PEN)+' bal. 0–2 səhv olsa cərimə yoxdur');
     }
-    var sc=kind==='op'?{A:A,B:B,C:C,D:D}:{A:step(A,1),B:step(B,2),C:step(C,1),D:step(D,1)}, tot=zeroAll?0:sc.A+sc.B+sc.C+sc.D;
+    var sc={A:A,B:B,C:C,D:D}, tot=zeroAll?0:Math.max(0,sc.A+sc.B+sc.C+sc.D-PEN);
     /* marked text */
     marks.sort(function(a,b){return a[0]-b[0]||(a[2]==='bad'?-1:1)}); var h='',p=0;
     marks.forEach(function(m){ if(m[0]<p) return; h+=esc(t.slice(p,m[0]))+'<mark class="'+(m[2]==='ok'?'ok':'')+'">'+esc(t.slice(m[0],m[1]))+'</mark>'; p=m[1]; }); h+=esc(t.slice(p));
@@ -1992,12 +2015,12 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
       var EXTRA={cap:['Hər cümlə böyük hərflə başlayır.','Firstly, … Then, …'],end:['Hər cümlə (və bütün mətn) nöqtə, sual və ya nida işarəsi ilə bitir.','… for everybody.']};
       var g={},order=[];errList.forEach(function(e){if(!g[e.msg]){g[e.msg]=[];order.push(e.msg)}g[e.msg].push(e)});
       return '<p class="es-h">⚠️ Səhvlər və izahı <small style="font-weight:400;color:var(--mute)">('+order.length+' qayda · '+errList.length+' yer)</small></p><div class="es-errs">'+order.map(function(k,i){var L=g[k],r=L[0].r,R=typeof r==='number'?ERR[r]:null,why=R?R[2]:r==='lt'?(L[0].why||''):EXTRA[r][0],ok=R?R[3]:r==='lt'?'':EXTRA[r][1];
-        return '<div class="es-err"><b class="n">'+(i+1)+'</b><div><b>'+esc(k)+'</b>'+(L.length>1?' <small>×'+L.length+' (1 səhv sayılır)</small>':'')+
+        return '<div class="es-err"><b class="n">'+(i+1)+'</b><div><b>'+esc(k)+'</b>'+(L.length>1?' <small>×'+L.length+(kind==='op'?' (1 səhv sayılır)':'')+'</small>':'')+
         '<ul>'+L.slice(0,4).map(function(e){var w=t.slice(e.s,e.e);return '<li><s>'+esc(w.trim()||'…')+'</s>'+(e.r==='lt'&&e.fix?' → <ins>'+esc(e.fix)+'</ins>':e.r==='end'?' → <ins>nöqtə qoyun</ins>':e.fix&&e.fix.trim()!==w.trim()?' → <ins>'+esc(e.fix.trim())+'</ins>':'')+'</li>'}).join('')+'</ul>'+
         (why?'<p>💡 '+esc(why)+'</p>':'')+(r==='lt'&&L[0].en?'<p class="en">EN: '+esc(L[0].en)+'</p>':'')+(ok?'<p class="ex">✓ '+esc(ok)+'</p>':'')+'</div></div>'}).join('')+'</div>';}
     var msg='Salam, Rəşad müəllim! Saytda '+(kind==='op'?'opinion paragraph':'story')+' yoxladım. İlkin bal: '+fmt(tot)+' / 5.\n'+($('esTopic').value?'Mövzu: '+$('esTopic').value+'\n':'')+'\n'+t;
     $('esOut').innerHTML='<div class="es-score"><div class="big">'+fmt(tot)+' <small>/ 5</small></div><div style="flex:1"><b>İlkin qiymətləndirmə</b><div class="es-bar"><i style="width:'+(tot/5*100)+'%"></i></div><small style="color:var(--mute)">'+wc+' söz · '+S.length+' cümlə</small></div></div>'+
-      (zeroAll?'<p class="es-warn" style="margin-top:0"><b>Qeyd 2:</b> A meyarı 0 bal aldığı üçün B, C, D qiymətləndirilmir və yekun bal 0-dır.</p>':'')+'<ul class="es-crit">'+Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'</span><span class="m">'+(OFF[k]?'— ':fmt(sc[k])+' ')+'/ '+CRIT[k][1]+'</span></li>'}).join('')+'</ul>'+
+      (zeroAll?'<p class="es-warn" style="margin-top:0"><b>Qeyd 2:</b> A meyarı 0 bal aldığı üçün B, C, D qiymətləndirilmir və yekun bal 0-dır.</p>':'')+'<ul class="es-crit">'+Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'</span><span class="m">'+(OFF[k]?'— ':fmt(sc[k])+' ')+'/ '+CRIT[k][1]+'</span></li>'}).join('')+(kind==='st'?'<li><span class="l">−</span><span>'+esc(PENTXT)+'</span><span class="m">'+(PEN?'−'+fmt(PEN):'0')+'</span></li>':'')+'</ul>'+
       (good.length?'<p class="es-h">✅ Güclü tərəflər</p><ul class="es-list good">'+good.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
       (bad.length?'<p class="es-h">✏️ Necə yaxşılaşdırmaq olar</p><ul class="es-list bad">'+bad.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
       errHtml()+
