@@ -845,6 +845,17 @@ body.exam-open{overflow:hidden}
 .ma-grid a:hover,.ma-grid a.on{background:#8B1E3F;color:#fff;border-color:#8B1E3F}
 @media(max-width:860px){.ma-grid{grid-template-columns:1fr 1fr}.menu-btn .mt{display:none}.menu-btn{padding:0 11px;margin-right:6px}}
 @media(max-width:360px){.ma-grid a{font-size:.85rem;padding:10px}}
+
+/* menyu: yuxarıda hamısı açıq, aşağıda kompakt */
+header.top:not(.compact) .tabs-in{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none!important;mask-image:none!important;justify-content:center;row-gap:6px}
+header.top:not(.compact) .tab-arrow,header.top:not(.compact) .menu-btn{display:none!important}
+header.top.compact .tabs-in,header.top.compact .tab-arrow{display:none!important}
+header.top.compact .tabs-shell{padding:7px 0}
+header.top.compact .menu-btn{display:flex;width:100%;justify-content:flex-start;margin:0}
+header.top.compact .menu-btn .mt{display:inline}
+.menu-btn .cur{margin-left:auto;font-weight:600;color:#8B1E3F;opacity:.75;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.menu-btn .cur:not(:empty)::before{content:"Hazırda: ";font-weight:500}
+@media(max-width:860px){header.top:not(.compact) .tabs a{padding:6px 10px;font-size:.8rem;border-radius:9px;background:rgba(255,255,255,.08)!important}header.top:not(.compact) .tabs a.on{background:#fff!important}header.top:not(.compact) .tabs-in{gap:5px;padding:8px 0}}
 </style>
 </head>
 <body>
@@ -864,7 +875,7 @@ body.exam-open{overflow:hidden}
   </div>
   <nav class="tabs" aria-label="Bölmələr">
     <div class="wrap tabs-shell">
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuAll"><span class="hb"><i></i><i></i><i></i></span><span class="mt">Menyu</span></button>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuAll"><span class="hb"><i></i><i></i><i></i></span><span class="mt">Menyu</span><span class="cur" id="menuCur"></span></button>
       <button class="tab-arrow l" id="tabL" aria-label="Sola sürüşdür" hidden>‹</button>
       <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#sozler">RN Vocabulary: DİM üçün söz bazası</a><a href="#esse">Esse və Story yoxlama</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
       <button class="tab-arrow r" id="tabR" aria-label="Sağa sürüşdür">›</button>
@@ -2070,6 +2081,32 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
   document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+
+/* compact header on scroll */
+(function(){var h=document.querySelector('header.top'),c=document.getElementById('menuCur');if(!h)return;var on=false;
+  var sp=document.createElement('div');sp.id='hdrSpacer';h.parentNode.insertBefore(sp,h.nextSibling);
+  h.style.position='fixed';h.style.top='0';h.style.left='0';h.style.right='0';h.style.width='100%';h.style.zIndex='50';
+  function meas(){var was=h.classList.contains('compact');h.classList.remove('compact');var H=h.offsetHeight;h.classList.add('compact');var C=h.offsetHeight;if(!was)h.classList.remove('compact');
+    sp.style.height=H+'px';document.documentElement.style.scrollPaddingTop=(C+10)+'px';}
+  meas();window.addEventListener('resize',meas);window.addEventListener('load',meas);
+  function upd(){var y=window.scrollY;if(!on&&y>260){on=true;h.classList.add('compact')}else if(on&&y<30){on=false;h.classList.remove('compact');var m=document.getElementById('menuAll');if(m)m.hidden=true;var b=document.getElementById('menuBtn');if(b)b.setAttribute('aria-expanded',false)}
+    var a=document.querySelector('.tabs-in a.on');if(c)c.textContent=a?a.textContent.replace(/:.*$/,''):''}
+  window.addEventListener('scroll',upd,{passive:true});upd();setInterval(upd,1200);
+})();
+
+/* dəqiq bölməyə keçid (lazy məzmun yerini dəyişsə də) */
+(function(){
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.tabs-in a,.ma-grid a,a.frame,a.hero-pill');if(!a||e.defaultPrevented)return;
+    var id=(a.getAttribute('href')||'').slice(1),el=id&&document.getElementById(id);if(!el)return;
+    e.preventDefault();var h=document.querySelector('header.top');if(h&&!h.classList.contains('compact'))h.classList.add('compact');
+    function off(){return (h?h.offsetHeight:0)+10}
+    function go(sm){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-off(),behavior:sm?'smooth':'auto'})}
+    go(true);try{history.replaceState(null,'','#'+id)}catch(_){}
+    var n=0,t=setInterval(function(){n++;var d=el.getBoundingClientRect().top-off();if(Math.abs(d)>12&&n>2)go(false);if(n>14)clearInterval(t)},250);
+    ['wheel','touchstart'].forEach(function(ev){window.addEventListener(ev,function x(){clearInterval(t);window.removeEventListener(ev,x)},{passive:true,once:true})});
+  },true);
 })();
 /* active tab */
 (function(){
