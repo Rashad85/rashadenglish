@@ -1852,7 +1852,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     [/ [,.!?;:]/g,'Durğu işarəsindən əvvəl boşluq','Vergül, nöqtə və digər durğu işarələri əvvəlki sözə bitişik yazılır, boşluq ondan sonra qoyulur.','Firstly, sport is good.',function(m){return m[0].trim()}]
   ];
   function words(t){return (t.match(/[A-Za-z][A-Za-z'’-]*/g)||[])}
-  function sentences(t){return t.split(/(?<=[.!?])\s+/).map(function(s){return s.trim()}).filter(Boolean)}
+  function sentences(t){return t.split(/(?<=[.!?])\s*(?=[A-Z"“])|(?<=[.!?])\s+/).map(function(s){return s.trim()}).filter(Boolean)}
   function step(v,max){var r=Math.max(0,Math.min(1,v/max)),S=[0,1/3,1/2,2/3,1],b=S[0];S.forEach(function(s){if(Math.abs(s-r)<Math.abs(b-r))b=s});return b*max}
   function fmt(x){return (Math.round(x*100)/100).toString().replace('.',',')}
   function crit(){ $('esCritInfo').innerHTML=Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'<small>'+INFO[kind][k]+'</small></span><span class="m">'+CRIT[k][1]+' bal</span></li>'}).join('') }
@@ -1892,7 +1892,10 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     PERS_PRONOUN_AGREEMENT:['Mübtəda ilə feilin uzlaşması','Şəxs əvəzliyi ilə feil uzlaşmır.'],
     AGREEMENT_SENT_START:['Mübtəda ilə feilin uzlaşması','Mübtəda ilə feil şəxsə və kəmiyyətə görə uzlaşmalıdır.'],
     ENGLISH_WORD_REPEAT_RULE:['Eyni söz iki dəfə','Sözlərdən birini silin.'],
-    WHITESPACE_RULE:['Artıq boşluq','Sözlər arasında bir boşluq qoyulur.']
+    WHITESPACE_RULE:['Artıq boşluq','Sözlər arasında bir boşluq qoyulur.'],
+    SENTENCE_WHITESPACE:['Nöqtədən sonra boşluq','Cümlə bitəndən sonra (nöqtə, sual, nida işarəsindən sonra) boşluq qoyulur: day. He went…'],
+    COMMA_PARENTHESIS_WHITESPACE:['Vergül / nöqtə ətrafında boşluq','Vergül və nöqtə əvvəlki sözə bitişik yazılır, boşluq ondan SONRA qoyulur: park, and…'],
+    EN_QUOTES:['Dırnaq işarəsi','Dırnaq işarələrini düzgün qoyun.']
   };
   var SKIPCAT=/^(STYLE|REDUNDANCY|PLAIN_ENGLISH|BRITISH_ENGLISH|AMERICAN_ENGLISH|REPETITIONS_STYLE|TEXT_ANALYSIS)$/;
   function ltCheck(t,cb){ if(LTC[t]) return cb(LTC[t]);
@@ -1917,6 +1920,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
         if(cat==='TYPOS'&&/^[A-ZƏ]/.test(w)&&st>0&&!/[.!?]\s*$/.test(t.slice(0,st))) return; /* xüsusi adlar */
         if(errs.some(function(e){return st<e.e&&en>e.s})) return;
         var az=LTAZ[id]||LTAZ[id.replace(/_\d+$/,'')], rep=(m.replacements||[]).slice(0,2).map(function(r){return r.value}).join(' / ');
+        if(rep&&rep.replace(/\s/g,'')===w.replace(/\s/g,'')){ var ns=st; while(ns>0&&st-ns<8&&!/\s/.test(t.charAt(ns-1))) ns--; rep=t.slice(ns,st)+(m.replacements[0].value); w=t.slice(ns,en); st=ns; }
         var key=az?az[0]:(LTCAT[cat]||'Qrammatika')+(m.shortMessage?' — '+m.shortMessage:'');
         errs.push({s:st,e:en,msg:key,r:'lt',cat:cat,id:id,fix:rep,why:az?az[1]:'',en:m.message}); marks.push([st,en,'bad']); }); }
     /* struktur: çox uzun cümlələr */
@@ -1984,7 +1988,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
       var pastOk=past>=4&&past>pres*2;
       markRe(SEQ);
       /* Məzmun (2/1/0) */
-      if(wc<20) A=0; else if(wc>=35&&pastOk&&names.length&&(adj>=2||dial)&&S.length>=5) A=2; else A=1;
+      if(wc<20) A=0; else if(wc>=35&&pastOk&&names.length&&(adj>=2||dial)&&S.length>=4) A=2; else A=1;
       if(wc<20) bad.push('Həcm '+wc+' sözdür — 20-dən azdır: Məzmun = 0'); else if(wc<35) bad.push('Həcm '+wc+' sözdür — 2 bal üçün 35 söz və daha çox lazımdır'); else good.push('Həcm şərtə uyğundur ('+wc+' söz)');
       if(pastOk) good.push('Hekayə keçmiş zamanda yazılıb'); else bad.push('Hekayəni keçmiş zamanda yazın (went, saw, was…)');
       if(names.length) good.push('Qəhrəmanlara ad verilib ('+names.slice(0,3).join(', ')+')'); else bad.push('Yaradıcı olun: qəhrəmanlara ad verin (Ali, Leyla…)');
@@ -1995,7 +1999,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
       if(sqU>=3) good.push('Hadisələr birləşdirici sözlərlə bağlanıb ('+sqU+' fərqli)'); else bad.push('Müxtəlif birləşdirici sözlər işlədin: First, Then, Suddenly, After that, Finally…');
       if(en) good.push('Hekayənin sonluğu var'); else bad.push('Sonluq yazın: “Finally…”, “In the end…”');
       /* Qrammatika (1/0.5/0) */
-      C=(sub>=3&&avgS>=7)?1:(avgS>=4&&S.length>=2)?.5:0;
+      C=(sub>=2&&avgS>=6)?1:(avgS>=4&&S.length>=2)?.5:0;
       if(sub>=3) good.push('Bağlayıcılarla mürəkkəb cümlələr qurulub'); else bad.push('Bağlayıcılarla mürəkkəb cümlələr qurun: because, when, while, so…');
       /* Söz ehtiyatı (1/0.5/0) */
       D=(ttr>=.62&&!overused.length)?1:(ttr>=.45)?.5:0;
