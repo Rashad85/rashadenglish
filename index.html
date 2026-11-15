@@ -864,6 +864,19 @@ body.view-sec main>.film,body.view-sec main>.hero,body.view-sec .home-grid{displ
 .sec-back{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;padding-bottom:4px}
 .sec-back a{white-space:nowrap;color:#8B1E3F;font-weight:700;text-decoration:none;padding:8px 14px;border-radius:10px;background:#FBF3F5;border:1px solid #F1D9E0}
 .sec-back span{color:var(--mute);font-size:.85rem;text-align:right}
+
+/* menyu: ikon + qısa ad */
+.tabs a i{font-style:normal;display:none}.tabs a .sn{display:none}.tabs a.mob{display:none}
+@media(max-width:860px){
+ header.top .tabs-in{display:grid!important;grid-template-columns:repeat(5,1fr);gap:5px!important;padding:7px 0!important;overflow:visible!important}
+ header.top .tabs a,header.top:not(.compact) .tabs a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px!important;min-height:50px;font-size:.66rem!important;line-height:1.1;text-align:center;white-space:normal;border-radius:11px!important;background:rgba(255,255,255,.1)!important;font-weight:600!important}
+ header.top .tabs a i{display:block;font-size:1.1rem;line-height:1}
+ header.top .tabs a .ln{display:none}header.top .tabs a .sn{display:block}
+ header.top .tabs a.on{background:#fff!important;color:#8B1E3F!important}
+ .tabs-shell .tab-arrow{display:none!important}
+}
+@media(max-width:360px){header.top .tabs a{font-size:.6rem!important;min-height:46px}}
+main>section.route.cur{padding-top:6px!important}
 </style>
 </head>
 <body>
@@ -885,7 +898,7 @@ body.view-sec main>.film,body.view-sec main>.hero,body.view-sec .home-grid{displ
     <div class="wrap tabs-shell">
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuAll"><span class="hb"><i></i><i></i><i></i></span><span class="mt">Menyu</span><span class="cur" id="menuCur"></span></button>
       <button class="tab-arrow l" id="tabL" aria-label="Sola sürüşdür" hidden>‹</button>
-      <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#sozler">RN Vocabulary: DİM üçün söz bazası</a><a href="#esse">Esse və Story yoxlama</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
+      <div class="tabs-in" id="tabsIn"><a href="#" class="mob"><i>🏠</i><span class="ln">Ana səhifə</span><span class="sn">Ana səhifə</span></a><a href="#neticeler"><i>🏆</i><span class="ln">Nəticələr</span><span class="sn">Nəticələr</span></a><a href="#sinaq-qrupu"><i>📝</i><span class="ln">Onlayn Sınaq Qrupu</span><span class="sn">Sınaq qrupu</span></a><a href="#sozler"><i>📚</i><span class="ln">RN Vocabulary: DİM üçün söz bazası</span><span class="sn">Vocabulary</span></a><a href="#esse"><i>✍️</i><span class="ln">Esse və Story yoxlama</span><span class="sn">Esse / Story</span></a><a href="#kurslar"><i>🎓</i><span class="ln">Kurslar</span><span class="sn">Kurslar</span></a><a href="#gunun-suali"><i>❓</i><span class="ln">Günün sualı</span><span class="sn">Günün sualı</span></a><a href="#oyun"><i>🎮</i><span class="ln">Oyun</span><span class="sn">Oyun</span></a><a href="#test"><i>⏱️</i><span class="ln">Səviyyə testi</span><span class="sn">Test</span></a><a href="#kitab"><i>📕</i><span class="ln">Kitab</span><span class="sn">Kitab</span></a><a href="#video-izah"><i>▶️</i><span class="ln">Video izahlar</span><span class="sn">Video izah</span></a><a href="#metod"><i>🎬</i><span class="ln">Dərs videoları</span><span class="sn">Dərs video</span></a><a href="#unvanlar"><i>📍</i><span class="ln">Ünvanlar</span><span class="sn">Ünvanlar</span></a><a href="#suallar"><i>💬</i><span class="ln">Suallar</span><span class="sn">Suallar</span></a><a href="#qeydiyyat" class="mob"><i>✅</i><span class="ln">Dərsə yazıl</span><span class="sn">Yazıl</span></a></div>
       <button class="tab-arrow r" id="tabR" aria-label="Sağa sürüşdür">›</button>
     </div>
   </nav>
