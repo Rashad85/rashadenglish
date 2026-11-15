@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RN – Rashad Nasibov</title>
+<meta name="description" content="Rəşad Nəsibov – İngilis dili müəllimi. Abituriyent hazırlığı, 9-cu sinif buraxılış hazırlığı, onlayn dərslər. Masazır (Yeni Bakı), Nərimanov və onlayn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: imtahan vərəqi ideyası — cavab kartı dairələri, sətirli bölmələr, sol kənarda nömrələr */
+:root{
+  --ink:#14213D;
+  --paper:#F5F6F8;
+  --card:#FFFFFF;
+  --line:#D9DEE7;
+  --mute:#5A6478;
+  --accent:#8B1E3F;
+  --mark:#FFD447;
+  --on-accent:#FFFFFF;
+  --font-display:"Unbounded","Segoe UI",system-ui,sans-serif;
+  --font-body:"Rubik","Segoe UI",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#E9EDF5;--paper:#0E1526;--card:#161F35;--line:#2A3550;--mute:#9AA6BF;
+    --accent:#C9637F;--mark:#FFD447;--on-accent:#0E1526;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E9EDF5;--paper:#0E1526;--card:#161F35;--line:#2A3550;--mute:#9AA6BF;
+  --accent:#C9637F;--mark:#FFD447;--on-accent:#0E1526;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,5.2vw,3.6rem);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+.mark{background:linear-gradient(transparent 55%,var(--mark) 55%);padding:0 .1em;color:inherit}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mark{color:var(--ink);background:linear-gradient(transparent 60%,rgba(255,212,71,.45) 60%)}}
+:root[data-theme="dark"] .mark{background:linear-gradient(transparent 60%,rgba(255,212,71,.45) 60%)}
+
+/* nav */
+header.top{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-display);font-weight:700}
+.logo .rn{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:.85rem;letter-spacing:.02em}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.95rem}
+.nav ul a{text-decoration:none;color:var(--mute)}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font:600 1rem var(--font-body);text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.sm{padding:8px 16px;font-size:.92rem}
+@media (max-width:820px){.nav ul{display:none}}
+
+/* hero */
+.hero{padding:40px 0 48px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
+.eyebrow{display:inline-block;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.hero p.lead{font-size:1.15rem;color:var(--mute);max-width:52ch;margin-top:20px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.places{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding:0;list-style:none}
+.places li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:.92rem;font-weight:500}
+
+/* answer sheet card */
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px -24px rgba(20,33,61,.35)}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px dashed var(--line);padding-bottom:12px;margin-bottom:14px}
+.sheet-head b{font-family:var(--font-display);font-size:.95rem}
+.sheet-head span{font-size:.82rem;color:var(--mute)}
+.row{display:grid;grid-template-columns:28px repeat(5,1fr);align-items:center;gap:6px;padding:6px 0;font-variant-numeric:tabular-nums}
+.row .n{font-weight:600;color:var(--mute);font-size:.9rem}
+.bub{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.78rem;font-weight:600;color:var(--mute);justify-self:center}
+.bub.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.bub.ok{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.sheet-foot{margin-top:14px;padding-top:12px;border-top:2px dashed var(--line);display:flex;justify-content:space-between;font-size:.9rem}
+.sheet-foot strong{font-family:var(--font-display)}
+
+/* sections */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;margin-bottom:36px}
+.sec-num{font-family:var(--font-display);font-weight:800;font-size:1.1rem;width:48px;height:48px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center}
+.sec-head p{color:var(--mute);margin-top:10px;max-width:60ch}
+@media (max-width:560px){.sec-head{grid-template-columns:1fr}}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.course{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.course .tag{align-self:flex-start;font-size:.8rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--paper);border:1px solid var(--line)}
+.course ul{margin:0;padding-left:18px;color:var(--mute);display:grid;gap:4px}
+.course.feature{border:2px solid var(--ink)}
+
+/* book */
+.book-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+.cover{aspect-ratio:3/4;max-width:300px;width:100%;margin:0 auto;border-radius:6px 14px 14px 6px;background:var(--ink);color:#fff;padding:28px 24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:-10px 0 0 -4px var(--accent) inset,0 24px 50px -24px rgba(0,0,0,.5);position:relative}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cover{background:#1F2C4D}}
+:root[data-theme="dark"] .cover{background:#1F2C4D}
+.cover small{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.cover .big{font-family:var(--font-display);font-weight:800;font-size:4.2rem;line-height:1;color:var(--mark)}
+.cover .ttl{font-family:var(--font-display);font-weight:700;font-size:1.15rem;line-height:1.25}
+.cover .au{font-size:.85rem;opacity:.85}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.fact b{display:block;font-family:var(--font-display);font-size:1.4rem;font-variant-numeric:tabular-nums}
+.fact span{font-size:.88rem;color:var(--mute)}
+
+.bookvid{width:100%;max-width:320px;margin:0 auto;aspect-ratio:9/16;border-radius:18px;background:#000;border:1px solid var(--line);box-shadow:0 24px 50px -24px rgba(0,0,0,.5)}
+.parts{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-wrap:wrap;gap:8px}
+.parts li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:.9rem}
+.parts b{color:var(--accent);font-weight:600;margin-right:4px;font-variant-numeric:tabular-nums}
+.vg-title{margin:44px 0 18px;font-size:1.3rem}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vgrid figure{margin:0;display:grid;gap:10px}
+.vgrid video{width:100%;aspect-ratio:9/16;border-radius:16px;background:#000;border:1px solid var(--line)}
+.vgrid figcaption{display:grid;gap:2px}
+.vgrid figcaption span{color:var(--mute);font-size:.92rem}
+@media (max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.vgrid{grid-template-columns:1fr}.vgrid video{max-width:340px;margin:0 auto}}
+.portrait{margin:0;position:relative;max-width:420px;justify-self:center;width:100%}
+.portrait img{width:100%;height:auto;display:block;border-radius:22px;box-shadow:0 24px 50px -24px rgba(20,33,61,.5)}
+.portrait figcaption{position:absolute;left:-12px;bottom:28px;background:var(--card);border:1px solid var(--line);border-left:5px solid #C9A227;border-radius:12px;padding:10px 16px;display:grid;box-shadow:0 12px 30px -12px rgba(0,0,0,.35)}
+.portrait figcaption b{font-family:var(--font-display);font-size:1.05rem}
+.portrait figcaption span{font-size:.85rem;color:var(--mute)}
+@media (max-width:900px){.portrait figcaption{left:12px}}
+.champs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.champ{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-top:4px solid #C9A227;border-radius:18px;padding:18px}
+.champ img{width:100%;border-radius:12px;aspect-ratio:9/14;object-fit:cover;object-position:top}
+.champ h3{font-size:1.3rem;margin-top:8px}
+.champ .big{font-family:var(--font-display);font-weight:800;font-size:2.4rem;line-height:1.1;margin:6px 0;font-variant-numeric:tabular-nums}
+.champ .big small{font-size:1rem;color:var(--mute)}
+.champ p{color:var(--mute)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat b{display:block;font-family:var(--font-display);font-size:2.2rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{color:var(--mute);font-size:.92rem}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.rtable{width:100%;border-collapse:collapse;font-size:.95rem}
+.muni{display:none;color:var(--mute);font-size:.85rem}
+@media (max-width:600px){.rtable .uni,.rtable th:nth-child(3){display:none}.muni{display:block}.badge{display:table;margin:4px 0 0}.rtable td,.rtable th{padding:9px 10px}}
+.rtable th{text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);padding:12px 14px;border-bottom:1px solid var(--line)}
+.rtable td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.rtable tr:last-child td{border-bottom:none}
+.rtable .rk,.rtable .pts{font-variant-numeric:tabular-nums}
+.rtable .rk{color:var(--mute);width:40px}
+.rtable .pts{font-family:var(--font-display);font-weight:700;text-align:right;white-space:nowrap}
+.rtable th:last-child{text-align:right}
+.rtable .uni{color:var(--mute)}
+.rtable tr.gold td{background:rgba(201,162,39,.10)}
+.badge{display:inline-block;margin-left:8px;font-size:.72rem;font-weight:600;background:#C9A227;color:#1A1405;padding:2px 8px;border-radius:999px;vertical-align:middle}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gimg{padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);cursor:zoom-in;text-align:left;color:var(--ink);font:inherit;display:grid}
+.gimg img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block}
+.gimg span{padding:10px 12px;font-size:.9rem;font-weight:500}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(5,8,16,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:10px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:85%;border-radius:8px}
+.lb p{color:#fff;margin:0}
+.lb-x{position:absolute;top:12px;right:16px;background:none;border:none;color:#fff;font-size:2.4rem;cursor:pointer;line-height:1}
+@media (max-width:900px){.champs{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.champ{grid-template-columns:110px 1fr}}
+.vocab-app{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:24px;display:grid;gap:10px;justify-items:start}
+.vocab-app p{color:var(--mute);max-width:48ch}
+.news{padding:4px 0 28px}
+.news-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.news-head b{font-family:var(--font-display);font-size:1rem}
+.news-head span{color:var(--mute);font-size:.85rem}
+.news-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin}
+.ncard{scroll-snap-align:start;display:grid;gap:4px;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;color:var(--ink);min-height:118px;align-content:start}
+.ncard:hover{border-color:var(--ink)}
+.ncard em{font-style:normal;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.ncard b{font-family:var(--font-display);font-size:1.02rem;line-height:1.2}
+.ncard span{font-size:.88rem;color:var(--mute)}
+.ncard.n-red{background:#8B1E3F;border-color:#8B1E3F;color:#fff}.ncard.n-red em,.ncard.n-red span{color:#F3D3DD}
+.ncard.n-ink{background:#14213D;border-color:#14213D;color:#fff}.ncard.n-ink em{color:var(--mark)}.ncard.n-ink span{color:#B7C0D4}
+.ncard.n-gold{border-top:4px solid #C9A227}
+.cal{margin-top:28px;display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:28px;align-items:start}
+.countdown{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:22px}
+.cd-title{font-family:var(--font-display);font-weight:700;margin-bottom:12px}
+.cd-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd-nums span{background:#fff;color:#14213D;border-radius:12px;padding:10px 4px;text-align:center;font-size:.72rem;font-weight:500;display:grid}
+.cd-nums b{font-family:var(--font-display);font-size:1.7rem;font-variant-numeric:tabular-nums;line-height:1.1}
+.cd-note{color:#B7C0D4;font-size:.88rem;margin-top:12px}
+.cd-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.cd-list li{display:grid;grid-template-columns:50px 1fr auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.03)}
+.cd-date{display:grid;text-align:center;font-size:.7rem;text-transform:uppercase;color:#B7C0D4;line-height:1.1}
+.cd-date b{font-family:var(--font-display);font-size:1.4rem;color:#fff}
+.cd-body{display:grid}.cd-body small{color:#B7C0D4}
+.cd-left{font-size:.8rem;color:#B7C0D4;white-space:nowrap}
+.cd-list li.next{border-color:#8B1E3F;background:rgba(139,30,63,.15)}.cd-list li.next .cd-left{color:#E7A3B6;font-weight:600}
+.cd-list li.done{opacity:.5}
+@media (max-width:900px){.cal{grid-template-columns:1fr}}
+@media (max-width:640px){.cd-list{grid-template-columns:1fr}}
+.daily{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:14px;align-content:start}
+.d-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--paper)}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:999px;font:500 .85rem var(--font-body);color:var(--mute);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.opt.right,.g-row.right{border-color:#2E9E5B;background:rgba(46,158,91,.12)}.opt.right .bub,.g-row.right .bub{background:#2E9E5B;border-color:#2E9E5B;color:#fff}
+.opt.wrong,.g-row.wrong{border-color:var(--accent);background:rgba(139,30,63,.10)}.opt.wrong .bub,.g-row.wrong .bub{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt[disabled]{cursor:default}
+.dq-res{font-size:.95rem;color:var(--mute)}.dq-res.ok b{color:#2E9E5B}.dq-res.no b{color:var(--accent)}
+.streak{display:flex;align-items:center;gap:12px;padding-top:12px;border-top:1px dashed var(--line);color:var(--mute);font-size:.92rem}
+.s-n{min-width:44px;height:44px;border-radius:50%;background:var(--mark);color:#14213D;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:1.1rem}
+.mt-lead{color:var(--mute)}.mt-best{color:var(--mute);font-size:.9rem}
+.mt-score{font-size:1.1rem}.mt-score b{font-family:var(--font-display);font-size:2.2rem;color:var(--accent)}
+.mt-top{display:flex;justify-content:space-between;align-items:center;font-variant-numeric:tabular-nums}
+.mt-time{font-family:var(--font-display);font-weight:800;font-size:1.6rem}
+.mt-bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}.mt-bar i{display:block;height:100%;background:var(--accent);transition:width .1s linear}
+#mt,#dq{display:grid;gap:12px;justify-items:stretch}#mt>.btn{justify-self:start}
+@media (max-width:900px){.daily{grid-template-columns:1fr}}
+.game{background:#111A30;color:#EEF1F7;border-radius:22px;padding:24px;max-width:860px}
+.g-wrap{display:grid;grid-template-columns:120px 1fr;gap:24px;min-height:380px}
+.g-meter{position:relative;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);overflow:hidden}
+.g-fill{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(#8B1E3F,#C9A227);transition:height .4s}
+.g-tick{position:absolute;left:0;right:0;transform:translateY(50%);font-size:.62rem;line-height:1.1;padding:0 6px;color:#B7C0D4;border-top:1px dashed rgba(255,255,255,.3);padding-top:2px}
+.g-tick b{display:block;font-family:var(--font-display);font-size:.85rem;color:#fff}
+.g-tick.on{color:#fff}
+.g-main{display:grid;gap:12px;align-content:start}
+.g-main h3{font-size:1.5rem}.game .mt-lead,.game .mt-best{color:#B7C0D4}.game .btn{justify-self:start;background:#8B1E3F;border-color:#8B1E3F;color:#fff}
+.g-lives{color:#C9637F;letter-spacing:2px}.g-lives i{font-style:normal;color:rgba(255,255,255,.2)}
+.g-combo{color:var(--mark);font-weight:600}
+.game .qtext{color:#fff}
+.g-card{background:#fff;color:#14213D;border-radius:14px;padding:8px;display:grid;gap:4px}
+.g-row{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:center;border:1px solid transparent;border-radius:10px;background:none;padding:8px 10px;font:inherit;color:#14213D;text-align:left;cursor:pointer}
+.g-row:hover{background:#F2F4F8}
+.g-row .bub{width:32px;height:32px;border-color:#C5CCD8;color:#5A6478}
+.game .mt-bar{background:rgba(255,255,255,.15)}
+@media (max-width:560px){.g-wrap{grid-template-columns:64px 1fr;gap:14px}.g-tick{font-size:0}.g-tick b{font-size:.75rem}.game{padding:16px}}
+/* header v2 */
+header.top{background:var(--paper);box-shadow:0 1px 0 var(--line)}
+.nav{height:68px}
+.logo .lt{display:grid;line-height:1.15}
+.logo .lt b{font-family:var(--font-display);font-size:1rem}
+.logo .lt small{font-family:var(--font-body);font-weight:500;font-size:.78rem;color:var(--mute)}
+.nav-r{display:flex;align-items:center;gap:12px}
+.avatar{width:46px;height:46px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#8B1E3F,#C9A227);flex:none;display:block}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:2px solid var(--paper)}
+.tabs{background:#14213D;border-top:none}
+.tabs-shell{position:relative;display:flex;align-items:center}
+.tabs-in{display:flex;gap:4px;overflow-x:auto;padding:8px 0;scrollbar-width:none;flex:1;scroll-behavior:smooth;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 40px),transparent 100%)}
+.tabs a{flex:none;text-decoration:none;font-size:.9rem;font-weight:500;padding:8px 14px;border-radius:10px;border:none;background:transparent;color:#C9D1E3;white-space:nowrap;position:relative}
+.tabs a:hover{background:rgba(255,255,255,.08);color:#fff;border-color:transparent}
+.tabs a.on{background:#8B1E3F;color:#fff}
+.tab-arrow{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:#14213D;color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.tab-arrow[hidden]{display:none}
+.tab-arrow.l{margin-right:6px}.tab-arrow.r{margin-left:6px}
+@media (max-width:560px){.logo .lt small{display:none}.nav-r .btn.sm{padding:7px 12px;font-size:.85rem}}
+/* hero card */
+.hero-card{background:#14213D;color:#EEF1F7;border-radius:22px;padding:26px;display:grid;gap:16px;box-shadow:0 24px 50px -24px rgba(20,33,61,.55);position:relative;overflow:hidden}
+.hero-card::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(rgba(201,162,39,.35),transparent 70%)}
+.hc-eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C9A227}
+.hc-row{display:flex;align-items:center;gap:14px;font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.2}
+.hc-row small{font-family:var(--font-body);font-weight:400;font-size:.88rem;color:#B7C0D4}
+.hc-n{font-size:4rem;line-height:1;color:#C9A227;font-weight:800}
+.hc-champs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hc-champs div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px;display:grid}
+.hc-champs b{font-family:var(--font-display);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.hc-champs span{font-size:.85rem;color:#B7C0D4}
+.hc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px dashed rgba(255,255,255,.2);padding-top:14px}
+.hc-stats div{display:grid}
+.hc-stats b{font-family:var(--font-display);font-size:1.4rem;color:#C9637F;font-variant-numeric:tabular-nums}
+.hc-stats span{font-size:.78rem;color:#B7C0D4;line-height:1.3}
+.hc-link{color:#fff;font-weight:600;text-decoration-color:#8B1E3F;text-underline-offset:4px}
+/* film strip */
+.film{background:#0B0F1A;padding:14px 0 18px;margin-bottom:8px}
+.film-head{display:flex;justify-content:space-between;align-items:baseline;color:#fff;margin-bottom:10px}
+.film-head b{font-family:var(--font-display);font-size:.95rem;letter-spacing:.04em}
+.film-head span{font-size:.8rem;color:#8C97B0}
+.film-reel{overflow:hidden;position:relative;padding:18px 0;background:#161616;
+  background-image:radial-gradient(circle at 50% 50%,#0B0F1A 0 4px,transparent 4.5px),radial-gradient(circle at 50% 50%,#0B0F1A 0 4px,transparent 4.5px);
+  background-size:22px 18px,22px 18px;background-repeat:repeat-x,repeat-x;background-position:0 0,0 100%}
+.film-track{display:flex;gap:10px;width:max-content;animation:reel 60s linear infinite;padding:0 5px}
+.film-reel:hover .film-track,.film-reel:focus-within .film-track,.film-reel.hold .film-track{animation-play-state:paused}
+@keyframes reel{to{transform:translateX(-50%)}}
+.frame{width:250px;flex:none;display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center;background:#20232B;border:1px solid #2E323C;border-radius:6px;padding:8px;text-decoration:none;color:#fff}
+.frame:hover{border-color:#8B1E3F}
+.f-pic{width:90px;height:110px;border-radius:4px;overflow:hidden;background:#14213D;display:grid;place-items:center}
+.f-pic img{width:100%;height:100%;object-fit:cover;object-position:top}
+.f-pic.noimg{background:linear-gradient(135deg,#8B1E3F,#14213D)}
+.f-txt{font-family:var(--font-display);font-weight:800;font-size:.95rem;text-align:center;padding:6px;line-height:1.15}
+.f-cap{display:grid;gap:2px;min-width:0}
+.f-cap em{font-style:normal;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#B04A68}
+.f-cap b{font-family:var(--font-display);font-size:.95rem;line-height:1.2}
+.f-cap small{font-size:.8rem;color:#A7B0C2}
+@media (prefers-reduced-motion:reduce){.film-track{animation:none}.film-reel{overflow-x:auto}}
+/* method */
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;counter-reset:s}
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--mark);color:#14213D;font-family:var(--font-display);font-weight:700}
+.step p{color:var(--mute);margin-top:6px;font-size:.97rem}
+
+/* places */
+.loc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.loc .item{border-left:4px solid var(--accent);background:var(--card);border-radius:0 14px 14px 0;padding:20px 22px}
+.loc .item p{color:var(--mute);margin-top:6px}
+
+/* form */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px}
+label{font-weight:600;font-size:.92rem;display:grid;gap:6px}
+input,select{font:inherit;font-weight:400;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+.form-note{font-size:.85rem;color:var(--mute)}
+.out{display:none;border:1px dashed var(--accent);border-radius:12px;padding:14px;font-size:.95rem}
+.out.show{display:grid;gap:10px}
+.out a{font-weight:600;color:var(--accent)}
+.clist{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:14px}
+.clist li{display:grid;grid-template-columns:120px 1fr;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.clist li span{color:var(--mute)}
+.clist a{font-weight:600;text-decoration-color:var(--accent);text-underline-offset:3px}
+
+.promo{margin-top:28px;display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:28px;align-items:center}
+.promo video{width:100%;aspect-ratio:9/16;border-radius:18px;background:#000;border:1px solid rgba(255,255,255,.15)}
+.promo h3{font-size:1.3rem}
+.promo p{color:#B7C0D4;margin-top:8px;max-width:46ch}
+@media (max-width:640px){.promo{grid-template-columns:1fr}.promo video{max-width:320px;margin:0 auto}}
+/* online test group band (single dark world, like the promo video) */
+.band{background:#111A30;color:#EEF1F7;border-top:none;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 90% 0%,rgba(139,30,63,.22),transparent 70%),radial-gradient(500px 300px at 0% 100%,rgba(70,100,200,.18),transparent 70%);pointer-events:none}
+.band .wrap{position:relative}
+.band .sec-num{border-color:#8B1E3F;color:#fff;background:#8B1E3F}
+.band .sec-head p{color:#B7C0D4}
+.band .eyebrow{color:#B04A68}
+.band-grid{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:40px;align-items:start}
+.price{background:#fff;color:#14213D;border-radius:20px;padding:26px;display:grid;gap:14px}
+.price-top{display:flex;align-items:baseline;gap:8px}
+.amt{font-family:var(--font-display);font-weight:800;font-size:3.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.per{color:#5A6478;font-weight:500}
+.price-sub{font-weight:600;color:#8B1E3F}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tiles span{background:#8B1E3F;color:#fff;border-radius:10px;padding:8px 0;text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.1rem}
+.tiles span::before{content:"SINAQ";display:block;font:600 .55rem var(--font-body);letter-spacing:.1em;opacity:.8}
+.incl{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.incl li{padding-left:28px;position:relative}
+.incl li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:#E3F4EA;color:#2E9E5B;display:grid;place-items:center;font-size:.75rem;font-weight:700}
+.btn.accent{background:#8B1E3F;border-color:#8B1E3F;color:#fff}
+.btn.accent:hover{background:#14213D;border-color:#14213D}
+.price-note{font-size:.85rem;color:#5A6478;text-align:center}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:f}
+.flow li{display:grid;grid-template-columns:48px 1fr;column-gap:16px;align-items:center;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.04)}
+.flow li::before{counter-increment:f;content:counter(f);grid-row:span 2;width:44px;height:44px;border-radius:50%;background:#8B1E3F;color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700}
+.flow b{font-family:var(--font-display);font-weight:700;font-size:1.05rem}
+.flow span{color:#B7C0D4;font-size:.95rem}
+.band-foot{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;color:#B7C0D4}
+.btn.ghost-light{background:transparent;border-color:#EEF1F7;color:#EEF1F7}
+.btn.ghost-light:hover{background:#EEF1F7;color:#111A30}
+.hero-pill{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:6px 6px 6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);text-decoration:none;font-size:.9rem;font-weight:500}
+.hero-pill b{background:#8B1E3F;color:#fff;padding:4px 10px;border-radius:999px;font-size:.8rem}
+@media (max-width:900px){.band-grid{grid-template-columns:1fr}}
+.checker{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:28px;border-radius:18px;background:var(--card);border:2px solid var(--accent)}
+.checker p{color:var(--mute);margin-top:6px;max-width:56ch}
+html{scroll-padding-top:130px}
+/* mobile menu */
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:42px;height:42px;color:var(--ink);cursor:pointer;font-size:1.2rem}
+.mnav{display:none;border-top:1px solid var(--line);padding:8px 20px 16px}
+.mnav.open{display:grid;gap:2px}
+.mnav a{text-decoration:none;padding:10px 0;font-weight:500;border-bottom:1px solid var(--line)}
+@media (max-width:820px){.burger{display:grid;place-items:center}}
+
+/* quiz */
+.quiz{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;max-width:760px}
+.qbar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:10px}
+.qbar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.qmeta{display:flex;justify-content:space-between;font-size:.88rem;color:var(--mute);margin-bottom:18px;font-variant-numeric:tabular-nums}
+.qtext{font-size:1.2rem;font-weight:500;margin-bottom:18px}
+.opts{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:12px;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:inherit;cursor:pointer}
+.opt:hover{border-color:var(--ink)}
+.opt .bub{width:32px;height:32px}
+.opt.sel{border-color:var(--ink)}
+.opt.sel .bub{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.qnav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.score{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+.score .num{font-family:var(--font-display);font-weight:800;font-size:3rem;font-variant-numeric:tabular-nums;line-height:1}
+.lvl{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--mark);color:#14213D;font-weight:600;font-size:.9rem}
+.review{list-style:none;padding:0;margin:18px 0;display:grid;gap:8px;font-size:.95rem}
+.review li{padding:10px 12px;border-radius:10px;background:var(--paper);border-left:4px solid var(--accent)}
+.review li.good{border-left-color:#2E9E5B}
+.review small{color:var(--mute)}
+.res-actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* flashcards */
+.fc-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:40px;align-items:center}
+.fcard{perspective:1000px;height:240px;cursor:pointer;border:none;background:none;padding:0;width:100%;font:inherit;color:inherit}
+.fcard .in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.fcard.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;padding:24px;text-align:center}
+.face.back{transform:rotateY(180deg);background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.face .w{font-family:var(--font-display);font-weight:700;font-size:2rem}
+.face .t{font-size:.85rem;color:var(--mute)}
+.face.back .w{font-size:1.5rem;color:var(--mark)}
+.face.back .ex{font-style:italic;opacity:.9}
+.fc-ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.fc-count{font-variant-numeric:tabular-nums;color:var(--mute);margin-left:auto}
+@media (prefers-reduced-motion:reduce){.fcard .in{transition:none}}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 20px}
+.faq summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--font-display);color:var(--accent)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--mute);padding-bottom:16px}
+
+/* floating whatsapp */
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;align-items:center;gap:8px;background:#25D366;color:#0B3B1E;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(0,0,0,.45)}
+.wa-float svg{width:22px;height:22px}
+@media (max-width:420px){.wa-float span{display:none}.wa-float{padding:14px}}
+@media (max-width:900px){.fc-wrap{grid-template-columns:1fr}}
+
+footer{padding:32px 0 90px;border-top:1px solid var(--line);color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+@media (max-width:900px){
+  .hero-grid,.book-grid,.contact-grid{grid-template-columns:1fr}
+  .grid3,.loc{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width:420px){.facts{grid-template-columns:1fr}.clist li{grid-template-columns:1fr;gap:2px}}
+
+/* ===== light theme overrides ===== */
+:root{--tint:#FBF2F4;--tint2:#FFF8E6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tint:#24182A;--tint2:#262214}}
+:root[data-theme="dark"]{--tint:#24182A;--tint2:#262214}
+.tabs{background:var(--card);border-bottom:1px solid var(--line)}
+.tabs a{color:var(--mute)}
+.tabs a:hover{background:var(--paper);color:var(--ink)}
+.tabs a.on{background:#8B1E3F;color:#fff}
+.tab-arrow{background:var(--card);border-color:var(--line);color:var(--ink)}
+.film{background:var(--paper)}
+.film-head{color:var(--ink)}.film-head span{color:var(--mute)}
+.film-reel{background-color:#D5DBE5;background-image:radial-gradient(circle at 50% 50%,var(--paper) 0 4px,transparent 4.5px),radial-gradient(circle at 50% 50%,var(--paper) 0 4px,transparent 4.5px)}
+.frame{background:var(--card);border-color:var(--line);color:var(--ink)}
+.f-cap small{color:var(--mute)}
+.f-pic.noimg{background:linear-gradient(135deg,#B04A68,#8B1E3F);color:#fff}
+.hero-card{background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:5px solid #C9A227;box-shadow:0 20px 40px -28px rgba(20,33,61,.4)}
+.hero-card::after{background:radial-gradient(rgba(201,162,39,.18),transparent 70%)}
+.hc-eyebrow{color:#A8851A}.hc-n{color:#C9A227}
+.hc-row small,.hc-champs span,.hc-stats span{color:var(--mute)}
+.hc-champs div{background:var(--paper);border-color:var(--line)}
+.hc-stats{border-top-color:var(--line)}.hc-stats b{color:var(--accent)}
+.hc-link{color:var(--ink)}
+.band{background:var(--tint);color:var(--ink)}
+.band::before{background:radial-gradient(600px 300px at 90% 0%,rgba(139,30,63,.10),transparent 70%)}
+.band .sec-head p,.band-foot,.flow span,.cd-note,.promo p,.cd-body small,.cd-date,.cd-left{color:var(--mute)}
+.band .eyebrow{color:var(--accent)}
+.price{border:1px solid var(--line)}
+.flow li{background:var(--card);border-color:var(--line)}
+.band-foot{border-top-color:var(--line)}
+.btn.ghost-light{border-color:var(--ink);color:var(--ink)}.btn.ghost-light:hover{background:var(--ink);color:var(--paper)}
+.countdown{background:var(--card);border-color:var(--line)}
+.cd-nums span{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.cd-list li{background:var(--card);border-color:var(--line)}
+.cd-date b{color:var(--ink)}
+.cd-list li.next{background:#F7E4EA;border-color:#8B1E3F}.cd-list li.next .cd-left{color:#7A1835}
+.promo video{border-color:var(--line)}
+.game{background:var(--tint2);color:var(--ink);border:1px solid var(--line)}
+.g-meter{background:var(--card);border-color:var(--line)}
+.g-tick{color:var(--mute);border-top-color:var(--line)}.g-tick b{color:var(--ink)}.g-tick.on{color:var(--ink)}
+.game .qtext{color:var(--ink)}.game .mt-lead,.game .mt-best{color:var(--mute)}
+.g-card{border:1px solid var(--line)}
+.game .mt-bar{background:var(--line)}
+.g-combo{color:#A8851A}
+.g-lives i{color:var(--line)}
+
+/* results interactive */
+.champ{cursor:pointer;transition:border-color .15s}.champ:hover{border-color:var(--ink)}
+.champ img{aspect-ratio:1;border-radius:50%;object-position:center}
+button.stat{font:inherit;color:inherit;text-align:left;cursor:pointer;display:grid;gap:4px;align-content:start}
+button.stat:hover{border-color:var(--accent)}
+.stat i{font-style:normal;font-size:.82rem;font-weight:600;color:var(--accent);margin-top:6px}
+.hero-card button{font:inherit;color:inherit;text-align:left;cursor:pointer;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid}
+.hc-stats button{background:none;border:none;padding:0;border-radius:6px}
+.hero-card button:hover b{text-decoration:underline;text-decoration-color:var(--accent)}
+.rs{position:relative;overflow:hidden;border-radius:22px}
+.rs-track{display:flex;transition:transform .5s ease}
+@media (prefers-reduced-motion:reduce){.rs-track{transition:none}}
+.rs-slide{flex:0 0 100%;min-height:380px;padding:32px;background:var(--card);border:1px solid var(--line);border-radius:22px;display:grid;gap:16px;align-content:start;justify-items:start}
+.rs-slide h3{font-size:clamp(1.5rem,3.4vw,2.2rem)}
+.rs-k{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.s-gold{border-top:6px solid #C9A227;background:var(--tint2)}
+.s-ink{background:#EEF2F9}
+.s-red{background:var(--tint)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .s-ink{background:#18223A}}
+:root[data-theme="dark"] .s-ink{background:#18223A}
+.rs-champs{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%}
+.rs-champs div{display:grid;justify-items:center;text-align:center;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.rs-champs img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #C9A227}
+.rs-champs em{font-style:normal;font-family:var(--font-display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums}
+.rs-champs small{color:var(--mute)}
+.rs-top{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;width:100%}
+.rs-top li{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
+.rs-top span{color:var(--mute);font-variant-numeric:tabular-nums}.rs-top em{font-style:normal;font-family:var(--font-display);font-weight:700;font-variant-numeric:tabular-nums}
+.rs-top li:nth-child(1) em,.rs-top li:nth-child(3) em{color:#A8851A}
+.rs-bars{list-style:none;margin:0;padding:0;display:grid;gap:8px;width:100%}
+.rs-bars li{display:grid;grid-template-columns:minmax(120px,240px) 1fr 32px;gap:12px;align-items:center;font-size:.95rem}
+.ub-bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden}.ub-bar i{display:block;height:100%;background:var(--ink);border-radius:99px}
+.rs-bars b{font-family:var(--font-display);text-align:right;font-variant-numeric:tabular-nums}
+.rs-100{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.rs-100 li{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:2px}
+.rs-100 em{font-style:normal;font-family:var(--font-display);font-weight:800;font-size:1.8rem;color:var(--accent)}
+.rs-100 small{color:var(--mute)}
+.rs-big{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%}
+.rs-big div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:4px}
+.rs-big b{font-family:var(--font-display);font-weight:800;font-size:3rem;color:var(--accent);line-height:1}
+.rs-big span{color:var(--mute)}
+.rs-ctrl{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:14px}
+.rs-arr{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.3rem;cursor:pointer}
+.rs-dots{display:flex;gap:8px}.rs-dots button{width:10px;height:10px;border-radius:99px;border:none;background:var(--line);padding:0;cursor:pointer;transition:width .2s}
+.rs-dots button.on{width:28px;background:var(--accent)}
+@media (max-width:640px){.rs-slide{padding:20px;min-height:0}.rs-top{grid-template-columns:1fr}.rs-100{grid-template-columns:1fr 1fr}.rs-bars li{grid-template-columns:110px 1fr 24px;font-size:.85rem}.rs-big b{font-size:2.2rem}.rs-champs{gap:10px}.rs-champs img{width:72px;height:72px}.rs-champs em{font-size:1.5rem}}
+.rm{position:fixed;inset:0;z-index:60;background:rgba(14,21,38,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.rm[hidden]{display:none}
+.rm-box{background:var(--paper);border-radius:22px;width:min(560px,100%);max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.rm-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:20px 20px 8px}
+.rm-k{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.rm-head h3{font-size:1.2rem;margin-top:4px}
+.rm-x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.4rem;cursor:pointer;flex:none}
+.rm-tabs{display:flex;align-items:center;gap:6px;padding:4px 20px 12px}
+.rm-tabs button{border:1px solid var(--line);background:var(--card);color:var(--mute);border-radius:999px;padding:6px 14px;font:500 .88rem var(--font-body);cursor:pointer}
+.rm-tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rm-count{margin-left:auto;color:var(--mute);font-variant-numeric:tabular-nums;font-size:.9rem}
+.rm-body{overflow-y:auto;padding:0 20px 16px;flex:1}
+.rm-card{position:relative;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--accent);border-radius:18px;padding:28px 20px 24px;display:grid;justify-items:center;text-align:center;gap:8px;min-height:300px;align-content:center}
+.rm-rank{position:absolute;top:12px;left:16px;font-family:var(--font-display);font-weight:800;color:var(--line);font-size:1.6rem}
+.rm-pic{width:110px;height:110px;border-radius:50%;overflow:hidden;background:var(--ink);display:grid;place-items:center;border:3px solid #C9A227}
+.rm-pic img{width:100%;height:100%;object-fit:cover}
+.rm-ini{font-family:var(--font-display);font-weight:800;font-size:2.2rem;color:#fff}
+.rm-card h4{font-family:var(--font-display);font-size:1.5rem;margin:0}
+.rm-score{font-family:var(--font-display);font-weight:800;font-size:2.6rem;color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums}
+.rm-score small{font-family:var(--font-body);font-weight:500;font-size:.95rem;color:var(--mute)}
+.rm-sub{color:var(--mute);max-width:36ch}.rm-sub b{color:var(--ink)}
+.rm-card .badge{margin:0}
+.rm-nav{display:flex;justify-content:space-between;gap:10px;padding:12px 20px 20px;border-top:1px solid var(--line)}
+.rm-nav[hidden]{display:none}
+.rm-list{display:grid;gap:6px}
+.rm-row{display:grid;grid-template-columns:30px 1fr auto;grid-template-areas:"r n e" "r u e";column-gap:10px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);cursor:pointer}
+.rm-row:hover{border-color:var(--ink)}
+.rm-row span{grid-area:r;color:var(--mute);font-variant-numeric:tabular-nums}.rm-row b{grid-area:n}.rm-row small{grid-area:u;color:var(--mute)}
+.rm-row em{grid-area:e;font-style:normal;font-family:var(--font-display);font-weight:700;align-self:center;font-variant-numeric:tabular-nums}
+.rm-note{color:var(--mute);font-size:.9rem;margin-bottom:8px}
+
+/* header v3: photo left, contact right */
+.nav{height:84px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+.brand-pic{width:64px;height:64px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#8B1E3F,#C9A227);flex:none}
+.brand-pic img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:2px solid var(--paper)}
+.brand .lt{display:grid;line-height:1.15}
+.brand .lt b{font-family:var(--font-display);font-size:1.2rem}
+.brand .lt small{font-size:.85rem;color:var(--mute);font-weight:500}
+.contact{display:flex;align-items:center;gap:10px}
+.c-phone{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);padding:6px 14px 6px 6px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+.c-phone svg{width:36px;height:36px;padding:9px;border-radius:50%;background:#8B1E3F;color:#fff}
+.c-phone span{display:grid;line-height:1.1}
+.c-phone small{font-size:.7rem;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.c-phone b{font-family:var(--font-display);font-size:1rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.c-ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.c-ic svg{width:22px;height:22px}
+.c-wa{background:#25D366;border-color:#25D366;color:#fff}
+.c-ig:hover{color:#C13584}
+.c-phone:hover{border-color:var(--ink)}
+html{scroll-padding-top:146px}
+@media (max-width:700px){
+  .nav{height:72px}
+  .brand-pic{width:52px;height:52px}
+  .brand .lt b{font-size:1rem}.brand .lt small{font-size:.75rem}
+  .c-phone{padding:0;border:none;background:none}.c-phone span{display:none}
+  .c-phone svg,.c-ic{width:38px;height:38px}.c-phone svg{padding:9px}.c-ic svg{width:19px;height:19px}
+  .contact{gap:6px}
+}
+@media (max-width:370px){.brand .lt small{display:none}.c-ig{display:none}}
+
+/* header v4: larger square photo */
+.nav{height:104px}
+.brand-pic{width:88px;height:88px;border-radius:14px;padding:0;background:none;border:2px solid #C9A227;overflow:hidden;box-shadow:0 8px 20px -10px rgba(20,33,61,.45)}
+.brand-pic img{border-radius:0;border:none}
+.brand .lt b{font-size:1.35rem}
+html{scroll-padding-top:166px}
+@media (max-width:700px){.nav{height:84px}.brand-pic{width:68px;height:68px;border-radius:12px}.brand .lt b{font-size:1.05rem}html{scroll-padding-top:146px}}
+
+/* header v5: no photo; name opens about */
+.nav{height:76px}
+.brand{background:none;border:none;padding:0;cursor:pointer;font:inherit;text-align:left}
+.rn-mark{width:48px;height:48px;border-radius:12px;background:#14213D;color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:1rem;flex:none;position:relative}
+.rn-mark::after{content:"";position:absolute;right:6px;bottom:6px;width:7px;height:7px;border-radius:50%;background:#8B1E3F}
+.brand .lt small u{text-decoration-color:#8B1E3F;text-underline-offset:3px;color:var(--ink)}
+.brand:hover .lt b{color:#8B1E3F}
+html{scroll-padding-top:138px}
+@media (max-width:700px){.nav{height:68px}.rn-mark{width:42px;height:42px}html{scroll-padding-top:130px}}
+.ab-box{position:relative;background:var(--paper);border-radius:22px;width:min(860px,100%);max-height:92vh;overflow-y:auto;display:grid;grid-template-columns:minmax(0,340px) 1fr;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.ab-pic{background:#E9E4DC}
+.ab-pic img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;min-height:420px}
+.ab-info{padding:28px;display:grid;gap:12px;align-content:start}
+.ab-info h3{font-size:1.8rem}
+.ab-role{color:var(--mute)}
+.ab-facts{list-style:none;margin:4px 0;padding:0;display:grid;gap:8px}
+.ab-facts li{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.ab-facts b{font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:var(--accent);text-align:center}
+.ab-facts span{font-size:.92rem}
+.ab-sub{font-weight:600;font-size:.85rem;color:var(--mute);margin-top:4px}
+.ab-tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.ab-tags li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:.88rem}
+.ab-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ab-x{position:absolute;top:12px;right:12px;z-index:2}
+@media (max-width:700px){.ab-box{grid-template-columns:1fr}.ab-pic img{min-height:0;max-height:52vh}.ab-info{padding:20px}}
+.rs-100 li{grid-template-columns:52px 1fr;column-gap:12px;align-items:center}
+.rs-100 li img,.r100-ini{grid-row:span 3;width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #C9A227}
+.r100-ini{display:grid;place-items:center;background:#14213D;color:#fff;font-family:var(--font-display);font-weight:800}
+.c-yt{color:#FF0000}.c-yt:hover{border-color:#FF0000}
+@media (max-width:420px){.c-yt{display:none}}
+
+/* video izahlar */
+.pls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.pl{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-left:5px solid #8B1E3F;border-radius:14px;padding:14px 16px}
+.pl:hover{border-color:#8B1E3F}
+.pl-ic{width:42px;height:42px;border-radius:12px;background:#FF0000;color:#fff;display:grid;place-items:center;font-size:.9rem;flex:none}
+.pl b{display:block;font-family:var(--font-display);font-size:1rem;line-height:1.2}.pl small{color:var(--mute)}
+.yv-tools{display:grid;gap:12px;margin-bottom:16px}
+.yv-search input{width:100%;max-width:480px;background:var(--card)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.yv-chips{display:flex;flex-wrap:wrap;gap:6px}
+.yv-chips button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font:500 .88rem var(--font-body);cursor:pointer}
+.yv-chips button i{font-style:normal;color:var(--mute);font-size:.8rem;margin-left:2px}
+.yv-chips button[aria-pressed="true"]{background:#14213D;border-color:#14213D;color:#fff}.yv-chips button[aria-pressed="true"] i{color:#C9D1E3}
+.yv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.yv{position:relative;display:grid;gap:6px;align-content:start;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px 16px;min-height:120px}
+.yv:hover{border-color:#8B1E3F;box-shadow:0 10px 24px -18px rgba(20,33,61,.5)}
+.yv b{font-family:var(--font-display);font-size:1.02rem;line-height:1.25;padding-right:36px}
+.yv small{color:var(--mute);font-variant-numeric:tabular-nums}
+.yv-play{position:absolute;right:14px;top:14px;width:30px;height:30px;border-radius:50%;background:#FBF2F4;color:#8B1E3F;display:grid;place-items:center;font-size:.7rem}
+.yv:hover .yv-play{background:#FF0000;color:#fff}
+.yv-tag{justify-self:start;font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--mute)}
+.t-9{background:#EAF0FB;color:#1F3B73;border-color:#D3DEF3}.t-11{background:#FBF2F4;color:#8B1E3F;border-color:#F0D6DE}
+.t-qayda{background:#FFF8E6;color:#7A5C0E;border-color:#F1E3B8}.t-bur{background:#8B1E3F;color:#fff;border-color:#8B1E3F}
+.yv-empty{color:var(--mute);padding:20px 0}
+.yv-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:20px;color:var(--mute)}
+@media (max-width:900px){.pls{grid-template-columns:1fr}}
+.band-foot{background:var(--card);border:2px solid #8B1E3F;border-radius:16px;padding:18px 20px;margin:0 0 24px}
+.band-foot div{display:grid;gap:2px}.band-foot b{font-family:var(--font-display);color:var(--ink);font-size:1.1rem}
+
+/* 100% highlight */
+.hundred{margin:24px 0;padding:28px;border-radius:22px;background:linear-gradient(135deg,var(--tint2),var(--card));border:2px solid #C9A227;position:relative;overflow:hidden}
+.hundred::after{content:"100";position:absolute;right:-10px;bottom:-60px;font-family:var(--font-display);font-weight:800;font-size:15rem;line-height:1;color:rgba(201,162,39,.10);pointer-events:none}
+.hundred-head{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:22px;position:relative;z-index:1}
+.hundred-big{font-family:var(--font-display);font-weight:800;font-size:clamp(3.2rem,8vw,5.2rem);line-height:1;color:#8B1E3F;letter-spacing:-.02em}
+.hundred-head h3{font-size:clamp(1.3rem,2.6vw,1.8rem);margin:4px 0}
+.hundred-head p:last-child{color:var(--mute)}
+.hundred-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;position:relative;z-index:1}
+.h100{display:grid;justify-items:center;text-align:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 10px 16px;cursor:pointer;font:inherit;color:var(--ink);transition:transform .15s,border-color .15s}
+.h100:hover{transform:translateY(-3px);border-color:#C9A227}
+.h100-pic{position:relative;width:112px;height:112px}
+.h100-pic img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid #C9A227;display:block}
+.h100-pic em{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);font-style:normal;font-family:var(--font-display);font-weight:800;font-size:.95rem;background:#8B1E3F;color:#fff;padding:3px 10px;border-radius:999px;border:2px solid var(--card);white-space:nowrap}
+.h100 b{font-family:var(--font-display);font-size:.98rem;line-height:1.2;margin-top:10px}
+.h100 small{color:var(--mute);font-size:.8rem}
+@media (max-width:1000px){.hundred-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.hundred{padding:18px}.hundred-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.h100 b{font-size:.88rem;overflow-wrap:anywhere}.h100{padding:14px 6px}.h100-pic{width:92px;height:92px}}
+.hc-100{display:flex !important;align-items:center;gap:12px;background:var(--tint2) !important;border:1px solid #E6D29A !important}
+.hc-faces{display:flex}.hc-faces img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--card);margin-left:-10px}.hc-faces img:first-child{margin-left:0}
+.hc-100 b{display:block;font-family:var(--font-display);font-size:1.05rem;color:#8B1E3F}.hc-100 small{color:var(--mute);font-size:.8rem}
+
+/* vocab embed */
+.v-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.v-stats div{background:var(--card);border:1px solid var(--line);border-top:4px solid #8B1E3F;border-radius:14px;padding:14px;display:grid;gap:2px}
+.v-stats b{font-family:var(--font-display);font-weight:800;font-size:1.7rem;color:#8B1E3F;font-variant-numeric:tabular-nums;line-height:1.1}
+.v-stats span{font-size:.85rem;color:var(--mute)}
+.v-frame{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card);box-shadow:0 24px 50px -30px rgba(20,33,61,.5)}
+.v-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--paper)}
+.v-bar b{font-family:var(--font-display);font-size:.95rem}
+.v-bar a{margin-left:auto;font-size:.88rem;font-weight:600;color:#8B1E3F;text-decoration:none}
+.v-dots{display:flex;gap:5px}.v-dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}.v-dots i:first-child{background:#8B1E3F}
+.v-frame iframe{display:block;width:100%;height:760px;border:0;background:#fff}
+@media (max-width:900px){.v-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.v-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.v-frame iframe{height:680px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <button class="brand" id="aboutBtn" aria-haspopup="dialog" aria-controls="about">
+      <span class="rn-mark">RN</span>
+      <span class="lt"><b>Rəşad Nəsibov</b><small>İngilis dili müəllimi · <u>haqqımda</u></small></span>
+    </button>
+    <div class="contact">
+      <a class="c-phone" href="tel:+994557313266"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1Z"/></svg><span><small>Əlaqə</small><b>055 731 32 66</b></span></a>
+      <a class="c-ic c-wa" href="https://wa.me/994557313266" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.7-.4Z"/></svg></a>
+      <a class="c-ic c-yt" href="https://www.youtube.com/channel/UCWZF4ci0ZBtNSMcgjN2oWKA" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.8 15V9l5.7 3-5.7 3Z"/></svg></a>
+      <a class="c-ic c-ig" href="https://www.instagram.com/teacher_rashad_nasibov/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Bölmələr">
+    <div class="wrap tabs-shell">
+      <button class="tab-arrow l" id="tabL" aria-label="Sola sürüşdür" hidden>‹</button>
+      <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#sozler">Lüğət</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
+      <button class="tab-arrow r" id="tabR" aria-label="Sağa sürüşdür">›</button>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+  <div class="film" aria-label="Yeniliklər">
+    <div class="film-head wrap"><b>Yeniliklər</b><span>Toxun, ətraflı bax</span></div>
+    <div class="film-reel"><div class="film-track"><a class="frame" href="#sinaq-qrupu"><span class="f-pic"><img src="poster.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>Yeni · 1 dekabr</em><b>Onlayn Sınaq Qrupu</b><small>Ayda 8 sınaq · 20 ₼</small></span></a><a class="frame" href="#neticeler"><span class="f-pic"><img src="av-aysu.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>2026</em><b>Aysu Məhərrəmli</b><small>Respublika 1-cisi · 697,5</small></span></a><a class="frame" href="#sinaq-qrupu"><span class="f-pic noimg"><span class="f-txt">Növbəti sınağa geri sayım</span></span><span class="f-cap"><em>Təqvim</em><b>Növbəti sınağa geri sayım</b><small>Çərşənbə və şənbə</small></span></a><a class="frame" href="#neticeler"><span class="f-pic"><img src="av-nihad.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>2026</em><b>Nihad Fərəcov</b><small>Respublika 1-cisi · 677,7</small></span></a><a class="frame" href="#kitab"><span class="f-pic"><img src="book-poster.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>Kitab</em><b>«100 Sınaq»</b><small>XI sinif · 2026–2027</small></span></a><a class="frame" href="#gunun-suali"><span class="f-pic noimg"><span class="f-txt">Günün sualı</span></span><span class="f-cap"><em>Hər gün</em><b>Günün sualı</b><small>9 və 11-ci sinif</small></span></a><a class="frame" href="#metod"><span class="f-pic"><img src="v-reklam.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>Video</em><b>Dərslərimiz</b><small>Masazır · Nərimanov</small></span></a><a class="frame" href="#oyun"><span class="f-pic noimg"><span class="f-txt">400-ə çat</span></span><span class="f-cap"><em>Oyun</em><b>400-ə çat</b><small>Cavab kartı ilə bal yığ</small></span></a><a class="frame" href="#neticeler"><span class="f-pic noimg"><span class="f-txt">66</span></span><span class="f-cap"><em>Nəticə</em><b>66 tələbə universitetdə</b><small>2026 qəbul</small></span></a><a class="frame" href="#sozler"><span class="f-pic noimg"><span class="f-txt">RN Vocabulary</span></span><span class="f-cap"><em>Tətbiq</em><b>RN Vocabulary</b><small>Sözləri kartlarla öyrən</small></span></a><a class="frame" href="#sinaq-qrupu" tabindex="-1" aria-hidden="true"><span class="f-pic"><img src="poster.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>Yeni · 1 dekabr</em><b>Onlayn Sınaq Qrupu</b><small>Ayda 8 sınaq · 20 ₼</small></span></a><a class="frame" href="#neticeler" tabindex="-1" aria-hidden="true"><span class="f-pic"><img src="av-aysu.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>2026</em><b>Aysu Məhərrəmli</b><small>Respublika 1-cisi · 697,5</small></span></a><a class="frame" href="#sinaq-qrupu" tabindex="-1" aria-hidden="true"><span class="f-pic noimg"><span class="f-txt">Növbəti sınağa geri sayım</span></span><span class="f-cap"><em>Təqvim</em><b>Növbəti sınağa geri sayım</b><small>Çərşənbə və şənbə</small></span></a><a class="frame" href="#neticeler" tabindex="-1" aria-hidden="true"><span class="f-pic"><img src="av-nihad.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>2026</em><b>Nihad Fərəcov</b><small>Respublika 1-cisi · 677,7</small></span></a><a class="frame" href="#kitab" tabindex="-1" aria-hidden="true"><span class="f-pic"><img src="book-poster.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>Kitab</em><b>«100 Sınaq»</b><small>XI sinif · 2026–2027</small></span></a><a class="frame" href="#gunun-suali" tabindex="-1" aria-hidden="true"><span class="f-pic noimg"><span class="f-txt">Günün sualı</span></span><span class="f-cap"><em>Hər gün</em><b>Günün sualı</b><small>9 və 11-ci sinif</small></span></a><a class="frame" href="#metod" tabindex="-1" aria-hidden="true"><span class="f-pic"><img src="v-reklam.jpg" alt="" loading="lazy"></span><span class="f-cap"><em>Video</em><b>Dərslərimiz</b><small>Masazır · Nərimanov</small></span></a><a class="frame" href="#oyun" tabindex="-1" aria-hidden="true"><span class="f-pic noimg"><span class="f-txt">400-ə çat</span></span><span class="f-cap"><em>Oyun</em><b>400-ə çat</b><small>Cavab kartı ilə bal yığ</small></span></a><a class="frame" href="#neticeler" tabindex="-1" aria-hidden="true"><span class="f-pic noimg"><span class="f-txt">66</span></span><span class="f-cap"><em>Nəticə</em><b>66 tələbə universitetdə</b><small>2026 qəbul</small></span></a><a class="frame" href="#sozler" tabindex="-1" aria-hidden="true"><span class="f-pic noimg"><span class="f-txt">RN Vocabulary</span></span><span class="f-cap"><em>Tətbiq</em><b>RN Vocabulary</b><small>Sözləri kartlarla öyrən</small></span></a></div></div>
+  </div>
+
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <a class="hero-pill" href="#sinaq-qrupu">Onlayn Sınaq Qrupu · 1 dekabrdan <b>20 ₼ / ay</b></a><br>
+        <span class="eyebrow">İngilis dili müəllimi · Rəşad Nəsibov</span>
+        <h1>İngilis dilindən <span class="mark">yüksək bal</span> üçün sistemli hazırlıq</h1>
+        <p class="lead">2026-cı ildə şagirdlərimdən ikisi qəbul imtahanında respublika 1-cisi oldu, 66 nəfəri universitetə qəbul olundu. Abituriyent və buraxılış imtahanlarına yeni model üzrə hazırlıq. Mövzu üzrə dərslər, mütəmadi sınaqlar, esse təhlili və hər şagirdin nəticəsinə fərdi nəzarət.</p>
+        <div class="actions">
+          <a class="btn" href="#qeydiyyat">Dərsə yazıl</a>
+          <a class="btn ghost" href="#neticeler">Nəticələrimiz</a>
+        </div>
+        <ul class="places" aria-label="Dərs keçilən yerlər">
+          <li>Masazır (Yeni Bakı)</li>
+          <li>Nərimanov</li>
+          <li>Onlayn</li>
+        </ul>
+      </div>
+
+      <aside class="hero-card" aria-label="2026 nəticələri">
+        <p class="hc-eyebrow">2026 qəbul nəticələri</p>
+        <div class="hc-row"><span class="hc-n">2</span><span>respublika 1-cisi<br><small>400/400</small></span></div>
+        <div class="hc-champs">
+          <button data-open="q600" data-i="0"><b>697,5</b><span>Aysu Məhərrəmli</span></button>
+          <button data-open="q600" data-i="2"><b>677,7</b><span>Nihad Fərəcov</span></button>
+        </div>
+        <button class="hc-100" data-open="b100"><span class="hc-faces"><img src="av-aysu.jpg" alt=""><img src="av-nurane.jpg" alt=""><img src="av-necibe.jpg" alt=""><img src="av-esma.jpg" alt=""><img src="av-naile.jpg" alt=""><img src="av-pervin.jpg" alt=""></span><span><b>6 şagird · 100%</b><small>buraxılışda ingilis dilindən</small></span></button>
+        <div class="hc-stats"><button data-open="uni66"><b>66</b><span>tələbə universitetdə</span></button><button data-open="q600"><b>20</b><span>şagird 600+ bal</span></button><button data-open="b100"><b>6</b><span>buraxılışda 100 bal</span></button></div>
+        <a class="hc-link" href="#neticeler">Bütün nəticələr →</a>
+      </aside>
+    </div>
+  </div>
+
+  <section id="neticeler">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <div>
+          <h2>2025/2026 nəticələrimiz</h2>
+          <p>İki şagird qəbul imtahanında respublika 1-cisi oldu. Hər ikisi ingilis dilindən 400/400 topladı.</p>
+        </div>
+      </div>
+
+      <div class="champs">
+        <article class="champ" role="button" tabindex="0" data-open="q600" data-i="0"><img src="av-aysu.jpg" alt="Aysu Məhərrəmli" loading="lazy"><div><span class="lvl">Respublika 1-cisi</span><h3>Aysu Məhərrəmli</h3><p class="big">697,5 <small>bal</small></p><p>400/400 · BANM, Kompüter elmləri</p></div></article>
+        <article class="champ" role="button" tabindex="0" data-open="q600" data-i="2"><img src="av-nihad.jpg" alt="Nihad Fərəcov" loading="lazy"><div><span class="lvl">Qəbul üzrə respublika 1-cisi</span><h3>Nihad Fərəcov</h3><p class="big">677,7 <small>bal</small></p><p>400/400 · ATU, Tibb</p></div></article>
+      </div>
+
+      <div class="hundred">
+        <div class="hundred-head">
+          <span class="hundred-big">100%</span>
+          <div><p class="rs-k">2025/2026 · Buraxılış imtahanı</p><h3>6 şagird ingilis dilindən maksimum nəticə</h3><p>İngilis dili bölməsindən bir dənə də səhv etmədən 100 bal.</p></div>
+        </div>
+        <div class="hundred-grid"><button class="h100" data-open="b100" data-i="0"><span class="h100-pic"><img src="av-aysu.jpg" alt="Aysu Məhərrəmli" loading="lazy"><em>100%</em></span><b>Aysu Məhərrəmli</b><small>Buraxılış ümumi bal: 297,5 / 300</small></button><button class="h100" data-open="b100" data-i="1"><span class="h100-pic"><img src="av-nurane.jpg" alt="Nuranə Alıyeva" loading="lazy"><em>100%</em></span><b>Nuranə Alıyeva</b><small>Buraxılış ümumi bal: 297,5 / 300</small></button><button class="h100" data-open="b100" data-i="2"><span class="h100-pic"><img src="av-necibe.jpg" alt="Nəcibə Allahverdiyeva" loading="lazy"><em>100%</em></span><b>Nəcibə Allahverdiyeva</b><small>Buraxılış ümumi bal: 297 / 300</small></button><button class="h100" data-open="b100" data-i="3"><span class="h100-pic"><img src="av-esma.jpg" alt="Əsma Məmmədova" loading="lazy"><em>100%</em></span><b>Əsma Məmmədova</b><small>Buraxılış ümumi bal: 287,7 / 300</small></button><button class="h100" data-open="b100" data-i="4"><span class="h100-pic"><img src="av-naile.jpg" alt="Nailə Həsənova" loading="lazy"><em>100%</em></span><b>Nailə Həsənova</b><small>Buraxılış ümumi bal: 275 / 300</small></button><button class="h100" data-open="b100" data-i="5"><span class="h100-pic"><img src="av-pervin.jpg" alt="Pərvin Bağırlı" loading="lazy"><em>100%</em></span><b>Pərvin Bağırlı</b><small>Buraxılış ümumi bal: 196 / 300</small></button></div>
+      </div>
+
+      <div class="stats">
+        <button class="stat" data-open="uni66"><b>66</b><span>tələbə universitetə qəbul olundu</span><i>Hamısına bax →</i></button>
+        <button class="stat" data-open="q600"><b>20</b><span>şagird qəbulda 600+ bal</span><i>Hamısına bax →</i></button>
+        <button class="stat" data-open="b100"><b>6</b><span>şagird buraxılışda ingilis dilindən 100 bal</span><i>Hamısına bax →</i></button>
+        <button class="stat" data-open="b80"><b>63</b><span>şagird buraxılışda 80+ bal</span><i>Hamısına bax →</i></button>
+      </div>
+
+      <h3 class="vg-title">Qəbul imtahanı: 600+ bal toplayanlar</h3>
+      <div class="tbl-wrap"><table class="rtable"><thead><tr><th>№</th><th>Şagird</th><th>Universitet · ixtisas</th><th>Bal</th></tr></thead><tbody><tr class="gold"><td class="rk">1</td><td><b>Aysu Məhərrəmli</b><span class="badge">Respublika 1-cisi · 400/400</span><small class="muni">BANM · Kompüter elmləri</small></td><td class="uni">BANM · Kompüter elmləri</td><td class="pts">697,5</td></tr><tr><td class="rk">2</td><td><b>Əsma Məmmədova</b><small class="muni">ATU · Tibb</small></td><td class="uni">ATU · Tibb</td><td class="pts">679,2</td></tr><tr class="gold"><td class="rk">3</td><td><b>Nihad Fərəcov</b><span class="badge">Qəbul üzrə respublika 1-cisi · 400/400</span><small class="muni">ATU · Tibb</small></td><td class="uni">ATU · Tibb</td><td class="pts">677,7</td></tr><tr><td class="rk">4</td><td><b>Zəhra Şahverdizadə</b><small class="muni">BMU · Kimya mühəndisliyi</small></td><td class="uni">BMU · Kimya mühəndisliyi</td><td class="pts">673,5</td></tr><tr><td class="rk">5</td><td><b>İnci Bəylərova</b><small class="muni">BDU · Hüquqşünaslıq</small></td><td class="uni">BDU · Hüquqşünaslıq</td><td class="pts">671</td></tr><tr><td class="rk">6</td><td><b>Nəcibə Allahverdiyeva</b><small class="muni">ATU · Tibb</small></td><td class="uni">ATU · Tibb</td><td class="pts">666</td></tr><tr><td class="rk">7</td><td><b>Elnur Əhmədov</b><small class="muni">ATU · Tibb</small></td><td class="uni">ATU · Tibb</td><td class="pts">652,4</td></tr><tr><td class="rk">8</td><td><b>Nuranə Alıyeva</b><small class="muni">BANM · Biznesin idarə edilməsi</small></td><td class="uni">BANM · Biznesin idarə edilməsi</td><td class="pts">645</td></tr><tr><td class="rk">9</td><td><b>Nəzrin Bayramlı</b><small class="muni">ATU · Tibb</small></td><td class="uni">ATU · Tibb</td><td class="pts">639</td></tr><tr><td class="rk">10</td><td><b>Hüseyn Fərəcov</b><small class="muni">UNEC · İnformasiya texnologiyaları</small></td><td class="uni">UNEC · İnformasiya texnologiyaları</td><td class="pts">636</td></tr><tr><td class="rk">11</td><td><b>Nəsrin Babayeva</b><small class="muni">NDU · Tibb (ing)</small></td><td class="uni">NDU · Tibb (ing)</td><td class="pts">628,6</td></tr><tr><td class="rk">12</td><td><b>Fatimə Babayeva</b><small class="muni">BMU–İNHA · Data analitikası (ing)</small></td><td class="uni">BMU–İNHA · Data analitikası (ing)</td><td class="pts">626</td></tr><tr><td class="rk">13</td><td><b>Nailə Həsənova</b><small class="muni">Qarabağ Universiteti · Tibb</small></td><td class="uni">Qarabağ Universiteti · Tibb</td><td class="pts">616</td></tr><tr><td class="rk">14</td><td><b>Əlinur Səlimzadə</b><small class="muni">BMU–İnha · Süni intellekt</small></td><td class="uni">BMU–İnha · Süni intellekt</td><td class="pts">615</td></tr><tr><td class="rk">15</td><td><b>Gülay Rüstəmli</b><small class="muni">BDU · Hüquqşünaslıq</small></td><td class="uni">BDU · Hüquqşünaslıq</td><td class="pts">614</td></tr><tr><td class="rk">16</td><td><b>Selin Sərkərova</b><small class="muni">NDU · Tibb (ing)</small></td><td class="uni">NDU · Tibb (ing)</td><td class="pts">613</td></tr><tr><td class="rk">17</td><td><b>Nihad Alıyev</b><small class="muni">Hüquqşünaslıq</small></td><td class="uni">Hüquqşünaslıq</td><td class="pts">611</td></tr><tr><td class="rk">18</td><td><b>Leyla Qənbərova</b><small class="muni">BDU · Hüquqşünaslıq</small></td><td class="uni">BDU · Hüquqşünaslıq</td><td class="pts">610,2</td></tr><tr><td class="rk">19</td><td><b>Zəhra Murtuzova</b><small class="muni">Qarabağ Universiteti · Hüquqşünaslıq</small></td><td class="uni">Qarabağ Universiteti · Hüquqşünaslıq</td><td class="pts">604</td></tr><tr><td class="rk">20</td><td><b>Əli Qarayev</b><small class="muni">UNEC · İnformasiya texnologiyaları</small></td><td class="uni">UNEC · İnformasiya texnologiyaları</td><td class="pts">604</td></tr></tbody></table></div>
+
+      <h3 class="vg-title">Nəticələr slaydı</h3>
+      <div class="rs" id="rs" aria-roledescription="carousel">
+        <div class="rs-track">
+          <article class="rs-slide s-gold"><p class="rs-k">2026 · Qəbul imtahanı</p><h3>2 respublika 1-cisi</h3>
+            <div class="rs-champs"><div><img src="av-aysu.jpg" alt=""><b>Aysu Məhərrəmli</b><em>697,5</em><small>400/400 · BANM, Kompüter elmləri</small></div><div><img src="av-nihad.jpg" alt=""><b>Nihad Fərəcov</b><em>677,7</em><small>400/400 · ATU, Tibb</small></div></div>
+            <button class="btn sm" data-open="q600">Tək-tək bax →</button></article>
+          <article class="rs-slide"><p class="rs-k">2026 · Qəbul imtahanı</p><h3>TOP 10</h3><ol class="rs-top"><li><span>1</span><b>Aysu Məhərrəmli</b><em>697,5</em></li><li><span>2</span><b>Əsma Məmmədova</b><em>679,2</em></li><li><span>3</span><b>Nihad Fərəcov</b><em>677,7</em></li><li><span>4</span><b>Zəhra Şahverdizadə</b><em>673,5</em></li><li><span>5</span><b>İnci Bəylərova</b><em>671</em></li><li><span>6</span><b>Nəcibə Allahverdiyeva</b><em>666</em></li><li><span>7</span><b>Elnur Əhmədov</b><em>652,4</em></li><li><span>8</span><b>Nuranə Alıyeva</b><em>645</em></li><li><span>9</span><b>Nəzrin Bayramlı</b><em>639</em></li><li><span>10</span><b>Hüseyn Fərəcov</b><em>636</em></li></ol><button class="btn sm" data-open="q600">20 şagirdin hamısı →</button></article>
+          <article class="rs-slide s-ink"><p class="rs-k">2026 · Universitetlər</p><h3>66 tələbə universitetdə</h3><ul class="rs-bars"><li><span class="ub-n">BMU</span><span class="ub-bar"><i style="width:100%"></i></span><b>9</b></li><li><span class="ub-n">BDU</span><span class="ub-bar"><i style="width:89%"></i></span><b>8</b></li><li><span class="ub-n">UNEC</span><span class="ub-bar"><i style="width:89%"></i></span><b>8</b></li><li><span class="ub-n">ATU</span><span class="ub-bar"><i style="width:56%"></i></span><b>5</b></li><li><span class="ub-n">SDU</span><span class="ub-bar"><i style="width:44%"></i></span><b>4</b></li><li><span class="ub-n">Bakı Avrasiya Universiteti</span><span class="ub-bar"><i style="width:33%"></i></span><b>3</b></li><li><span class="ub-n">Odlar Yurdu Universiteti</span><span class="ub-bar"><i style="width:33%"></i></span><b>3</b></li><li><span class="ub-n">Qarabağ Universiteti</span><span class="ub-bar"><i style="width:22%"></i></span><b>2</b></li></ul><button class="btn sm" data-open="uni66">66 tələbəyə tək-tək bax →</button></article>
+          <article class="rs-slide"><p class="rs-k">2025/2026 · Buraxılış imtahanı</p><h3>İngilis dilindən 100 bal</h3><ul class="rs-100"><li><img src="av-aysu.jpg" alt=""><b>Aysu Məhərrəmli</b><em>100</em><small>ümumi 297,5 / 300</small></li><li><img src="av-nurane.jpg" alt=""><b>Nuranə Alıyeva</b><em>100</em><small>ümumi 297,5 / 300</small></li><li><img src="av-necibe.jpg" alt=""><b>Nəcibə Allahverdiyeva</b><em>100</em><small>ümumi 297 / 300</small></li><li><img src="av-esma.jpg" alt=""><b>Əsma Məmmədova</b><em>100</em><small>ümumi 287,7 / 300</small></li><li><img src="av-naile.jpg" alt=""><b>Nailə Həsənova</b><em>100</em><small>ümumi 275 / 300</small></li><li><img src="av-pervin.jpg" alt=""><b>Pərvin Bağırlı</b><em>100</em><small>ümumi 196 / 300</small></li></ul><button class="btn sm" data-open="b100">Tək-tək bax →</button></article>
+          <article class="rs-slide s-red"><p class="rs-k">2025/2026 · Buraxılış imtahanı</p><h3>İngilis dili nəticələri</h3>
+            <div class="rs-big"><div><b>6</b><span>şagird<br>100 bal</span></div><div><b>13</b><span>şagird<br>97+ bal</span></div><div><b>63</b><span>şagird<br>80+ bal</span></div></div>
+            <button class="btn sm" data-open="b80">TOP 60-a bax →</button></article>
+        </div>
+        <div class="rs-ctrl"><button class="rs-arr" id="rsP" aria-label="Əvvəlki slayd">‹</button><div class="rs-dots" id="rsD"></div><button class="rs-arr" id="rsN" aria-label="Növbəti slayd">›</button></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rm" id="about" hidden role="dialog" aria-modal="true" aria-labelledby="abT">
+    <div class="ab-box">
+      <button class="rm-x ab-x" id="abX" aria-label="Bağla">×</button>
+      <div class="ab-pic"><img src="about.jpg" alt="Rəşad Nəsibov" loading="lazy"></div>
+      <div class="ab-info">
+        <p class="rm-k">Haqqımda</p>
+        <h3 id="abT">Rəşad Nəsibov</h3>
+        <p class="ab-role">İngilis dili müəllimi · Abituriyent və buraxılış hazırlığı</p>
+        <ul class="ab-facts">
+          <li><b>19</b><span>il təcrübə ilə ingilis dili müəllimi</span></li>
+          <li><b>2</b><span>respublika 1-cisi, 2026 qəbul imtahanı (400/400)</span></li>
+          <li><b>66</b><span>tələbə 2026-cı ildə universitetə qəbul olundu</span></li>
+          <li><b>100</b><span>sınaqlıq «100 Sınaq» kitabının müəllifi (XI sinif, 2026–2027)</span></li>
+        </ul>
+        <p class="ab-sub">Öz hazırladığım alətlərlə işləyirəm</p>
+        <ul class="ab-tags"><li>RN Sınaq Yoxlama</li><li>RN Opinion Writing Lab</li><li>RN Vocabulary</li><li>Onlayn Sınaq Qrupu</li></ul>
+        <p class="ab-sub">Dərs keçdiyim yerlər</p>
+        <ul class="ab-tags"><li>Masazır (Yeni Bakı)</li><li>Nərimanov</li><li>Onlayn</li></ul>
+        <div class="ab-act">
+          <a class="btn accent" href="https://wa.me/994557313266">WhatsApp-a yaz</a>
+          <a class="btn ghost" href="tel:+994557313266">055 731 32 66</a>
+          <a class="btn ghost" href="https://www.instagram.com/teacher_rashad_nasibov/">Instagram</a>
+          <a class="btn ghost" href="https://www.youtube.com/channel/UCWZF4ci0ZBtNSMcgjN2oWKA">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rm" id="rm" hidden role="dialog" aria-modal="true" aria-labelledby="rmT">
+    <div class="rm-box">
+      <div class="rm-head"><div><p class="rm-k" id="rmK"></p><h3 id="rmT"></h3></div><button class="rm-x" id="rmX" aria-label="Bağla">×</button></div>
+      <div class="rm-tabs"><button id="rmV1" aria-pressed="true">Tək-tək</button><button id="rmV2" aria-pressed="false">Siyahı</button><span class="rm-count" id="rmC"></span></div>
+      <div class="rm-body" id="rmB"></div>
+      <div class="rm-nav" id="rmNav"><button class="btn ghost" id="rmP">← Əvvəlki</button><button class="btn" id="rmN">Növbəti →</button></div>
+    </div>
+  </div>
+
+  <section id="sinaq-qrupu" class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <div>
+          <span class="eyebrow" style="margin-bottom:10px">1 dekabrdan start</span>
+          <h2>Onlayn Sınaq Qrupu</h2>
+          <p>DİM buraxılış imtahanı formatında onlayn sınaqlar. Evdən, telefondan, real imtahan şəraitində. Nəticəni gör, səhvindən öyrən, hər sınaqda güclən.</p>
+        </div>
+      </div>
+
+      <div class="band-foot" id="yoxla">
+        <div><b>Qrup üzvüsünüz?</b><span>Müəllimin göndərdiyi giriş kodu ilə sınağa daxil olun, işləyin və göndərin.</span></div>
+        <a class="btn accent" href="https://sites.google.com/view/rnsinaq">Sınağa daxil ol →</a>
+      </div>
+
+      <div class="band-grid">
+        <div class="price">
+          <div class="price-top">
+            <span class="amt">20 ₼</span><span class="per">/ ay</span>
+          </div>
+          <p class="price-sub">Ayda 8 sınaq · həftədə 2</p>
+          <div class="tiles" aria-hidden="true">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+          </div>
+          <ul class="incl">
+            <li>Ayda 8 DİM tipli sınaq</li>
+            <li>Nəticə vərəqi: bal və səhvlər</li>
+            <li>Esse təhlili DİM meyarları ilə</li>
+            <li>Hər sualın video izahı</li>
+          </ul>
+          <a class="btn accent" id="joinGroup" href="https://wa.me/994557313266?text=Salam%2C%20R%C9%99%C5%9Fad%20m%C3%BC%C9%99llim!%20Onlayn%20S%C4%B1naq%20Qrupuna%20qo%C5%9Fulmaq%20ist%C9%99yir%C9%99m.">Qrupa qoşul</a>
+          <p class="price-note">Qeydiyyat: 055 731 32 66 · @teacher_rashad_nasibov</p>
+        </div>
+
+        <ol class="flow">
+          <li><b>Sistemə daxil ol</b><span>Müəllimin verdiyi giriş kodu ilə</span></li>
+          <li><b>Sınağı işlə</b><span>Toxun və seç, cavablar avtomatik saxlanılır</span></li>
+          <li><b>İmtahanı bitir</b><span>Bir toxunuşla göndər, cavablar müəllimə çatır</span></li>
+          <li><b>Nəticə vərəqini əldə et</b><span>Bal, səhvlər və DİM meyarları ilə esse təhlili</span></li>
+          <li><b>Video izahı izlə</b><span>Hər sual lövhədə yazaraq izah olunur</span></li>
+        </ol>
+      </div>
+
+      <div class="cal">
+        <div class="countdown" id="countdown">
+          <p class="cd-title" id="cdLabel">Növbəti sınaq</p>
+          <div class="cd-nums"><span><b id="cdD">00</b>gün</span><span><b id="cdH">00</b>saat</span><span><b id="cdM">00</b>dəqiqə</span><span><b id="cdS">00</b>saniyə</span></div>
+          <p class="cd-note">Sınaqlar çərşənbə və şənbə günləri keçirilir. Saat və giriş kodu qrupda elan olunur.</p>
+        </div>
+        <div>
+          <p class="cd-title">Dekabr təqvimi · 8 sınaq</p>
+          <ol class="cd-list" id="calList"></ol>
+        </div>
+      </div>
+
+      <div class="promo">
+        <video src="promo.mp4" poster="poster.jpg" controls playsinline preload="metadata" aria-label="Onlayn Sınaq Qrupu tanıtım videosu"></video>
+        <div>
+          <h3>Necə işlədiyinə 47 saniyədə baxın</h3>
+          <p>Giriş kodundan video izaha qədər: şagird sınağı telefondan necə işləyir və nəticəni necə alır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kurslar">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <div>
+          <h2>Kurslar</h2>
+          <p>Qruplar səviyyəyə və sinfə görə yığılır. Qiymət və cədvəl üçün zəng edin və ya WhatsApp-a yazın.</p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <article class="course feature">
+          <span class="tag">XI sinif · Abituriyent</span>
+          <h3>Abituriyent hazırlığı</h3>
+          <ul>
+            <li>Qəbul imtahanının yeni modeli üzrə</li>
+            <li>Qrammatika və leksika mövzu-mövzu</li>
+            <li>Mütəmadi sınaqlar və nəticə təhlili</li>
+            <li>Opinion paragraph (esse) yazılışı</li>
+          </ul>
+        </article>
+        <article class="course">
+          <span class="tag">IX sinif · Buraxılış</span>
+          <h3>Buraxılış imtahanına hazırlıq</h3>
+          <ul>
+            <li>Buraxılış formatında sınaqlar</li>
+            <li>Sınaqların proqramla yoxlanması</li>
+            <li>Zəif mövzular üzrə əlavə iş</li>
+          </ul>
+        </article>
+        <article class="course">
+          <span class="tag">İstənilən yerdən</span>
+          <h3>Onlayn dərslər</h3>
+          <ul>
+            <li>Əyani dərslərlə eyni proqram</li>
+            <li>Bakıdan kənarda yaşayanlar üçün</li>
+            <li>Materiallar və sınaqlar onlayn</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gunun-suali">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <div>
+          <h2>Gündəlik məşq</h2>
+          <p>Hər gün bir sual, bir dəqiqəlik sürət testi. Ardıcıl günlər topla, seriyanı qırma.</p>
+        </div>
+      </div>
+      <div class="daily">
+        <div class="dcard">
+          <div class="d-head">
+            <h3>Günün sualı</h3>
+            <div class="seg" role="group" aria-label="Sinif"><button data-grade="9">9-cu sinif</button><button data-grade="11">11-ci sinif</button></div>
+          </div>
+          <div id="dq"></div>
+          <div class="streak"><span class="s-n" id="streakN">0</span><span id="streakTxt"></span></div>
+        </div>
+        <div class="dcard">
+          <div class="d-head"><h3>1 dəqiqəlik test</h3></div>
+          <div id="mt"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="oyun">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">05</span>
+        <div>
+          <h2>400-ə çat</h2>
+          <p>DİM cavab kartı ilə oyun. Düzgün dairəni tez seç, bal yığ və 400/400-ə, respublika 1-cisi səviyyəsinə çat.</p>
+        </div>
+      </div>
+      <div class="game" id="game"></div>
+    </div>
+  </section>
+
+  <section id="test">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <div>
+          <h2>Onlayn səviyyə testi</h2>
+          <p>15 sual, təxminən 7 dəqiqə. Sonda balınızı, səviyyənizi və səhv cavabların düzgün variantlarını görəcəksiniz.</p>
+        </div>
+      </div>
+      <div class="quiz" id="quiz" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="kitab">
+    <div class="wrap book-grid">
+      <video class="bookvid" src="book.mp4" poster="book-poster.jpg" controls playsinline preload="metadata" aria-label="«100 Sınaq» kitabının tanıtım videosu"></video>
+      <div>
+        <div class="sec-head" style="margin-bottom:12px">
+          <span class="sec-num">07</span>
+          <div>
+            <h2>«100 Sınaq» kitabı</h2>
+            <p>XI sinif şagirdləri və abituriyentlər üçün yeni sınaq toplusu. Buraxılış imtahanının yeni modelinə uyğun: dinləmə, qrammatika, leksika, oxu və opinion paraqraf.</p>
+          </div>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>100</b><span>sınaq</span></div>
+          <div class="fact"><b>26</b><span>tapşırıq hər sınaqda</span></div>
+          <div class="fact"><b>1–40</b><span>mövzular üzrə, 41–100 ümumi</span></div>
+        </div>
+        <ul class="parts" aria-label="Kitabın bölmələri">
+          <li><b>1–4</b> Dinləmə</li><li>Qrammatika</li><li><b>16–17</b> Leksika</li><li>Oxu</li><li><b>26</b> Opinion paraqraf</li><li>Hər sınaqda cavab kartı</li>
+        </ul>
+        <a class="btn" href="#qeydiyyat">Kitabı sifariş et</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="video-izah">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">08</span>
+        <div>
+          <h2>Video izahlar</h2>
+          <p>DİM test toplularının və qrammatik mövzuların izahı, YouTube kanalımda. Mövzunu tap, sualların izahına bax.</p>
+        </div>
+      </div>
+      <div class="pls"><a class="pl" href="https://www.youtube.com/playlist?list=PLgn7glruQq81GniYBD7xfEYvfN27J7bSo"><span class="pl-ic" aria-hidden="true">▶</span><span><b>9-cu sinif toplu izahı</b><small>10 video · YouTube pleylist</small></span></a><a class="pl" href="https://www.youtube.com/playlist?list=PLgn7glruQq814ROx1JebDN1ZpSnkeTSTT"><span class="pl-ic" aria-hidden="true">▶</span><span><b>11-ci sinif test toplusu izahı</b><small>7 video · YouTube pleylist</small></span></a><a class="pl" href="https://www.youtube.com/playlist?list=PLgn7glruQq81iNpcU12-yEqlo1AuhgUlJ"><span class="pl-ic" aria-hidden="true">▶</span><span><b>Qrammatik qaydaların izahı</b><small>21 video · YouTube pleylist</small></span></a></div>
+      <div class="yv-tools">
+        <label class="yv-search" for="yvQ"><span class="sr">Mövzu axtar</span><input id="yvQ" type="search" placeholder="Mövzu axtar: Passive, Modal, Preposition…"></label>
+        <div class="yv-chips" role="group" aria-label="Filtr"><button data-f="all" aria-pressed="true">Hamısı <i>29</i></button><button data-f="9" aria-pressed="false">9-cu sinif toplu <i>11</i></button><button data-f="11" aria-pressed="false">11-ci sinif toplu <i>1</i></button><button data-f="2023" aria-pressed="false">DİM toplu 2023 <i>7</i></button><button data-f="2025" aria-pressed="false">DİM toplu 2025 <i>4</i></button><button data-f="qayda" aria-pressed="false">Qayda izahı <i>4</i></button><button data-f="bur" aria-pressed="false">Buraxılış <i>1</i></button><button data-f="yazi" aria-pressed="false">Esse və yazı <i>1</i></button></div>
+      </div>
+      <div class="yv-grid" id="yvG"><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=ks-71i8SulM"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Pronoun</b></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=Lo8f13m8pBw"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>Quantifiers</b><small>Suallar 1–104</small></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=lMJ1Qx4FYU0"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>Quantifiers</b><small>Suallar 104–140</small></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=eq7RN_LBtIk"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Interrogative sentences</b><small>Suallar 101–244</small></a><a class="yv" data-t="bur" href="https://www.youtube.com/watch?v=LxttnDoPGnA"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-bur">Buraxılış</span><b>2026 buraxılış: bütün sual növləri bir videoda</b></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=Cs9bJOfXv4g"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>There is / There are</b></a><a class="yv" data-t="2025" href="https://www.youtube.com/watch?v=jB-JRHb0Nis"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2025">DİM toplu 2025</span><b>Gerund və Infinitive</b></a><a class="yv" data-t="qayda" href="https://www.youtube.com/watch?v=rljPUgeOnnE"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-qayda">Qayda izahı</span><b>Indirect speech</b><small>Suallar 101–143</small></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=hp-zD0xloGA"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Modal verbs</b><small>Suallar 61–127</small></a><a class="yv" data-t="2025" href="https://www.youtube.com/watch?v=Eu7mN5DHuH4"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2025">DİM toplu 2025</span><b>Adjective (Relative) clauses</b></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=Kc431hCet64"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Modal verbs</b><small>Suallar 1–60</small></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=yfXrRZgMimI"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Preposition</b></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=xauAM4p4xp0"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Passive voice</b><small>Suallar 100–162</small></a><a class="yv" data-t="2025" href="https://www.youtube.com/watch?v=WT8_IIvv8XY"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2025">DİM toplu 2025</span><b>Preposition</b><small>Suallar 201–290</small></a><a class="yv" data-t="2025" href="https://www.youtube.com/watch?v=KTmq7_7MMow"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2025">DİM toplu 2025</span><b>Preposition</b><small>Suallar 101–200</small></a><a class="yv" data-t="11" href="https://www.youtube.com/watch?v=M719XVkRW9Y"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-11">11-ci sinif toplu</span><b>Preposition</b><small>Suallar 1–100</small></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=IvmDUXNNpXw"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Adjective, Adverb</b></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=uJxBh2pK8_g"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Tense forms</b><small>Suallar 101–222</small></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=csNN3DgOzbs"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Tense forms</b><small>Suallar 1–100</small></a><a class="yv" data-t="9" href="https://www.youtube.com/watch?v=0lKbR-W-kRA"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-9">9-cu sinif toplu</span><b>Article</b></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=LlMvGGsAMd8"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>Interrogative sentences</b><small>Suallar 1-ci başlıq</small></a><a class="yv" data-t="yazi" href="https://www.youtube.com/watch?v=7Dky0XAwEx4"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-yazi">Esse və yazı</span><b>Essay və story yoxlanması</b></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=-F31xohT54c"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>Conjunction</b></a><a class="yv" data-t="qayda" href="https://www.youtube.com/watch?v=YOPZnwlSCRQ"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-qayda">Qayda izahı</span><b>Conjunction</b></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=HTGX8-RRIsw"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>Conjunctive words</b></a><a class="yv" data-t="qayda" href="https://www.youtube.com/watch?v=iB5U_OUbqEs"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-qayda">Qayda izahı</span><b>Disjunctive (tag) questions</b></a><a class="yv" data-t="qayda" href="https://www.youtube.com/watch?v=MbQ3NiSaEYg"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-qayda">Qayda izahı</span><b>Special questions</b></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=f_M0FfqFUCQ"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>So do I / Neither do I</b><small>Suallar 130–154</small></a><a class="yv" data-t="2023" href="https://www.youtube.com/watch?v=V6O6vR1tv1c"><span class="yv-play" aria-hidden="true">▶</span><span class="yv-tag t-2023">DİM toplu 2023</span><b>Passive voice: can be / cannot be</b></a></div>
+      <p class="yv-empty" id="yvE" hidden>Bu mövzuda video tapılmadı. Başqa söz yoxlayın.</p>
+      <div class="yv-foot"><a class="btn accent" href="https://www.youtube.com/channel/UCWZF4ci0ZBtNSMcgjN2oWKA?sub_confirmation=1">YouTube kanalına abunə ol</a><span>English with Rashad Nasibov</span></div>
+    </div>
+  </section>
+
+  <section id="metod">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">09</span>
+        <div>
+          <h2>Sınaqdan sonra yalnız bal yox, tam analiz</h2>
+          <p>Sinifdə yazılan hər sınaq DİM buraxılış formatındadır və öz yoxlama proqramımla yoxlanır.</p>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><div><h3>Cavab kartı saniyələr içində yoxlanır</h3><p>Cavab kartının şəkli çəkilir. Test hissəsi DİM ballandırma qaydası ilə avtomatik yoxlanır, düzgün və səhv cavablar dərhal görünür.</p></div></div>
+        <div class="step"><div><h3>Esse DİM meyarları ilə qiymətləndirilir</h3><p>Hekayə və ya esse AI ilə oxunur və DİM meyarları üzrə qiymətləndirilir. Son qiyməti müəllim təsdiqləyir.</p></div></div>
+        <div class="step"><div><h3>Hər şagirdə fərdi analiz</h3><p>Bal, səhvlər, onların düzgün forması və müəllim rəyi bir vərəqdə toplanır.</p></div></div>
+        <div class="step"><div><h3>Zəif mövzular və nəticələr jurnalı</h3><p>Qrupun zəif mövzuları dərhal görünür, dərs məhz onlara görə qurulur. Hər sınaqdan sonra qrupda yer və nəticələr jurnalı yenilənir.</p></div></div>
+      </div>
+
+      <h3 class="vg-title">Dərslərimizdən videolar</h3>
+      <div class="vgrid">
+        <figure><video src="v-reklam.mp4" poster="v-reklam.jpg" controls playsinline preload="none"></video><figcaption><b>Dərslərimiz</b><span>Masazır (Yeni Bakı) və Nərimanov, canlı və maraqlı dərslər</span></figcaption></figure>
+        <figure><video src="v-writing.mp4" poster="v-writing.jpg" controls playsinline preload="none"></video><figcaption><b>RN Opinion Writing Lab</b><span>Dəftərdəki yazıdan səhvlərin izahına və müəllim tövsiyələrinə qədər</span></figcaption></figure>
+        <figure><video src="v-dim.mp4" poster="v-dim.jpg" controls playsinline preload="none"></video><figcaption><b>Tam DİM formatında sınaq + yoxlama</b><span>Cavab kartından fərdi analizə qədər, sinifdə</span></figcaption></figure>
+        <figure><video src="v-proqram.mp4" poster="v-proqram.jpg" controls playsinline preload="none"></video><figcaption><b>Yoxlama proqramı</b><span>Cavab kartı, esse, fərdi analiz, jurnal</span></figcaption></figure>
+        <figure><video src="v-esse.mp4" poster="v-esse.jpg" controls playsinline preload="none"></video><figcaption><b>Dərsimizdən 30 saniyə</b><span>WhatsApp qrupuna gələn esse lövhədə birlikdə təhlil olunur</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="sozler" class="vocab-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">10</span>
+        <div>
+          <span class="eyebrow" style="margin-bottom:8px">Pulsuz · birbaşa saytda</span>
+          <h2>RN Vocabulary: DİM üçün söz bazası</h2>
+          <p>DİM imtahanlarına lazım olan zəngin söz ehtiyatı bir yerdə. Mövzunu seç, kartlarla öyrən, özünü yoxla. Tərcümələr Azərbaycan dilindədir.</p>
+        </div>
+      </div>
+      <div class="v-stats">
+        <div><b>5 559</b><span>söz və ifadə</span></div>
+        <div><b>109</b><span>mövzu</span></div>
+        <div><b>3 072</b><span>məktəb dərsliklərindən söz</span></div>
+        <div><b>472</b><span>feil</span></div>
+        <div><b>1 155</b><span>sinonim və antonim</span></div>
+      </div>
+      <div class="v-frame">
+        <div class="v-bar"><span class="v-dots"><i></i><i></i><i></i></span><b>RN Vocabulary</b><a href="vocab.html">Tam ekranda aç ↗</a></div>
+        <iframe src="vocab.html" title="RN Vocabulary" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="unvanlar">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">11</span>
+        <div>
+          <h2>Dərs keçilən yerlər</h2>
+          <p>Dəqiq ünvan qeydiyyatdan sonra göndərilir.</p>
+        </div>
+      </div>
+      <div class="loc">
+        <div class="item"><h3>Masazır</h3><p>Yeni Bakı yaşayış kompleksi</p></div>
+        <div class="item"><h3>Nərimanov</h3><p>Nərimanov rayonu, Bakı</p></div>
+        <div class="item"><h3>Onlayn</h3><p>Azərbaycanın istənilən yerindən</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="suallar">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">12</span>
+        <div><h2>Tez-tez verilən suallar</h2></div>
+      </div>
+      <div class="faq">
+        <details><summary>Qruplar necə yığılır?</summary><p>Qruplar sinfə və səviyyəyə görə yığılır. Səviyyənizi bilmirsinizsə, yuxarıdakı onlayn testdən başlayın və nəticəni WhatsApp-a göndərin.</p></details>
+        <details><summary>Onlayn dərslər necə keçir?</summary><p>Proqram əyani dərslərlə eynidir: mövzu dərsləri, sınaqlar və esse təhlili. Materiallar onlayn göndərilir.</p></details>
+        <details><summary>Dərslərin qiyməti nə qədərdir?</summary><p>Qiymət kursdan və yerdən asılıdır. Dəqiq məlumat üçün 055 731 32 66 nömrəsinə zəng edin və ya WhatsApp-a yazın.</p></details>
+        <details><summary>«100 Sınaq» kitabını necə əldə etmək olar?</summary><p>Aşağıdakı qeydiyyat formasında «100 Sınaq» kitabını seçin və göndərin. Sizinlə əlaqə saxlanılacaq.</p></details>
+        <details open><summary>Onlayn Sınaq Qrupu necə işləyir?</summary><p>1 dekabrdan başlayır. Ayda 8 sınaq keçirilir, həftədə 2. Aylıq ödəniş 20 manatdır. Giriş kodu ilə sistemə daxil olursunuz, DİM buraxılış formatında sınağı telefondan işləyib göndərirsiniz. Sonra nəticə vərəqi (bal, səhvlər, DİM meyarları ilə esse təhlili) və hər sualın video izahı gəlir.</p></details>
+        <details><summary>Giriş kodunu haradan alım?</summary><p>Qrupa qoşulduqdan sonra hər sınaq üçün giriş kodunu müəllim göndərir. Qoşulmaq üçün 055 731 32 66 nömrəsinə WhatsApp-dan yazın.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="qeydiyyat">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="sec-num">13</span>
+          <div>
+            <h2>Qeydiyyat</h2>
+            <p>Formu doldurun, müraciətiniz hazır mətn kimi WhatsApp-da açılacaq. Göndərmək üçün sadəcə «Send» düyməsini sıxın.</p>
+          </div>
+        </div>
+        <ul class="clist">
+          <li><span>Telefon</span><a href="tel:+994557313266">055 731 32 66</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/994557313266">wa.me/994557313266</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/teacher_rashad_nasibov/">@teacher_rashad_nasibov</a></li>
+          <li><span>YouTube</span><a href="https://www.youtube.com/channel/UCWZF4ci0ZBtNSMcgjN2oWKA">Rəşad Nəsibov – İngilis dili müəllimi</a></li>
+        </ul>
+      </div>
+
+      <form id="f" novalidate>
+        <label for="name">Ad, soyad
+          <input id="name" name="name" autocomplete="name" placeholder="Məs. Aysel Məmmədova" required>
+        </label>
+        <label for="phone">Telefon
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="050 000 00 00" required>
+        </label>
+        <label for="course">Nə ilə maraqlanırsınız?
+          <select id="course" name="course">
+            <option>Onlayn Sınaq Qrupu (20 ₼ / ay)</option>
+            <option>Abituriyent hazırlığı (XI sinif)</option>
+            <option>Buraxılış hazırlığı (IX sinif)</option>
+            <option>Onlayn dərslər</option>
+            <option>«100 Sınaq» kitabı</option>
+          </select>
+        </label>
+        <label for="place">Harada?
+          <select id="place" name="place">
+            <option>Masazır (Yeni Bakı)</option>
+            <option>Nərimanov</option>
+            <option>Onlayn</option>
+          </select>
+        </label>
+        <button class="btn" type="submit" id="send">WhatsApp-da göndər</button>
+        <p class="form-note" id="err" role="alert"></p>
+        <div class="out" id="out">
+          <span>Müraciət hazırdır. WhatsApp açılmadısa, bu linkə toxunun:</span>
+          <a id="walink" href="https://wa.me/994557313266">WhatsApp-da aç</a>
+          <span class="form-note">Və ya zəng edin: 055 731 32 66</span>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 RN – Rashad Nasibov · İngilis dili müəllimi</span>
+    <span>Masazır · Nərimanov · Onlayn</span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/994557313266" aria-label="WhatsApp-da yaz">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.7-.4Z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+/* results modal + slides */
+var RD={"uni66": {"t": "Universitetə qəbul olunan 66 tələbə", "k": "qebul", "list": [{"n": "Aysu Məhərrəmli", "s": "697,5", "u": "BANM", "p": "Kompüter elmləri", "b": "Respublika 1-cisi · 400/400", "img": "av-aysu.jpg"}, {"n": "Əsma Məmmədova", "s": "679,2", "u": "ATU", "p": "Tibb", "img": "av-esma.jpg"}, {"n": "Nihad Fərəcov", "s": "677,7", "u": "ATU", "p": "Tibb", "b": "Qəbul üzrə respublika 1-cisi · 400/400", "img": "av-nihad.jpg"}, {"n": "Zəhra Şahverdizadə", "s": "673,5", "u": "BMU", "p": "Kimya mühəndisliyi"}, {"n": "İnci Bəylərova", "s": "671", "u": "BDU", "p": "Hüquqşünaslıq"}, {"n": "Elnur Əhmədov", "s": "652,4", "u": "ATU", "p": "Tibb"}, {"n": "Nəzrin Bayramlı", "s": "639", "u": "ATU", "p": "Tibb"}, {"n": "Nəsrin Babayeva", "s": "628,6", "u": "NDU", "p": "Tibb (ing)"}, {"n": "Əlinur Səlimzadə", "s": "615", "u": "BMU–İnha", "p": "Süni intellekt"}, {"n": "Gülay Rüstəmli", "s": "614", "u": "BDU", "p": "Hüquqşünaslıq"}, {"n": "Leyla Qənbərova", "s": "610,2", "u": "BDU", "p": "Hüquqşünaslıq"}, {"n": "Amin Qasımzadə", "u": "Türkiyə Azərbaycan Universiteti", "p": "Kompüter mühəndisliyi"}, {"n": "Günel İsmayılova", "u": "BDU", "p": "İnformasiya təhlükəsizliyi"}, {"n": "Rəbun Əliyev", "u": "UNEC", "p": "İnformasiya təhlükəsizliyi"}, {"n": "Mehdi Allahverdi", "u": "Qarabağ Universiteti", "p": "Kompüter mühəndisliyi (ing)"}, {"n": "Harun Mehdizadə", "u": "Qarabağ Universiteti", "p": "Biznesin idarə edilməsi"}, {"n": "Fatimə Rüstəmli", "u": "Qarabağ Universiteti / İTÜ", "p": "İnşaat mühəndisliyi (ing)"}, {"n": "Mehriban Qurbanlı", "u": "Dövlət Gömrük Akademiyası", "p": "İnformasiya təhlükəsizliyi"}, {"n": "Aişə Məmmədova", "u": "ATU", "p": "Kompüter elmləri (ing)"}, {"n": "Zəhra Həsənli", "u": "UNEC", "p": "Menecment"}, {"n": "Murad Aslanzadə", "u": "BMU", "p": "İnformasiya texnologiyaları"}, {"n": "Aişə Mustafayeva", "u": "BMU", "p": "Kompüter mühəndisliyi"}, {"n": "Nuray Əliyeva", "u": "ADNSU", "p": "Kompüter elmləri"}, {"n": "Əlibəy Zeynallı", "u": "UNEC", "p": "Biznesin idarə edilməsi"}, {"n": "Nazlı Mustafazadə", "u": "ADPU", "p": "Tarix müəllimliyi"}, {"n": "Xalsa Nəsibov", "u": "ADPU", "p": "Təhsildə sosial-psixoloji xidmət"}, {"n": "Şəbnəm Mirhəsənli", "u": "BDU", "p": "Jurnalistika"}, {"n": "Mədinə Məmmədova", "u": "Bakı Slavyan Universiteti", "p": "Jurnalistika"}, {"n": "Gülbuta Xudiyeva", "u": "Bakı Slavyan Universiteti", "p": "Azərbaycan dili və ədəbiyyatı müəllimliyi"}, {"n": "Nəzrin İsmayılzadə", "u": "Azərbaycan Universiteti", "p": "Təhsildə sosial-psixoloji xidmət"}, {"n": "Məhbubə Umudlu", "u": "UNEC", "p": "Mühasibat"}, {"n": "Mehin Əsədli", "u": "UNEC", "p": "Beynəlxalq münasibətlər"}, {"n": "Arif Rəfiyev", "u": "UNEC", "p": "Beynəlxalq ticarət və logistika"}, {"n": "İbrahim Cəbrayılzadə", "u": "UNEC", "p": "Beynəlxalq ticarət və logistika"}, {"n": "Əlihüseyn Məhərrəmli", "u": "UNEC", "p": "Marketinq"}, {"n": "Zəhra İsmayılzadə", "u": "BMU", "p": "Kimya (ing)"}, {"n": "Səbinə Hüseynzadə", "u": "Xəzər Universiteti", "p": "Psixologiya (ing)"}, {"n": "Aytən Əliyeva", "u": "ADU", "p": "Filologiya (Azərbaycan dili və ədəbiyyatı)"}, {"n": "Ahu Həmidli", "u": "Azərbaycan Universiteti", "p": "Dövlət və ictimai münasibətlər"}, {"n": "Nərmin Cavadova", "u": "Bakı Avrasiya Universiteti", "p": "Beynəlxalq münasibətlər"}, {"n": "Şərqiyyə Hüseynli", "u": "BDU", "p": "Menecment"}, {"n": "Valeh İmanzadə", "u": "ADNSU", "p": "Proseslərin avtomatlaşdırılması mühəndisliyi"}, {"n": "Reyhan Azayeva", "u": "AzMİU", "p": "İqtisadiyyat"}, {"n": "Məhəmməd Quluzadə", "u": "BMU", "p": "İqtisadiyyat"}, {"n": "Məmmədəli Qurbanov", "u": "BMU", "p": "Turizm işinin təşkili"}, {"n": "Həcər İbrahimli", "u": "BMU", "p": "Maliyyə (ing)"}, {"n": "Cəvahir Hüseynova", "u": "BMU", "p": "Biznesin idarə edilməsi"}, {"n": "Fidan Mustafazadə", "u": "BMU", "p": "Ekologiya mühəndisliyi"}, {"n": "Ayan Yaqubova", "u": "BDU", "p": "Regionşünaslıq (Çin üzrə)"}, {"n": "Rüfət Dadaşov", "u": "BDU", "p": "Tərcümə (fars dili)"}, {"n": "Rüqəyya Əliyeva", "u": "SDU", "p": "Riyaziyyat müəllimliyi"}, {"n": "Lamiyə Rüstəmli", "u": "SDU", "p": "Kimya mühəndisliyi"}, {"n": "Zeynal Babayev", "u": "SDU", "p": "Riyaziyyat"}, {"n": "Fərid Əkbərov", "u": "SDU", "p": "Beynəlxalq ticarət və logistika"}, {"n": "Zəhra Məmmədova", "u": "Azərbaycan Texnologiya Universiteti", "p": "İnformasiya texnologiyaları"}, {"n": "Xumar Səmədova", "u": "Qərbi Kaspi Universiteti", "p": "Biotexnologiya"}, {"n": "Murad Mirzəyev", "u": "Bakı Biznes Universiteti", "p": "İnformasiya texnologiyaları"}, {"n": "Əbəlfəzl Kərimov", "u": "Bakı Avrasiya Universiteti", "p": "İnformasiya texnologiyaları"}, {"n": "Məryəm İbrahimzadə", "u": "Xəzər Universiteti", "p": "Regionşünaslıq"}, {"n": "Hüseyn Əhədzadə", "u": "İdman Akademiyası", "p": "Ümumi fiziki hazırlıq"}, {"n": "Fatimə Zeynallı", "u": "Odlar Yurdu Universiteti", "p": "Mühasibat"}, {"n": "Asif Ağazadə", "u": "Odlar Yurdu Universiteti", "p": "Marketinq"}, {"n": "Ziyadxan Novruzov", "u": "Odlar Yurdu Universiteti", "p": "Biznesin idarə edilməsi"}, {"n": "Fatimə Xələfova", "u": "Bakı Avrasiya Universiteti", "p": "Tərcümə (fransız dili)"}, {"n": "Rəhimə Nuriyeva", "u": "Bakı Biznes Universiteti", "p": "Marketinq"}, {"n": "Ümid Səfərəliyev", "u": "Azərbaycan Kooperasiya Universiteti", "p": "Turizm işinin təşkili"}]}, "q600": {"t": "Qəbulda 600+ bal toplayan 20 şagird", "k": "bal", "list": [{"n": "Aysu Məhərrəmli", "s": "697,5", "u": "BANM", "p": "Kompüter elmləri", "b": "Respublika 1-cisi · 400/400", "img": "av-aysu.jpg"}, {"n": "Əsma Məmmədova", "s": "679,2", "u": "ATU", "p": "Tibb", "img": "av-esma.jpg"}, {"n": "Nihad Fərəcov", "s": "677,7", "u": "ATU", "p": "Tibb", "b": "Qəbul üzrə respublika 1-cisi · 400/400", "img": "av-nihad.jpg"}, {"n": "Zəhra Şahverdizadə", "s": "673,5", "u": "BMU", "p": "Kimya mühəndisliyi"}, {"n": "İnci Bəylərova", "s": "671", "u": "BDU", "p": "Hüquqşünaslıq"}, {"n": "Nəcibə Allahverdiyeva", "s": "666", "img": "av-necibe.jpg", "u": "ATU", "p": "Tibb"}, {"n": "Elnur Əhmədov", "s": "652,4", "u": "ATU", "p": "Tibb"}, {"n": "Nuranə Alıyeva", "s": "645", "img": "av-nurane.jpg", "u": "BANM", "p": "Biznesin idarə edilməsi"}, {"n": "Nəzrin Bayramlı", "s": "639", "u": "ATU", "p": "Tibb"}, {"n": "Hüseyn Fərəcov", "s": "636", "u": "UNEC", "p": "İnformasiya texnologiyaları"}, {"n": "Nəsrin Babayeva", "s": "628,6", "u": "NDU", "p": "Tibb (ing)"}, {"n": "Fatimə Babayeva", "s": "626", "u": "BMU–İNHA", "p": "Data analitikası (ing)"}, {"n": "Nailə Həsənova", "s": "616", "img": "av-naile.jpg", "u": "Qarabağ Universiteti", "p": "Tibb"}, {"n": "Əlinur Səlimzadə", "s": "615", "u": "BMU–İnha", "p": "Süni intellekt"}, {"n": "Gülay Rüstəmli", "s": "614", "u": "BDU", "p": "Hüquqşünaslıq"}, {"n": "Selin Sərkərova", "s": "613", "u": "NDU", "p": "Tibb (ing)"}, {"n": "Nihad Alıyev", "s": "611", "u": "Hüquqşünaslıq"}, {"n": "Leyla Qənbərova", "s": "610,2", "u": "BDU", "p": "Hüquqşünaslıq"}, {"n": "Zəhra Murtuzova", "s": "604", "u": "Qarabağ Universiteti", "p": "Hüquqşünaslıq"}, {"n": "Əli Qarayev", "s": "604", "u": "UNEC", "p": "İnformasiya texnologiyaları"}]}, "b100": {"t": "Buraxılışda ingilis dilindən 100 bal", "k": "bur", "list": [{"n": "Aysu Məhərrəmli", "e": "100", "t": "297,5", "img": "av-aysu.jpg"}, {"n": "Nuranə Alıyeva", "e": "100", "t": "297,5", "img": "av-nurane.jpg"}, {"n": "Nəcibə Allahverdiyeva", "e": "100", "t": "297", "img": "av-necibe.jpg"}, {"n": "Əsma Məmmədova", "e": "100", "t": "287,7", "img": "av-esma.jpg"}, {"n": "Nailə Həsənova", "e": "100", "t": "275", "img": "av-naile.jpg"}, {"n": "Pərvin Bağırlı", "e": "100", "t": "196", "img": "av-pervin.jpg"}]}, "b80": {"t": "Buraxılış · ingilis dili TOP 60", "k": "bur", "list": [{"n": "Aysu Məhərrəmli", "e": "100", "t": "297,5", "img": "av-aysu.jpg"}, {"n": "Nuranə Alıyeva", "e": "100", "t": "297,5", "img": "av-nurane.jpg"}, {"n": "Nəcibə Allahverdiyeva", "e": "100", "t": "297", "img": "av-necibe.jpg"}, {"n": "Əsma Məmmədova", "e": "100", "t": "287,7", "img": "av-esma.jpg"}, {"n": "Nailə Həsənova", "e": "100", "t": "275", "img": "av-naile.jpg"}, {"n": "Pərvin Bağırlı", "e": "100", "t": "196", "img": "av-pervin.jpg"}, {"n": "Hüseyn Fərəcov", "e": "97,3", "t": "288"}, {"n": "Nərmin Cəfərli", "e": "97,3", "t": "282"}, {"n": "Əsma Şahverdizadə", "e": "97,3", "t": "280"}, {"n": "Selin Sarkarova", "e": "97,3", "t": "276"}, {"n": "Elnur Əhmədov", "e": "97,3", "t": "270,3"}, {"n": "Kanan Kazımov", "e": "97,3", "t": "255"}, {"n": "Rəvan Abbasov", "e": "97,3", "t": "237"}, {"n": "Pərvin Cəfərli", "e": "95,5", "t": "282"}, {"n": "Nəsrin Babayeva", "e": "95,5", "t": "281"}, {"n": "İnci Bəylərova", "e": "94,6", "t": "283,4"}, {"n": "Mədinə Məmmədzadə", "e": "94,6", "t": "270"}, {"n": "Zəhra İsmayılzadə", "e": "94,6", "t": "259"}, {"n": "Aişə Məmmədova", "e": "94,6", "t": "255,4"}, {"n": "Əlinur Səlimzadə", "e": "94,6", "t": "252"}, {"n": "Əli Məmmədli", "e": "94,6", "t": "251"}, {"n": "Vaqif Abdullayev", "e": "94,6", "t": "250"}, {"n": "Yusif Baloğlanov", "e": "94,6", "t": "216"}, {"n": "Məryəm İbrahimzadə", "e": "94,6", "t": "201"}, {"n": "Amin Qasımzadə", "e": "92,8", "t": "261"}, {"n": "Fatimə Babayeva", "e": "91,9", "t": "288"}, {"n": "Nihad Əliyev", "e": "91,9", "t": "287"}, {"n": "Zəhra Şahverdizadə", "e": "91,9", "t": "283,2"}, {"n": "Ayla Aslanova", "e": "91,9", "t": "283"}, {"n": "Nazrin Bayramlı", "e": "91,9", "t": "270"}, {"n": "Zəhra Murtuzova", "e": "91,9", "t": "265"}, {"n": "Aişə Mustafayeva", "e": "91,9", "t": "239,4"}, {"n": "Nərmin Cavadova", "e": "91,9", "t": "192"}, {"n": "Nihad Fərəcov", "e": "90,1", "t": "273,4", "img": "av-nihad.jpg"}, {"n": "Dəniz Dadaşova", "e": "90,1", "t": "256"}, {"n": "Əli Qarayev", "e": "89,2", "t": "271"}, {"n": "İlham Baxşəliyev", "e": "89,2", "t": "254"}, {"n": "Rinat Babayev", "e": "89,2", "t": "220"}, {"n": "Elşad Əliyev", "e": "89,2", "t": "211"}, {"n": "Əli Məmmədli", "e": "87,4", "t": "257"}, {"n": "Ayan Sarkarova", "e": "87,4", "t": "190"}, {"n": "Aysel Həsənzadə", "e": "86,5", "t": "271"}, {"n": "Mehdi Allahverdi", "e": "86,5", "t": "255"}, {"n": "Arif Rəfiyev", "e": "86,5", "t": "212"}, {"n": "İbrahim Məmmədov", "e": "86,5", "t": "190"}, {"n": "Sabina Hüseynova", "e": "83,8", "t": "263"}, {"n": "Əhməd Feyzullayev", "e": "83,8", "t": "261"}, {"n": "Nərmin Əkbərova", "e": "83,8", "t": "247"}, {"n": "Əbəlfəzl Kərimov", "e": "83,8", "t": "200"}, {"n": "Məmməd Əkbərli", "e": "83,8", "t": "181"}, {"n": "Vüsal Abbasov", "e": "83,8", "t": "156"}, {"n": "Hacər İbrahimli", "e": "82", "t": "210,1"}, {"n": "Valeh İmanzadə", "e": "82", "t": "210"}, {"n": "Nuray Səfərliyeva", "e": "81,1", "t": "244"}, {"n": "Nigar Sultanova", "e": "81,1", "t": "243"}, {"n": "Rəbun Əliyev", "e": "81,1", "t": "235,5"}, {"n": "Leyla Osmanova", "e": "81,1", "t": "234"}, {"n": "Rəhilə Məmmədli", "e": "81,1", "t": "170"}, {"n": "Ramal Mərdanov", "e": "80,2", "t": "258"}, {"n": "Məlak Quliyeva", "e": "80,2", "t": "186"}], "note": "Buraxılışda 80+ bal toplayan 63 şagirddən ilk 60-ı"}};
+(function(){
+  var rm=document.getElementById('rm'),B=document.getElementById('rmB'),cat,i=0,view=1,last;
+  function ini(n){return n.split(' ').map(function(w){return w[0]}).join('').slice(0,2)}
+  function card(x,k){
+    var pic=x.img?'<img src="'+x.img+'" alt="">':'<span class="rm-ini">'+rnEsc(ini(x.n))+'</span>';
+    var main='',sub='';
+    if(cat.k==='bur'){main='<p class="rm-score">'+x.e+'<small> / 100 ingilis dili</small></p>';sub='Buraxılış ümumi bal: <b>'+x.t+'</b> / 300'}
+    else{main=x.s?'<p class="rm-score">'+x.s+'<small> bal</small></p>':'';sub=x.u?'<b>'+rnEsc(x.u)+'</b>'+(x.p?'<br>'+rnEsc(x.p):''):''}
+    return '<div class="rm-card"><span class="rm-rank">'+(k+1)+'</span><div class="rm-pic">'+pic+'</div>'+(x.b?'<span class="badge">'+rnEsc(x.b)+'</span>':'')+
+      '<h4>'+rnEsc(x.n)+'</h4>'+main+(sub?'<p class="rm-sub">'+sub+'</p>':'')+'</div>'}
+  function row(x,k){var r=cat.k==='bur'?x.e+' · '+x.t:(x.s||'');
+    return '<button class="rm-row" data-k="'+k+'"><span>'+(k+1)+'</span><b>'+rnEsc(x.n)+'</b><small>'+(x.u?rnEsc(x.u)+(x.p?' · '+rnEsc(x.p):''):'')+'</small><em>'+r+'</em></button>'}
+  function draw(){
+    var L=cat.list;document.getElementById('rmC').textContent=view===1?(i+1)+' / '+L.length:L.length+' nəfər';
+    document.getElementById('rmV1').setAttribute('aria-pressed',view===1);document.getElementById('rmV2').setAttribute('aria-pressed',view===2);
+    document.getElementById('rmNav').hidden=view!==1;
+    if(view===1){B.innerHTML=card(L[i],i);document.getElementById('rmP').disabled=i===0;document.getElementById('rmN').disabled=i===L.length-1}
+    else{B.innerHTML=(cat.note?'<p class="rm-note">'+cat.note+'</p>':'')+'<div class="rm-list">'+L.map(row).join('')+'</div>';
+      B.querySelectorAll('.rm-row').forEach(function(r){r.onclick=function(){i=+r.dataset.k;view=1;draw()}})}
+  }
+  function open(c,k,el){cat=RD[c];i=k||0;view=1;last=el;
+    document.getElementById('rmT').textContent=cat.t;document.getElementById('rmK').textContent=cat.k==='bur'?'2025/2026 · Buraxılış':'2026 · Qəbul';
+    rm.hidden=false;document.body.style.overflow='hidden';draw();document.getElementById('rmX').focus()}
+  function close(){rm.hidden=true;document.body.style.overflow='';if(last)last.focus()}
+  document.addEventListener('click',function(e){var t=e.target.closest('[data-open]');if(t){e.preventDefault();open(t.dataset.open,+(t.dataset.i||0),t)}});
+  document.querySelectorAll('.champ[data-open]').forEach(function(c){c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(c.dataset.open,+c.dataset.i,c)}})});
+  document.getElementById('rmX').onclick=close;
+  rm.addEventListener('click',function(e){if(e.target===rm)close()});
+  document.getElementById('rmP').onclick=function(){if(i>0){i--;draw()}};
+  document.getElementById('rmN').onclick=function(){if(i<cat.list.length-1){i++;draw()}};
+  document.getElementById('rmV1').onclick=function(){view=1;draw()};
+  document.getElementById('rmV2').onclick=function(){view=2;draw()};
+  document.addEventListener('keydown',function(e){if(rm.hidden)return;if(e.key==='Escape')close();if(view===1&&e.key==='ArrowRight'&&i<cat.list.length-1){i++;draw()}if(view===1&&e.key==='ArrowLeft'&&i>0){i--;draw()}});
+  var sx=null;B.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  B.addEventListener('touchend',function(e){if(sx===null||view!==1)return;var dx=e.changedTouches[0].clientX-sx;sx=null;
+    if(dx<-40&&i<cat.list.length-1){i++;draw()}else if(dx>40&&i>0){i--;draw()}});
+
+  /* slides */
+  var rs=document.getElementById('rs'),tr=rs.querySelector('.rs-track'),sl=tr.children,n=sl.length,cur=0,auto,dots=document.getElementById('rsD');
+  for(var k=0;k<n;k++){var d=document.createElement('button');d.setAttribute('aria-label','Slayd '+(k+1));d.dataset.k=k;d.onclick=function(){go(+this.dataset.k)};dots.appendChild(d)}
+  function go(k){cur=(k+n)%n;tr.style.transform='translateX(-'+cur*100+'%)';[].forEach.call(dots.children,function(d,j){d.classList.toggle('on',j===cur)})}
+  document.getElementById('rsP').onclick=function(){go(cur-1)};document.getElementById('rsN').onclick=function(){go(cur+1)};
+  function play(){clearInterval(auto);if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)auto=setInterval(function(){go(cur+1)},6000)}
+  rs.addEventListener('mouseenter',function(){clearInterval(auto)});rs.addEventListener('mouseleave',play);
+  var tx=null;rs.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;clearInterval(auto)},{passive:true});
+  rs.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(dx<-40)go(cur+1);else if(dx>40)go(cur-1);play()});
+  go(0);play();
+})();
+/* ===== shared question bank ===== */
+var RNQ={
+ 9:[
+  ['My brother ___ football every Sunday.',['play','plays','playing','is playing','have played'],1,'Present Simple, 3-cü şəxs tək: plays'],
+  ['Look! The children ___ in the garden.',['play','plays','are playing','played','have play'],2,'"Look!" indi baş verən hərəkət: Present Continuous'],
+  ["I ___ my homework yet.",["didn't finish","haven't finished","don't finish","wasn't finish","hadn't finish"],1,'"yet" Present Perfect ilə işlənir'],
+  ['She is ___ than her sister.',['tall','taller','tallest','more tall','the tallest'],1,'Müqayisə dərəcəsi: taller than'],
+  ['We ___ to Gabala last summer.',['go','goes','went','have gone','are going'],2,'"last summer" Past Simple tələb edir'],
+  ["There isn't ___ water in the bottle.",['many','much','few','a few','some'],1,'Sayılmayan isim inkarda: much'],
+  ['He was watching TV when the phone ___.',['ring','rings','rang','was ringing','has rung'],2,'Davam edən hərəkəti kəsən qısa hərəkət: Past Simple'],
+  ["You ___ wear a uniform at school. It's a rule.",["must","mustn't","can","might","would"],0,'Qayda və məcburiyyət: must'],
+  ['This book is ___ than that one.',['interesting','more interesting','most interesting','interestinger','the most interesting'],1,'Uzun sifət: more interesting than'],
+  ["I'm good ___ maths.",['in','on','at','for','with'],2,'be good at'],
+  ['If you heat ice, it ___.',['melt','melts','melted','will melted','would melt'],1,'0 tip şərt (ümumi həqiqət): Present Simple'],
+  ['The museum ___ in 1920.',['built','was built','is build','has build','builds'],1,'Past Simple Passive: was built'],
+  ['She has lived in Baku ___ five years.',['since','for','ago','during','from'],1,'Müddət: for five years'],
+  ["Choose the opposite of 'cheap'.",['expensive','easy','poor','cold','short'],0,'cheap (ucuz) ↔ expensive (bahalı)'],
+  ['How ___ apples do you need?',['much','many','any','some','lot'],1,'Sayılan isim: how many']
+ ],
+ 11:[
+  ['By next June, she ___ her degree.',['finishes','will finish','will have finished','has finished','finished'],2,'"by + gələcək vaxt": Future Perfect'],
+  ['I wish I ___ more time yesterday.',['have','had','had had','would have','have had'],2,'Keçmişə aid təəssüf: wish + Past Perfect'],
+  ['Not only ___ late, but he also forgot his book.',['he was','was he','he is','did he','has he'],1,'"Not only" cümlə əvvəlində inversiya tələb edir'],
+  ['The report needs ___ before Friday.',['check','to check','checking','checked','be checked'],2,'need + V-ing passiv məna verir'],
+  ['She suggested ___ to the cinema.',['go','to go','going','went','goes'],2,'suggest + V-ing'],
+  ["It's high time we ___ home.",['go','went','will go','are going','have gone'],1,"It's high time + Past Simple"],
+  ['Had I known the truth, I ___ differently.',['act','acted','would act','would have acted','will act'],3,'III tip şərt (inversiya): would have + V3'],
+  ['The man ___ car was stolen called the police.',['who','whom','whose','which','that'],2,'Sahiblik: whose'],
+  ['He denied ___ the window.',['break','to break','breaking','broke','to have broke'],2,'deny + V-ing'],
+  ["Choose the synonym of 'enormous'.",['huge','tiny','ordinary','quick','ancient'],0,'enormous = huge (nəhəng)'],
+  ['No sooner had we arrived ___ it started to rain.',['when','than','then','that','as'],1,'No sooner … than'],
+  ['You ___ have seen him; he was in London then.',['must',"can't",'should','might',"needn't"],1,'Keçmişə aid qeyri-mümkünlük: can’t have + V3'],
+  ['She is used to ___ in a big city.',['live','living','lived','lives','have lived'],1,'be used to + V-ing'],
+  ['The more you practise, ___ you become.',['the better','better','the best','best','more good'],0,'The more …, the better …'],
+  ['Neither Ali nor his friends ___ at the party.',['was','were','is','has been','be'],1,'neither … nor: feil yaxın olan subyektlə uzlaşır (friends → were)']
+ ]
+};
+var L5='ABCDE'.split('');
+function rnEsc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function rnStore(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+function rnDayKey(d){d=d||new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5)}
+
+/* ===== sınaq calendar + countdown ===== */
+(function(){
+  var M=['yanvar','fevral','mart','aprel','may','iyun','iyul','avqust','sentyabr','oktyabr','noyabr','dekabr'];
+  var W=['bazar','bazar ertəsi','çərşənbə axşamı','çərşənbə','cümə axşamı','cümə','şənbə'];
+  // Çərşənbə və şənbə, 1 dekabr 2026-dan: ilk 8 sınaq
+  var dates=[],d=new Date(2026,11,1);
+  while(dates.length<8){if(d.getDay()===3||d.getDay()===6)dates.push(new Date(d));d.setDate(d.getDate()+1)}
+  var list=document.getElementById('calList'),now=new Date(),today=rnDayNum(now),next=-1;
+  dates.forEach(function(x,i){if(next<0&&rnDayNum(x)>=today)next=i});
+  list.innerHTML=dates.map(function(x,i){
+    var st=rnDayNum(x)<today?'done':(i===next?'next':'');
+    var left=rnDayNum(x)-today;
+    return '<li class="'+st+'"><span class="cd-date"><b>'+x.getDate()+'</b>'+M[x.getMonth()].slice(0,3)+'</span>'+
+      '<span class="cd-body"><b>Sınaq '+(i+1)+'</b><small>'+W[x.getDay()]+' · '+x.getDate()+' '+M[x.getMonth()]+' '+x.getFullYear()+'</small></span>'+
+      '<span class="cd-left">'+(st==='done'?'Keçirilib':left===0?'Bu gün':left+' gün')+'</span></li>'}).join('');
+  var box=document.getElementById('countdown');
+  if(next<0){box.innerHTML='<p class="cd-title">Dekabr sınaqları başa çatdı. Yanvar cədvəli tezliklə.</p>';return}
+  var target=dates[next];
+  document.getElementById('cdLabel').textContent='Növbəti: Sınaq '+(next+1)+' · '+W[target.getDay()]+', '+target.getDate()+' '+M[target.getMonth()];
+  function tick(){
+    var ms=target-new Date();if(ms<0)ms=0;
+    var dd=Math.floor(ms/864e5),hh=Math.floor(ms%864e5/36e5),mm=Math.floor(ms%36e5/6e4),ss=Math.floor(ms%6e4/1e3);
+    ['cdD','cdH','cdM','cdS'].forEach(function(id,k){document.getElementById(id).textContent=String([dd,hh,mm,ss][k]).padStart(2,'0')});
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* ===== günün sualı + streak ===== */
+(function(){
+  var g=rnStore('rn-grade')||11,box=document.getElementById('dq'),gb=document.querySelectorAll('[data-grade]');
+  function streak(){var s=rnStore('rn-streak')||{n:0,last:null};
+    var y=new Date();y.setDate(y.getDate()-1);
+    if(s.last!==rnDayKey()&&s.last!==rnDayKey(y))s.n=0;return s}
+  function showStreak(){var s=streak();document.getElementById('streakN').textContent=s.n;
+    document.getElementById('streakTxt').textContent=s.n?(s.n===1?'gün ardıcıl. Sabah da gəl!':'gün ardıcıl. Seriyanı qırma!'):'Bu günün sualını cavabla, seriyaya başla.'}
+  function render(){
+    gb.forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.grade===g)});
+    var pool=RNQ[g],q=pool[rnDayNum()%pool.length],done=rnStore('rn-dq-'+g+'-'+rnDayKey());
+    var h='<p class="qtext">'+rnEsc(q[0])+'</p><div class="opts">';
+    q[1].forEach(function(o,k){
+      var cls='opt'+(done!=null?(k===q[2]?' right':(k===done?' wrong':'')):'');
+      h+='<button class="'+cls+'" data-k="'+k+'"'+(done!=null?' disabled':'')+'><span class="bub">'+L5[k]+'</span><span>'+rnEsc(o)+'</span></button>'});
+    h+='</div>';
+    if(done!=null)h+='<p class="dq-res '+(done===q[2]?'ok':'no')+'"><b>'+(done===q[2]?'Düzgündür!':'Düzgün cavab: '+L5[q[2]]+') '+rnEsc(q[1][q[2]]))+'</b> '+rnEsc(q[3])+'. Sabah yeni sual.</p>';
+    box.innerHTML=h;
+    box.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){
+      rnStore('rn-dq-'+g+'-'+rnDayKey(),+b.dataset.k);
+      var s=streak();if(s.last!==rnDayKey()){s.n++;s.last=rnDayKey();rnStore('rn-streak',s)}
+      render();showStreak()}});
+  }
+  gb.forEach(function(b){b.onclick=function(){g=+b.dataset.grade;rnStore('rn-grade',g);render()}});
+  render();showStreak();
+
+  /* 1 dəqiqəlik test */
+  var t=document.getElementById('mt'),timer=null;
+  function idle(msg){t.innerHTML=(msg||'')+'<p class="mt-lead">60 saniyədə nə qədər çox suala düzgün cavab verə bilərsən?</p><button class="btn" id="mtGo">Başla ▶</button>';
+    document.getElementById('mtGo').onclick=start;
+    var best=rnStore('rn-best');if(best)t.insertAdjacentHTML('beforeend','<p class="mt-best">Ən yaxşı nəticən: '+best+'</p>')}
+  function start(){
+    var pool=RNQ[9].concat(RNQ[11]).slice().sort(function(){return Math.random()-.5}),i=0,score=0,end=Date.now()+60000;
+    function q(){var x=pool[i%pool.length];
+      t.innerHTML='<div class="mt-top"><span class="mt-time" id="mtT">60</span><span>Düzgün: <b>'+score+'</b></span></div><div class="mt-bar"><i id="mtB"></i></div><p class="qtext">'+rnEsc(x[0])+'</p><div class="opts">'+
+        x[1].map(function(o,k){return '<button class="opt" data-k="'+k+'"><span class="bub">'+L5[k]+'</span><span>'+rnEsc(o)+'</span></button>'}).join('')+'</div>';
+      t.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){
+        var ok=+b.dataset.k===x[2];b.classList.add(ok?'right':'wrong');if(ok)score++;
+        t.querySelectorAll('.opt').forEach(function(z){z.disabled=true});
+        setTimeout(function(){i++;if(Date.now()<end)q()},ok?250:700)}});
+      upd()}
+    function upd(){var s=Math.max(0,Math.ceil((end-Date.now())/1000)),el=document.getElementById('mtT'),bar=document.getElementById('mtB');
+      if(el)el.textContent=s;if(bar)bar.style.width=(s/60*100)+'%';
+      if(s<=0){clearInterval(timer);var best=rnStore('rn-best')||0;if(score>best)rnStore('rn-best',score);
+        idle('<p class="mt-score"><b>'+score+'</b> düzgün cavab'+(score>best?' · yeni rekord!':'')+'</p>')}}
+    clearInterval(timer);timer=setInterval(upd,250);q();
+  }
+  idle();
+})();
+
+/* ===== 400-ə çat ===== */
+(function(){
+  var box=document.getElementById('game'),pool=RNQ[9].concat(RNQ[11]),timer=null;
+  var ranks=[[0,'Başlanğıc'],[100,'Buraxılışa hazır'],[200,'Universitet yolu'],[300,'TOP 60'],[400,'Respublika 1-cisi']];
+  function rank(p){var r=ranks[0][1];ranks.forEach(function(x){if(p>=x[0])r=x[1]});return r}
+  function meter(p){return '<div class="g-meter"><div class="g-fill" style="height:'+Math.min(100,p/4)+'%"></div>'+
+    ranks.slice(1).map(function(x){return '<span class="g-tick'+(p>=x[0]?' on':'')+'" style="bottom:'+Math.min(x[0]/4,93)+'%"><b>'+x[0]+'</b>'+x[1]+'</span>'}).join('')+'</div>'}
+  function idle(msg){
+    var best=rnStore('rn-400')||0;
+    box.innerHTML='<div class="g-wrap">'+meter(best)+'<div class="g-main">'+(msg||'<h3>400-ə çat</h3>')+
+      '<p class="mt-lead">Hər sualda 10 saniyən var. Nə qədər tez cavab versən, o qədər çox bal. Ardıcıl düzgün cavablar balı ikiqat edir. 3 səhv və oyun bitir.</p>'+
+      '<button class="btn" id="gGo">'+(msg?'Yenidən oyna ▶':'Başla ▶')+'</button>'+(best?'<p class="mt-best">Rekordun: '+best+' bal · '+rank(best)+'</p>':'')+'</div></div>';
+    document.getElementById('gGo').onclick=start}
+  function start(){
+    var order=pool.slice().sort(function(){return Math.random()-.5}),i=0,pts=0,lives=3,combo=0;
+    function q(){
+      if(i>=order.length){order.sort(function(){return Math.random()-.5});i=0}
+      var x=order[i],t0=Date.now(),done=false;
+      box.innerHTML='<div class="g-wrap">'+meter(pts)+'<div class="g-main"><div class="mt-top"><span>Bal: <b>'+pts+'</b> / 400</span><span class="g-lives">'+'♥'.repeat(lives)+'<i>'+'♥'.repeat(3-lives)+'</i></span></div>'+
+        '<div class="mt-bar"><i id="gT" style="width:100%"></i></div>'+(combo>=2?'<p class="g-combo">Seriya ×2</p>':'')+
+        '<p class="qtext">'+rnEsc(x[0])+'</p><div class="g-card">'+x[1].map(function(o,k){return '<button class="g-row" data-k="'+k+'"><span class="bub">'+L5[k]+'</span><span>'+rnEsc(o)+'</span></button>'}).join('')+'</div></div></div>';
+      function finish(k){if(done)return;done=true;clearInterval(timer);
+        var ok=k===x[2],rows=box.querySelectorAll('.g-row');rows.forEach(function(r){r.disabled=true});
+        rows[x[2]].classList.add('right');if(k>=0&&!ok)rows[k].classList.add('wrong');
+        if(ok){combo++;var sec=Math.max(0,10-(Date.now()-t0)/1000),g=10+Math.round(sec*2);if(combo>=3)g*=2;pts=Math.min(400,pts+g)}
+        else{combo=0;lives--}
+        setTimeout(function(){if(pts>=400)return end(true);if(lives<=0)return end(false);i++;q()},ok?450:1100)}
+      box.querySelectorAll('.g-row').forEach(function(b){b.onclick=function(){finish(+b.dataset.k)}});
+      timer=setInterval(function(){var left=10-(Date.now()-t0)/1000,bar=document.getElementById('gT');if(bar)bar.style.width=Math.max(0,left*10)+'%';if(left<=0)finish(-1)},100)}
+    function end(win){var best=rnStore('rn-400')||0;if(pts>best)rnStore('rn-400',pts);
+      idle(win?'<h3>400/400! Respublika 1-cisi səviyyəsi</h3>':'<h3>'+pts+' bal · '+rank(pts)+'</h3>'+(pts>best?'<p class="g-combo">Yeni rekord!</p>':''))}
+    q()}
+  idle();
+})();
+
+/* tab arrows + reel touch */
+(function(){
+  var t=document.getElementById('tabsIn'),l=document.getElementById('tabL'),r=document.getElementById('tabR');
+  function upd(){l.hidden=t.scrollLeft<4;r.hidden=t.scrollLeft+t.clientWidth>=t.scrollWidth-4}
+  l.onclick=function(){t.scrollBy({left:-240})};r.onclick=function(){t.scrollBy({left:240})};
+  t.addEventListener('scroll',upd);window.addEventListener('resize',upd);upd();
+  var reel=document.querySelector('.film-reel');
+  reel.addEventListener('touchstart',function(){reel.classList.add('hold')},{passive:true});
+  reel.addEventListener('touchend',function(){setTimeout(function(){reel.classList.remove('hold')},1500)});
+})();
+/* about */
+(function(){var ab=document.getElementById('about'),btn=document.getElementById('aboutBtn');
+  function close(){ab.hidden=true;document.body.style.overflow='';btn.focus()}
+  btn.onclick=function(){ab.hidden=false;document.body.style.overflow='hidden';document.getElementById('abX').focus()};
+  document.getElementById('abX').onclick=close;
+  ab.addEventListener('click',function(e){if(e.target===ab)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ab.hidden)close()});
+})();
+/* video filter */
+(function(){var f='all',q=document.getElementById('yvQ'),cards=[].slice.call(document.querySelectorAll('.yv')),chips=document.querySelectorAll('.yv-chips button');
+  function run(){var t=q.value.trim().toLowerCase(),n=0;cards.forEach(function(c){var ok=(f==='all'||c.dataset.t===f)&&(!t||c.textContent.toLowerCase().indexOf(t)>=0);c.hidden=!ok;if(ok)n++});document.getElementById('yvE').hidden=n>0}
+  chips.forEach(function(b){b.onclick=function(){f=b.dataset.f;chips.forEach(function(x){x.setAttribute('aria-pressed',x===b)});run()}});q.addEventListener('input',run);
+})();
+/* active tab */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.tabs a')),map={};
+  links.forEach(function(l){map[l.getAttribute('href').slice(1)]=l});
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&map[e.target.id]){
+    links.forEach(function(l){l.classList.remove('on')});var l=map[e.target.id];l.classList.add('on');
+    var p=l.parentNode;p.scrollTo({left:l.offsetLeft-p.clientWidth/2+l.clientWidth/2,behavior:'smooth'});}})},{rootMargin:'-140px 0px -60% 0px'});
+  Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+})();
+
+/* level test */
+(function(){
+  var L='ABCDE'.split('');
+  var Q=[
+    ['She ___ to school every day.',['go','goes','going','gone','is go'],1,'Present Simple, 3-cü şəxs tək'],
+    ['There ___ some milk in the fridge.',['are','be','is','were','have'],2,'Sayılmayan isim: there is'],
+    ['I have lived here ___ 2015.',['for','since','from','at','during'],1,'Zaman nöqtəsi ilə since'],
+    ['If it rains tomorrow, we ___ at home.',['stay','stayed','will stay','would stay','had stayed'],2,'I tip şərt cümləsi'],
+    ['This is the ___ film I have ever seen.',['good','better','best','most good','well'],2,'Üstünlük dərəcəsi'],
+    ['The letter ___ yesterday.',['sent','was sent','is sent','has sent','sends'],1,'Past Simple Passive'],
+    ['He asked me where I ___.',['live','lived','am living','do live','does live'],1,'Vasitəli nitq, zamanların uzlaşması'],
+    ["I'm looking forward to ___ you.",['see','seeing','saw','be seen','have seen'],1,'look forward to + V-ing'],
+    ['By the time we arrived, the film ___.',['started','has started','had started','starts','was start'],2,'Past Perfect'],
+    ['If I ___ you, I would accept the offer.',['am','was being','were','be','have been'],2,'II tip şərt: If I were you'],
+    ['She is used to ___ early.',['get up','getting up','got up','gets up','have got up'],1,'be used to + V-ing'],
+    ['Choose the synonym of "reluctant".',['eager','unwilling','happy','quick','honest'],1,'reluctant = könülsüz'],
+    ['Hardly ___ the house when it started to rain.',['I had left','had I left','I left','did I leave','have I left'],1,'Inversiya: Hardly had I…'],
+    ["I'd rather you ___ smoke here.",["don't","didn't","won't","not","haven't"],1,"I'd rather + subyekt + Past"],
+    ['The manager insisted that he ___ the report by Friday.',['finishes','finish','finished','will finish','is finishing'],1,'insist that + feilin əsas forması (subjunctive)']
+  ];
+  var box=document.getElementById('quiz'),i=0,ans=new Array(Q.length).fill(-1);
+  function level(s){
+    if(s<=5) return ['Başlanğıc (A1–A2)','Əsas qrammatikadan başlayan qrup sizin üçündür.'];
+    if(s<=10) return ['Orta (B1)','Əsaslar var. Sistemli mövzu dərsləri və sınaqlarla balınızı artırmaq olar.'];
+    if(s<=13) return ['Orta+ (B2)','Yaxşı bazanız var. İndi intensiv sınaq hazırlığı və esse işi lazımdır.'];
+    return ['Yüksək (C1)','Əla nəticə! Yüksək bal üçün sınaq təcrübəsi və çətin mövzular üzərində işləyin.'];
+  }
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function q(){
+    var x=Q[i],h='<div class="qbar"><i style="width:'+(i/Q.length*100)+'%"></i></div>'+
+      '<div class="qmeta"><span>Sual '+(i+1)+' / '+Q.length+'</span><span>Cavablanıb: '+ans.filter(function(a){return a>=0}).length+'</span></div>'+
+      '<p class="qtext">'+esc(x[0])+'</p><div class="opts" role="radiogroup">';
+    x[1].forEach(function(o,k){h+='<button class="opt'+(ans[i]===k?' sel':'')+'" role="radio" aria-checked="'+(ans[i]===k)+'" data-k="'+k+'"><span class="bub">'+L[k]+'</span><span>'+esc(o)+'</span></button>'});
+    h+='</div><div class="qnav"><button class="btn ghost" id="qb"'+(i===0?' disabled':'')+'>← Geri</button>'+
+      '<button class="btn" id="qn"'+(ans[i]<0?' disabled':'')+'>'+(i===Q.length-1?'Nəticəni gör':'Növbəti →')+'</button></div>';
+    box.innerHTML=h;
+    box.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){ans[i]=+b.dataset.k;q()}});
+    document.getElementById('qb').onclick=function(){if(i>0){i--;q()}};
+    document.getElementById('qn').onclick=function(){if(ans[i]<0)return;if(i<Q.length-1){i++;q()}else res()};
+  }
+  function res(){
+    var s=0,rv='';
+    Q.forEach(function(x,k){var ok=ans[k]===x[2];if(ok)s++;
+      rv+='<li class="'+(ok?'good':'')+'"><b>'+(k+1)+'.</b> '+esc(x[0])+'<br><small>'+(ok?'Düzgün':'Sizin cavab: '+L[ans[k]]+' · Düzgün: '+L[x[2]]+') '+esc(x[1][x[2]]))+' — '+esc(x[3])+'</small></li>'});
+    var lv=level(s);
+    var msg='Salam, Rəşad müəllim! Saytdakı səviyyə testini yazdım.\nNəticə: '+s+' / '+Q.length+'\nSəviyyə: '+lv[0]+'\nDərslər haqqında məlumat almaq istəyirəm.';
+    var url='https://wa.me/994557313266?text='+encodeURIComponent(msg);
+    box.innerHTML='<div class="qbar"><i style="width:100%"></i></div>'+
+      '<div class="score"><span class="num">'+s+'/'+Q.length+'</span><div><span class="lvl">'+lv[0]+'</span><p style="margin-top:8px;color:var(--mute)">'+lv[1]+'</p></div></div>'+
+      '<div class="res-actions"><a class="btn" href="'+url+'">Nəticəni WhatsApp-a göndər</a><button class="btn ghost" id="qr">Yenidən başla</button></div>'+
+      '<ul class="review">'+rv+'</ul>';
+    document.getElementById('qr').onclick=function(){i=0;ans.fill(-1);q()};
+  }
+  q();
+})();
+
+
+
+(function(){
+  var f=document.getElementById('f');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=f.name.value.trim(), phone=f.phone.value.trim();
+    var err=document.getElementById('err');
+    if(!name||!phone){err.textContent='Zəhmət olmasa adınızı və telefon nömrənizi yazın.';return;}
+    err.textContent='';
+    var msg='Salam, Rəşad müəllim! Qeydiyyat üçün yazıram.\n'+
+      'Ad: '+name+'\nTelefon: '+phone+'\nMaraq: '+f.course.value+'\nYer: '+f.place.value;
+    var url='https://wa.me/994557313266?text='+encodeURIComponent(msg);
+    var a=document.getElementById('walink'); a.href=url;
+    document.getElementById('out').classList.add('show');
+    try{ var w=window.open(url,'_blank','noopener'); }catch(x){}
+  });
+})();
+</script>
+</body>
+</html>
