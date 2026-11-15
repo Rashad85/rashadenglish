@@ -923,6 +923,13 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
 .ytm-bar button{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:1.2rem;cursor:pointer}
 .ytm-v{position:relative;aspect-ratio:16/9;background:#000}
 .ytm-v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+.jg{display:grid;gap:8px;margin-top:12px;background:#fff;border:1px solid #F1D9E0;border-radius:14px;padding:14px;text-align:left}
+.jg b{color:#8B1E3F}
+.jg input,.jg select{width:100%;font:inherit;font-size:1rem;padding:11px 12px;border:1.5px solid #E5D5DA;border-radius:10px;background:#fff;color:#14213D}
+.jg small{color:var(--mute);font-size:.85rem}
+.jg-err{color:#B3202A;font-size:.9rem;margin:0}
+.jg-ok p{margin:0 0 8px}
 </style>
 </head>
 <body>
@@ -1089,7 +1096,7 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
       </div>
 
       <div class="band-foot" id="yoxla">
-        <div><b>Qrup üzvüsünüz?</b><span>Giriş kodunu aşağıdakı pəncərəyə yazın və sınağa elə buradan başlayın.</span></div>
+        <div><b>Qrup üzvüsünüz?</b><span>İş nömrənizi aşağıdakı pəncərəyə yazın və sınağa elə buradan başlayın.</span></div>
         <button class="btn accent" id="examOpen">Sınağa daxil ol ↓</button>
       </div>
       <div class="exam" id="exam" hidden>
@@ -1112,12 +1119,22 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
             <li>Esse təhlili DİM meyarları ilə</li>
             <li>Hər sualın video izahı</li>
           </ul>
-          <a class="btn accent" id="joinGroup" href="https://wa.me/994557313266?text=Salam%2C%20R%C9%99%C5%9Fad%20m%C3%BC%C9%99llim!%20Onlayn%20S%C4%B1naq%20Qrupuna%20qo%C5%9Fulmaq%20ist%C9%99yir%C9%99m.">Qrupa qoşul</a>
+          <a class="btn accent" id="joinGroup" data-wa="1" href="https://wa.me/994557313266?text=Salam%2C%20R%C9%99%C5%9Fad%20m%C3%BC%C9%99llim!%20Onlayn%20S%C4%B1naq%20Qrupuna%20qo%C5%9Fulmaq%20ist%C9%99yir%C9%99m.">Qrupa qoşul</a>
+          <form class="jg" id="jgForm" hidden autocomplete="on" novalidate>
+            <b>Qrupa yazıl</b>
+            <input id="jgN" maxlength="60" autocomplete="name" placeholder="Ad, soyad">
+            <input id="jgP" inputmode="tel" maxlength="20" placeholder="Telefon (WhatsApp): 050 123 45 67">
+            <select id="jgG"><option>11-ci sinif</option><option>9-cu sinif</option><option>Digər</option></select>
+            <p class="jg-err" id="jgE" hidden></p>
+            <button class="btn accent" type="submit" id="jgGo">Müraciət göndər</button>
+            <small>Ödənişdən sonra müəllim sizə 1 aylıq <b>iş nömrəsi</b> göndərəcək.</small>
+          </form>
+          <div class="jg jg-ok" id="jgOk" hidden></div>
           <p class="price-note">Qeydiyyat: 055 731 32 66 · @teacher_rashad_nasibov</p>
         </div>
 
         <ol class="flow">
-          <li><b>Sistemə daxil ol</b><span>Müəllimin verdiyi giriş kodu ilə</span></li>
+          <li><b>Sistemə daxil ol</b><span>Müəllimin verdiyi 1 aylıq iş nömrəsi ilə</span></li>
           <li><b>Sınağı işlə</b><span>Toxun və seç, cavablar avtomatik saxlanılır</span></li>
           <li><b>İmtahanı bitir</b><span>Bir toxunuşla göndər, cavablar müəllimə çatır</span></li>
           <li><b>Nəticə vərəqini əldə et</b><span>Bal, səhvlər və DİM meyarları ilə esse təhlili</span></li>
@@ -2222,6 +2239,28 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   document.getElementById('ytmX').onclick=close;
   m.addEventListener('click',function(e){if(e.target===m)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
+})();
+
+/* Qrupa yazıl: müraciət Google cədvəlinə düşür */
+(function(){
+  var btn=document.getElementById('joinGroup'),f=document.getElementById('jgForm'),ok=document.getElementById('jgOk');if(!btn||!f)return;
+  var fr=document.getElementById('examFrame'),EXEC=fr?fr.getAttribute('data-src'):'';
+  var waBase='https://wa.me/994557313266?text=';
+  btn.addEventListener('click',function(e){e.preventDefault();f.hidden=!f.hidden;ok.hidden=true;if(!f.hidden)document.getElementById('jgN').focus()});
+  f.addEventListener('submit',function(e){e.preventDefault();
+    var n=document.getElementById('jgN').value.trim().replace(/\s+/g,' '),p=document.getElementById('jgP').value.trim(),g=document.getElementById('jgG').value,er=document.getElementById('jgE'),go=document.getElementById('jgGo');
+    function bad(t){er.hidden=false;er.textContent=t}
+    if(n.split(' ').length<2)return bad('Ad və soyadı yazın.');
+    if(p.replace(/\D/g,'').length<9)return bad('Telefon nömrəsini düzgün yazın.');
+    er.hidden=true;go.disabled=true;go.textContent='Göndərilir…';
+    var txt='Salam, Rəşad müəllim! Onlayn Sınaq Qrupuna yazılmaq istəyirəm.\nAd: '+n+'\nSinif: '+g+'\nTelefon: '+p;
+    function done(saved){f.hidden=true;ok.hidden=false;
+      ok.innerHTML='<p><b>'+(saved?'Müraciətiniz qəbul olundu ✓':'Müraciəti WhatsApp-da göndərin')+'</b></p><p>'+(saved?'Aylıq ödənişdən (20 ₼) sonra müəllim sizə 1 aylıq iş nömrəsi göndərəcək.':'Aşağıdakı düyməyə basın — mesaj hazırdır.')+'</p><a class="btn accent" style="text-decoration:none" target="_blank" rel="noopener" href="'+waBase+encodeURIComponent(txt)+'">Müəllimə WhatsApp-da yaz</a>';
+      go.disabled=false;go.textContent='Müraciət göndər';}
+    if(!EXEC)return done(false);
+    var u=EXEC+'?a=apply&name='+encodeURIComponent(n)+'&phone='+encodeURIComponent(p)+'&grade='+encodeURIComponent(g);
+    fetch(u).then(function(r){return r.json()}).then(function(j){done(!!(j&&j.ok))}).catch(function(){done(false)});
+  });
 })();
 /* active tab */
 (function(){
