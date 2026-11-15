@@ -1793,9 +1793,9 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
   var kind='op';
   var CRIT={A:['Tapşırığın yerinə yetirilməsi',1],B:['Mövzunun əhatəsi və məntiqi ardıcıllıq',2],C:['Qrammatik qaydalara əməl olunma',1],D:['Söz ehtiyatının müxtəlifliyi',1]};
-  var INFO={op:{A:'Fikir aydın bildirilib, tapşırıq tam yerinə yetirilib, həcm kifayətdir',B:'Mövzu cümləsi → səbəblər və nümunələr → nəticə cümləsi',C:'Zamanlar, uzlaşma, artikl, böyük hərf və durğu işarələri',D:'Müxtəlif sözlər, bağlayıcılar, təkrar yoxdur'},
+  var INFO={op:{A:'Mövzuya uyğun bir abzas, minimum 100 söz (70–99 söz → 0,5; 70-dən az → 0), topic sentence + dəstəkləyən fikirlər + yekun fikir. A=0 olarsa, yekun bal 0',B:'Azı 2 aydın arqument, nümunə/izah, bağlayıcılar, həm lehinə, həm əleyhinə tərəf, məntiqi rabitə (2 / 1 / 0)',C:'Sadə və mürəkkəb cümlələr düzgün; eyni qaydaya aid təkrarlanan səhv 1 səhv sayılır (1 / 0,5 / 0)',D:'Zəngin, mövzuya uyğun söz ehtiyatı, sinonimlər, söz birləşmələri, təkrar yoxdur (1 / 0,5 / 0)'},
             st:{A:'Şəkillərə uyğun hekayə, keçmiş zamanda, kifayət qədər həcm',B:'Başlanğıc → hadisələrin ardıcıllığı → sonluq',C:'Keçmiş zaman formaları, uzlaşma, böyük hərf və durğu',D:'Müxtəlif fellər, sifətlər, ardıcıllıq sözləri'}};
-  var TARGET={op:[100,160],st:[60,120]};
+  var TARGET={op:[100,400],st:[60,120]};
   var EX={op:{t:'Some people think that students should wear school uniforms. Do you agree?',x:"In my opinion, students should wear school uniforms for several reasons. Firstly, uniforms make all students look equal, so nobody feels poor or rich at school. Secondly, they save time in the morning because students do not have to choose what to wear every day. Moreover, uniforms help students to concentrate on their lessons instead of fashion. For example, in my school everyone wears the same clothes and we feel like one team. However, some people say that uniforms limit freedom, but students can still show their personality in other ways. To sum up, I strongly believe that school uniforms are useful for both students and teachers."},
           st:{t:'Look at the pictures and write a story.',x:"Last summer Ali and his little sister went to the park near their house. It was a sunny day and they were very happy. First, they played football on the green grass. Then Ali kicked the ball too hard and it fell into the lake. His sister started to cry because it was her favourite ball. Suddenly, an old man came with a long stick and pulled the ball out of the water. The children thanked him politely. Finally, they went home and told their parents about the kind man. They will never forget that day."}};
   var OPIN=/\b(in my opinion|i (strongly |firmly |really )?(think|believe|feel|agree|disagree|suppose|am sure|am convinced)|from my point of view|as far as i am concerned|personally,? i|it seems to me|i would say)\b/i;
@@ -1833,11 +1833,11 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   function crit(){ $('esCritInfo').innerHTML=Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'<small>'+INFO[kind][k]+'</small></span><span class="m">'+CRIT[k][1]+' bal</span></li>'}).join('') }
   function live(){var t=$('esText').value,w=words(t).length,s=sentences(t).length,T=TARGET[kind];
     $('esWc').textContent=w+' söz';$('esSc').textContent=s+' cümlə';
-    $('esTip').textContent=w===0?'':w<T[0]?'Tövsiyə: azı '+T[0]+' söz':w>T[1]?'Bir az uzundur, qısaldın':'Həcm yaxşıdır ✓';}
+    $('esTip').textContent=w===0?'':kind==='op'?(w<70?'Minimum 100 söz (70-dən az → A=0, yekun 0)':w<100?'100-dən azdır → A meyarı 0,5':'Həcm şərtə uyğundur ✓'):w<T[0]?'Tövsiyə: azı '+T[0]+' söz':w>T[1]?'Bir az uzundur, qısaldın':'Həcm yaxşıdır ✓';}
   [].forEach.call(document.querySelectorAll('.es-tabs button'),function(b){b.onclick=function(){kind=b.dataset.k;
     [].forEach.call(document.querySelectorAll('.es-tabs button'),function(x){x.setAttribute('aria-selected',x===b)});
     $('esText').placeholder=kind==='op'?'Opinion paragraph-ı buraya yazın və ya yapışdırın…':'Şəkillərə əsasən hekayənizi buraya yazın…';
-    reset();live();}});
+    crit();live();reset();}});
   function reset(){$('esOut').innerHTML='<div class="es-empty"><p class="vx-k">DİM meyarları</p><ul class="es-crit" id="esCritInfo"></ul><p class="es-note">Yazını yazın və <b>“Meyarlarla yoxla”</b> düyməsinə basın.</p></div>';crit()}
   $('esText').addEventListener('input',live);
   $('esEx').onclick=function(){$('esTopic').value=EX[kind].t;$('esText').value=EX[kind].x;live();check()};
@@ -1867,22 +1867,44 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     if(ttr>=.62) good.push('Söz ehtiyatı müxtəlifdir'); else bad.push('Eyni sözlər çox təkrarlanır, sinonimlərdən istifadə edin');
     if(overused.length) bad.push('Çox təkrarlanan sözlər: '+overused.slice(0,4).join(', '));
     /* C */
-    C=Math.max(0,1-errs.length*0.17);
+    var types={};errs.forEach(function(e){types[e.msg]=1});var nT=Object.keys(types).length;C=Math.max(0,1-nT*0.17);
     if(!errs.length) good.push('Mexaniki və tipik qrammatik səhv tapılmadı');
+    var zeroAll=false, OFF={};
     if(kind==='op'){
       var first=S[0]||'', last=S[S.length-1]||'';
       var hasOp=OPIN.test(low), opFirst=OPIN.test(first.toLowerCase())||/\b(should|must|agree|disagree|better|believe)\b/i.test(first);
       var rs=count(REASON), ex=count(EXAMPLE), ct=count(CONTRAST), cc=CONCL.test(last.toLowerCase())||CONCL.test(S.slice(-2).join(' ').toLowerCase());
+      var other=/\b(some people (think|believe|say|argue|claim)|others (think|believe|say|argue)|on the other hand|opponents|critics|it is true that|admittedly)\b/i.test(low)||ct>=1;
+      var sub=(low.match(/\b(because|since|which|who|whose|where|when|if|although|though|while|so that|unless|that)\b/g)||[]).length;
+      var avgS=wc/Math.max(1,S.length), links=rs+ex+ct+(cc?1:0);
+      var nonEn=(t.match(/[əğıöüşçƏĞÖÜŞÇа-яА-Я]/g)||[]).length>wc*.3;
       markRe(OPIN);markRe(REASON);markRe(EXAMPLE);markRe(CONTRAST);markRe(CONCL);
-      A=(hasOp?.5:.1)+(wc>=T[0]?.5:wc>=T[0]*.8?.35:wc>=T[0]*.6?.2:0);
+      var parts=(opFirst?1:0)+(rs>=1?1:0)+(cc?1:0);
+      /* A */
+      if(wc<70||nonEn||parts===0||(!hasOp&&rs===0)) A=0;
+      else if(wc>=100&&parts===3&&links>=3&&paras<=1) A=1;
+      else A=.5;
+      if(wc<70) bad.push('Həcm '+wc+' sözdür — 70-dən azdır: A = 0, buna görə yekun bal 0 (Qeyd 2)');
+      else if(wc<100) bad.push('Həcm '+wc+' sözdür — minimum 100 söz olmalıdır (A meyarı 0,5)');
+      else good.push('Həcm şərtə uyğundur ('+wc+' söz)');
       if(hasOp) good.push('Fikriniz aydın bildirilib'); else bad.push('Öz fikrinizi açıq bildirin: “In my opinion…”, “I strongly believe…”');
-      if(wc<T[0]) bad.push('Həcm azdır ('+wc+' söz). Tövsiyə: azı '+T[0]+' söz');
-      B=(opFirst?.5:.15)+Math.min(.7,rs*.25)+(ex?.25:0)+(ct?.15:0)+(cc?.45:0)-(paras>1?.3:0);
-      if(opFirst) good.push('Mövzu cümləsi (topic sentence) fikri bildirir'); else bad.push('Birinci cümlə mövzu cümləsi olsun və fikrinizi bildirsin');
-      if(rs>=2) good.push('Səbəblər bağlayıcılarla verilib ('+rs+')'); else bad.push('Azı 2 səbəb yazın: Firstly…, Secondly…, Moreover…');
-      if(!ex) bad.push('Fikri nümunə ilə əsaslandırın: “For example…”');
-      if(cc) good.push('Nəticə cümləsi var'); else bad.push('Sonda nəticə cümləsi yazın: “To sum up…”, “In conclusion…”');
+      if(opFirst) good.push('Topic sentence (əsas fikir) var'); else bad.push('Birinci cümlə topic sentence olsun və əsas fikri bildirsin');
+      if(cc) good.push('Yekun fikir (nəticə cümləsi) var'); else bad.push('Sonda yekun fikir yazın: “To sum up…”, “In conclusion…”');
       if(paras>1) bad.push('Opinion paragraph bir abzasdan ibarət olmalıdır');
+      /* B */
+      if(rs>=2&&ex>=1&&other&&links>=4) B=2;
+      else if(rs>=1||ex>=1||links>=2) B=1;
+      else B=0;
+      if(rs>=2) good.push('Azı iki arqument bağlayıcılarla verilib ('+rs+')'); else bad.push('Azı 2 aydın arqument yazın: Firstly…, Secondly…, Moreover…');
+      if(ex) good.push('Fikir nümunə ilə əsaslandırılıb'); else bad.push('Fikri sadə nümunə ilə əsaslandırın: “For example…”');
+      if(other) good.push('Qarşı tərəf də qeyd olunub (lehinə və əleyhinə)'); else bad.push('B=2 üçün həm lehinə, həm əleyhinə tərəfi qeyd edin: “However, some people think…”');
+      /* C */
+      C=(nT<=1&&sub>=2&&avgS>=8)?1:(nT>=5||avgS<5)?0:.5;
+      if(sub>=2) good.push('Mürəkkəb cümlələrdən istifadə olunub'); else bad.push('Mürəkkəb cümlələr qurun: because, which, who, although, if…');
+      if(nT) bad.push('Fərqli qaydalara aid '+nT+' səhv növü tapıldı (eyni qaydaya aid təkrarlanan səhv 1 sayılır — Qeyd 4)');
+      /* D */
+      D=(ttr>=.68&&!overused.length&&longw>.12)?1:(ttr>=.5)?.5:0;
+      if(A===0){zeroAll=true;OFF={B:1,C:1,D:1};}
     } else {
       var past=W.filter(function(w){w=w.toLowerCase();return /ed$/.test(w)&&w.length>3||IRR.indexOf(w)>=0}).length;
       var pres=W.filter(function(w){return /^(am|is|are|do|does|has|go|goes|come|comes|play|plays)$/i.test(w)}).length;
@@ -1897,16 +1919,14 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
       if(en) good.push('Hekayənin sonluğu var'); else bad.push('Sonluq yazın: “Finally…”, “In the end…”, “They will never forget…”');
       if(!/["“]/.test(t)) bad.push('Hekayəni canlı etmək üçün qısa dialoq və ya hiss bildirən sifətlər əlavə edə bilərsiniz');
     }
-    var lf=Math.min(1,wc/T[0]); B=B*Math.min(1,lf+0.15); D=D*Math.min(1,lf+0.25); C=C*Math.min(1,lf+0.4);
-    if(wc<T[0]*0.5) bad.unshift('Mətn çox qısadır: meyarların hamısı üzrə bal aşağı düşür');
-    var sc={A:step(A,1),B:step(B,2),C:step(C,1),D:step(D,1)}, tot=sc.A+sc.B+sc.C+sc.D;
+    var sc=kind==='op'?{A:A,B:B,C:C,D:D}:{A:step(A,1),B:step(B,2),C:step(C,1),D:step(D,1)}, tot=zeroAll?0:sc.A+sc.B+sc.C+sc.D;
     /* marked text */
     marks.sort(function(a,b){return a[0]-b[0]||(a[2]==='bad'?-1:1)}); var h='',p=0;
     marks.forEach(function(m){ if(m[0]<p) return; h+=esc(t.slice(p,m[0]))+'<mark class="'+(m[2]==='ok'?'ok':'')+'">'+esc(t.slice(m[0],m[1]))+'</mark>'; p=m[1]; }); h+=esc(t.slice(p));
     var seen={}, errList=errs.filter(function(e){var k=e.msg+'|'+t.slice(e.s,e.e).toLowerCase();if(seen[k])return false;seen[k]=1;return true});
     var msg='Salam, Rəşad müəllim! Saytda '+(kind==='op'?'opinion paragraph':'story')+' yoxladım. İlkin bal: '+fmt(tot)+' / 5.\n'+($('esTopic').value?'Mövzu: '+$('esTopic').value+'\n':'')+'\n'+t;
     $('esOut').innerHTML='<div class="es-score"><div class="big">'+fmt(tot)+' <small>/ 5</small></div><div style="flex:1"><b>İlkin qiymətləndirmə</b><div class="es-bar"><i style="width:'+(tot/5*100)+'%"></i></div><small style="color:var(--mute)">'+wc+' söz · '+S.length+' cümlə</small></div></div>'+
-      '<ul class="es-crit">'+Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'</span><span class="m">'+fmt(sc[k])+' / '+CRIT[k][1]+'</span></li>'}).join('')+'</ul>'+
+      (zeroAll?'<p class="es-warn" style="margin-top:0"><b>Qeyd 2:</b> A meyarı 0 bal aldığı üçün B, C, D qiymətləndirilmir və yekun bal 0-dır.</p>':'')+'<ul class="es-crit">'+Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'</span><span class="m">'+(OFF[k]?'— ':fmt(sc[k])+' ')+'/ '+CRIT[k][1]+'</span></li>'}).join('')+'</ul>'+
       (good.length?'<p class="es-h">✅ Güclü tərəflər</p><ul class="es-list good">'+good.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
       (bad.length?'<p class="es-h">✏️ Necə yaxşılaşdırmaq olar</p><ul class="es-list bad">'+bad.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
       (errList.length?'<p class="es-h">⚠️ Səhvlər ('+errList.length+')</p><ul class="es-list bad">'+errList.slice(0,12).map(function(e){return '<li><b>'+esc(t.slice(e.s,e.e).trim()||'…')+'</b> — '+esc(e.msg)+'</li>'}).join('')+'</ul>':'')+
