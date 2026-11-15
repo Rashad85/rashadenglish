@@ -685,6 +685,10 @@ html{scroll-padding-top:138px}
 @media (max-width:560px){.v-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.v-frame iframe{height:680px}}
 .exam{margin:0 0 28px;border:2px solid #8B1E3F;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 24px 50px -30px rgba(139,30,63,.5)}
 .exam iframe{display:block;width:100%;height:min(900px,82vh);min-height:640px;border:0;background:#fff}
+.ex-full{margin-left:auto;font:600 .88rem var(--font-body);color:#8B1E3F;background:none;border:1px solid #E7C3CF;border-radius:999px;padding:6px 12px;cursor:pointer}
+.exam.full{position:fixed;inset:0;z-index:200;margin:0;border:0;border-radius:0;display:flex;flex-direction:column}
+.exam.full iframe{flex:1;height:auto;min-height:0}
+body.exam-open{overflow:hidden}
 </style>
 </head>
 <body>
@@ -852,7 +856,7 @@ html{scroll-padding-top:138px}
         <button class="btn accent" id="examOpen">Sınağa daxil ol ↓</button>
       </div>
       <div class="exam" id="exam" hidden>
-        <div class="v-bar"><span class="v-dots"><i></i><i></i><i></i></span><b>RN Sınaq · onlayn imtahan</b><a href="https://script.google.com/macros/s/AKfycbxwAwJ15f6OfCxEHxvOhkOA-zdciBbp8A10UhVkSa4ZfN8wf2lkk4cNKJMPGxveKFFI/exec" rel="noopener">Tam ekranda aç ↗</a></div>
+        <div class="v-bar"><span class="v-dots"><i></i><i></i><i></i></span><b>RN Sınaq · onlayn imtahan</b><button class="ex-full" id="examFull" type="button">⤢ Tam ekran</button></div>
         <iframe id="examFrame" data-src="https://script.google.com/macros/s/AKfycbxwAwJ15f6OfCxEHxvOhkOA-zdciBbp8A10UhVkSa4ZfN8wf2lkk4cNKJMPGxveKFFI/exec" title="RN onlayn sınaq" allow="clipboard-write" loading="lazy"></iframe>
       </div>
 
@@ -1428,6 +1432,9 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
 (function(){var b=document.getElementById('examOpen'),e=document.getElementById('exam'),f=document.getElementById('examFrame');
   function open(){if(!f.src)f.src=f.dataset.src;e.hidden=false;b.textContent='Sınaq aşağıda açıqdır ↓';e.scrollIntoView({behavior:'smooth',block:'start'})}
   b.onclick=open;
+  var fb=document.getElementById('examFull');
+  fb.onclick=function(){var on=!e.classList.contains('full');e.classList.toggle('full',on);document.body.classList.toggle('exam-open',on);fb.textContent=on?'✕ Bağla':'⤢ Tam ekran'};
+  document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&e.classList.contains('full'))fb.click()});
   document.querySelectorAll('a[href="#yoxla"]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();open()})});
   if(location.hash==='#yoxla'||location.hash==='#sinaq')open();
 })();
