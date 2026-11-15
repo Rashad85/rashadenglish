@@ -856,6 +856,14 @@ header.top.compact .menu-btn .mt{display:inline}
 .menu-btn .cur{margin-left:auto;font-weight:600;color:#8B1E3F;opacity:.75;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .menu-btn .cur:not(:empty)::before{content:"Hazırda: ";font-weight:500}
 @media(max-width:860px){header.top:not(.compact) .tabs a{padding:6px 10px;font-size:.8rem;border-radius:9px;background:rgba(255,255,255,.08)!important}header.top:not(.compact) .tabs a.on{background:#fff!important}header.top:not(.compact) .tabs-in{gap:5px;padding:8px 0}}
+
+main>section.route{display:none}
+main>section.route.cur{display:block}
+body.view-sec main>.film,body.view-sec main>.hero,body.view-sec .home-grid{display:none}
+.home-grid{padding:10px 0 40px}.home-grid h2{margin:0 0 6px;font-size:1.4rem}
+.sec-back{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;padding-bottom:4px}
+.sec-back a{white-space:nowrap;color:#8B1E3F;font-weight:700;text-decoration:none;padding:8px 14px;border-radius:10px;background:#FBF3F5;border:1px solid #F1D9E0}
+.sec-back span{color:var(--mute);font-size:.85rem;text-align:right}
 </style>
 </head>
 <body>
@@ -922,6 +930,7 @@ header.top.compact .menu-btn .mt{display:inline}
     </div>
   </div>
 
+  <div class="home-grid wrap"><h2>Bölmələr</h2><div class="ma-grid"><a href="#neticeler"><span>🏆</span>Nəticələr</a><a href="#sinaq-qrupu"><span>📝</span>Onlayn Sınaq Qrupu</a><a href="#sozler"><span>📚</span>RN Vocabulary</a><a href="#esse"><span>✍️</span>Esse və Story yoxlama</a><a href="#kurslar"><span>🎓</span>Kurslar</a><a href="#gunun-suali"><span>❓</span>Günün sualı</a><a href="#oyun"><span>🎮</span>Oyun: 400-ə çat</a><a href="#test"><span>⏱️</span>Səviyyə testi</a><a href="#kitab"><span>📕</span>«100 Sınaq» kitabı</a><a href="#video-izah"><span>▶️</span>Video izahlar</a><a href="#metod"><span>🎬</span>Dərs videoları</a><a href="#unvanlar"><span>📍</span>Ünvanlar</a><a href="#suallar"><span>💬</span>Suallar</a><a href="#qeydiyyat"><span>✅</span>Dərsə yazıl</a></div></div>
   <section id="neticeler">
     <div class="wrap">
       <div class="sec-head">
@@ -2095,19 +2104,43 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   window.addEventListener('scroll',upd,{passive:true});upd();setInterval(upd,1200);
 })();
 
-/* dəqiq bölməyə keçid (lazy məzmun yerini dəyişsə də) */
+/* ===== Bölmə görünüşü: menyuda hansına bassan, yalnız o açılır ===== */
 (function(){
+  var main=document.getElementById('home');if(!main)return;
+  var secs=[].slice.call(main.children).filter(function(x){return x.tagName==='SECTION'&&x.id});
+  var ids=secs.map(function(x){return x.id});
+  secs.forEach(function(x){x.classList.add('route')});
+  var hdr=document.querySelector('header.top');
+  function off(){return (hdr?hdr.offsetHeight:0)+10}
+  function owner(id){if(!id)return null;var el=document.getElementById(id);if(!el)return null;var o=el.closest&&el.closest('main > section.route');return o?{sec:o,el:el}:null}
+  function mark(id){[].forEach.call(document.querySelectorAll('.tabs-in a,.ma-grid a'),function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id)})}
+  function show(id,inner){
+    var o=owner(id);
+    if(!o){document.body.classList.remove('view-sec');secs.forEach(function(x){x.classList.remove('cur')});mark('');window.scrollTo(0,0);return}
+    document.body.classList.add('view-sec');secs.forEach(function(x){x.classList.toggle('cur',x===o.sec)});mark(o.sec.id);
+    var cur=document.getElementById('menuCur');if(cur){var l=document.querySelector('.tabs-in a[href="#'+o.sec.id+'"]');cur.textContent=l?l.textContent.replace(/:.*$/,''):''}
+    if(o.el!==o.sec){setTimeout(function(){window.scrollTo({top:o.el.getBoundingClientRect().top+window.scrollY-off(),behavior:'smooth'})},60)}
+    else window.scrollTo(0,0);
+    try{window.dispatchEvent(new Event('resize'))}catch(_){}
+  }
+  window.rnShow=show;
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('.tabs-in a,.ma-grid a,a.frame,a.hero-pill');if(!a||e.defaultPrevented)return;
-    var id=(a.getAttribute('href')||'').slice(1),el=id&&document.getElementById(id);if(!el)return;
-    e.preventDefault();var h=document.querySelector('header.top');if(h&&!h.classList.contains('compact'))h.classList.add('compact');
-    function off(){return (h?h.offsetHeight:0)+10}
-    function go(sm){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-off(),behavior:sm?'smooth':'auto'})}
-    go(true);try{history.replaceState(null,'','#'+id)}catch(_){}
-    var n=0,t=setInterval(function(){n++;var d=el.getBoundingClientRect().top-off();if(Math.abs(d)>12&&n>2)go(false);if(n>14)clearInterval(t)},250);
-    ['wheel','touchstart'].forEach(function(ev){window.addEventListener(ev,function x(){clearInterval(t);window.removeEventListener(ev,x)},{passive:true,once:true})});
-  },true);
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented)return;
+    var id=a.getAttribute('href').slice(1);
+    if(id===''||id==='home'||id==='top'){e.preventDefault();history.pushState(null,'',location.pathname);show('');return}
+    if(!owner(id))return;
+    e.preventDefault();
+    if(location.hash!=='#'+id) history.pushState(null,'','#'+id);
+    show(id);
+  });
+  var brand=document.querySelector('header.top .brand');
+  window.addEventListener('popstate',function(){show(location.hash.slice(1))});
+  window.addEventListener('hashchange',function(){show(location.hash.slice(1))});
+  show(location.hash.slice(1));
+  /* "Ana səhifə" zolağı */
+  secs.forEach(function(x){var b=document.createElement('div');b.className='sec-back wrap';b.innerHTML='<a href="#">← Ana səhifə</a>';x.insertBefore(b,x.firstChild)});
 })();
+
 /* active tab */
 (function(){
   var links=[].slice.call(document.querySelectorAll('.tabs a')),map={};
