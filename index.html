@@ -827,6 +827,10 @@ body.exam-open{overflow:hidden}
 .es-err p{margin:4px 0;font-size:.9rem;color:#4a4a55}
 .es-err p.ex{color:#1b7f3b}
 .es-err small{color:#8a8a95}
+.es-err p.en{font-size:.82rem;color:#7a7a85;font-style:italic}
+.es-lt{font-size:.85rem;color:#6a6a75;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
+.es-lt .sp{width:14px;height:14px;border:2px solid #e5c6cf;border-top-color:#8B1E3F;border-radius:50%;animation:esp 1s linear infinite}
+@keyframes esp{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -1858,8 +1862,42 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   function reset(){$('esOut').innerHTML='<div class="es-empty"><p class="vx-k">DİM meyarları</p><ul class="es-crit" id="esCritInfo"></ul><p class="es-note">Yazını yazın və <b>“Meyarlarla yoxla”</b> düyməsinə basın.</p></div>';crit()}
   $('esText').addEventListener('input',live);
   $('esEx').onclick=function(){$('esTopic').value=EX[kind].t;$('esText').value=EX[kind].x;live();check()};
-  $('esGo').onclick=check;
-  function check(){
+  $('esGo').onclick=function(){check()};
+  /* ===== Dərin yoxlama (LanguageTool) ===== */
+  var LTC={}, LTCAT={GRAMMAR:'Qrammatika',TYPOS:'Orfoqrafiya (yazılış)',PUNCTUATION:'Durğu işarəsi',CONFUSED_WORDS:'Qarışdırılan sözlər',COLLOCATIONS:'Söz birləşməsi',CASING:'Böyük / kiçik hərf',SEMANTICS:'Məna',MISC:'Digər',NONSTANDARD_PHRASES:'Qeyri-standart ifadə',TYPOGRAPHY:'Yazı qaydası'};
+  var LTAZ={
+    MORFOLOGIK_RULE_EN_GB:['Söz səhv yazılıb','Sözün yazılışını yoxlayın. Düzgün variant göstərilib.'],
+    HE_VERB_AGR:['Mübtəda ilə feilin uzlaşması','He / she / it ilə feil 3-cü şəxs təkdə olur: does, has, goes.'],
+    IT_VBZ:['Mübtəda ilə feilin uzlaşması','It / he / she ilə Present Simple-da feil -s alır: it helps.'],
+    NON3PRS_VERB:['Mübtəda ilə feilin uzlaşması','Cəm mübtəda (they, people) ilə feil -s almır.'],
+    MANY_NN:['“many” + cəm isim','“many” sayılan isimlərin cəmi ilə işlənir: many reasons, many people.'],
+    MUCH_COUNTABLE:['“much” / “many” fərqi','“much” sayılmayan, “many” sayılan isimlərlə işlənir.'],
+    I_AM_VB:['“am” + feil','“I am agree” deyilmir; “agree” feildir: I agree.'],
+    MUST_HAVE_TO:['Modal feildən sonra “to” işlənmir','must, can, should-dan sonra feil “to”suz gəlir.'],
+    CONDITIONAL_CLAUSE:['Şərt cümləsi (if)','“if” hissəsində will işlənmir: If I have money, I will buy…'],
+    EN_A_VS_AN:['“a” / “an”','Sait səsdən əvvəl “an”, samit səsdən əvvəl “a” işlənir.'],
+    UPPERCASE_SENTENCE_START:['Cümlə böyük hərflə başlayır','Hər cümlənin ilk hərfi böyük yazılır.'],
+    THERE_S_MANY:['“there is / there are”','Cəm isimlə “there are” işlənir: There are many reasons.'],
+    DT_DT:['Ard-arda iki artikl','Artikl / təyinedicilərdən biri artıqdır.'],
+    PRP_PAST_PART:['Feil forması','Bu yerdə feilin forması düzgün deyil (köməkçi feil çatışmır və ya artıqdır).'],
+    BEEN_PART_AGREEMENT:['Feil forması','have/has been-dən sonra feilin 3-cü forması və ya -ing forması gəlir.'],
+    SENT_START_CONJUNCTIVE_LINKING_ADVERB_COMMA:['Bağlayıcıdan sonra vergül','Firstly, However, Moreover kimi sözlərdən sonra vergül qoyulur.'],
+    COMMA_COMPOUND_SENTENCE:['Mürəkkəb cümlədə vergül','İki müstəqil cümlə “and / but / so” ilə birləşəndə əvvəl vergül qoyulur.'],
+    POSSESSIVE_APOSTROPHE:['Yiyəlik apostrofu','Yiyəlik bildirəndə apostrof işlənir: my friend’s book.'],
+    MOST_SOME_OF_NNS:['“most of” / “some of”','“most of / some of”dan sonra the, my və s. gəlir və isim cəmdə olur.'],
+    PERS_PRONOUN_AGREEMENT:['Mübtəda ilə feilin uzlaşması','Şəxs əvəzliyi ilə feil uzlaşmır.'],
+    AGREEMENT_SENT_START:['Mübtəda ilə feilin uzlaşması','Mübtəda ilə feil şəxsə və kəmiyyətə görə uzlaşmalıdır.'],
+    ENGLISH_WORD_REPEAT_RULE:['Eyni söz iki dəfə','Sözlərdən birini silin.'],
+    WHITESPACE_RULE:['Artıq boşluq','Sözlər arasında bir boşluq qoyulur.']
+  };
+  var SKIPCAT=/^(STYLE|REDUNDANCY|PLAIN_ENGLISH|BRITISH_ENGLISH|AMERICAN_ENGLISH|REPETITIONS_STYLE|TEXT_ANALYSIS)$/;
+  function ltCheck(t,cb){ if(LTC[t]) return cb(LTC[t]);
+    var c=new AbortController(), tm=setTimeout(function(){c.abort()},12000);
+    fetch('https://api.languagetool.org/v2/check',{method:'POST',signal:c.signal,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'language=en-GB&level=default&text='+encodeURIComponent(t)})
+      .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){clearTimeout(tm);LTC[t]=j.matches||[];cb(LTC[t])}).catch(function(){clearTimeout(tm);cb(null)});
+  }
+  var ltState='';
+  function check(ext){ if(ext===undefined){ltState='wait';}
     var t=$('esText').value.replace(/\r/g,'').trim(); if(words(t).length<15){$('esOut').innerHTML='<p class="es-note">Yoxlamaq üçün azı 15 sözlük mətn yazın.</p>';return}
     var W=words(t), wc=W.length, S=sentences(t), low=t.toLowerCase(), good=[], bad=[], marks=[];
     var paras=t.split(/\n\s*\n/).filter(function(p){return p.trim()}).length;
@@ -1870,6 +1908,15 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
       while((m=re.exec(t))){ var pre=(ri===0&&m[1]!=null)?m[1].length:0, st=m.index+pre, en=m.index+m[0].length; if(en>st){var mm=m.slice();if(ri===0)mm[0]=m[0].slice(pre);errs.push({s:st,e:en,msg:e[1],r:ri,fix:e[4](mm)});marks.push([st,en,'bad'])} if(m[0].length===0)re.lastIndex++; }});
     S.forEach(function(s){ if(/^[a-z]/.test(s)){var i=t.indexOf(s),w0=s.match(/^\S+/)[0];errs.push({s:i,e:i+w0.length,msg:'Cümlə böyük hərflə başlayır',r:'cap',fix:w0.charAt(0).toUpperCase()+w0.slice(1)});marks.push([i,i+w0.length,'bad'])} });
     if(!/[.!?]["”']?$/.test(t)) errs.push({s:t.length-1,e:t.length,msg:'Cümlənin sonunda nöqtə',r:'end',fix:''});
+    if(ext&&ext.length){ ext.forEach(function(m){ var cat=m.rule&&m.rule.category&&m.rule.category.id||'MISC', id=m.rule&&m.rule.id||'';
+        if(SKIPCAT.test(cat)) return; var st=m.offset,en=m.offset+m.length, w=t.slice(st,en);
+        if(cat==='TYPOS'&&/^[A-ZƏ]/.test(w)&&st>0&&!/[.!?]\s*$/.test(t.slice(0,st))) return; /* xüsusi adlar */
+        if(errs.some(function(e){return st<e.e&&en>e.s})) return;
+        var az=LTAZ[id]||LTAZ[id.replace(/_\d+$/,'')], rep=(m.replacements||[]).slice(0,2).map(function(r){return r.value}).join(' / ');
+        var key=az?az[0]:(LTCAT[cat]||'Qrammatika')+(m.shortMessage?' — '+m.shortMessage:'');
+        errs.push({s:st,e:en,msg:key,r:'lt',fix:rep,why:az?az[1]:'',en:m.message}); marks.push([st,en,'bad']); }); }
+    /* struktur: çox uzun cümlələr */
+    S.forEach(function(x){var n=words(x).length;if(n>40){bad.push('Çox uzun cümlə ('+n+' söz): “'+x.slice(0,40)+'…” — iki cümləyə bölün')}});
     /* linkers */
     function count(re){var n=0;low.replace(re,function(m,_,o){n++;return m});return n}
     function markRe(re){var r=new RegExp(re.source,'gi'),m;while((m=r.exec(t))){marks.push([m.index,m.index+m[0].length,'ok']);if(!m[0].length)r.lastIndex++}}
@@ -1944,10 +1991,10 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     function errHtml(){ if(!errList.length) return '';
       var EXTRA={cap:['Hər cümlə böyük hərflə başlayır.','Firstly, … Then, …'],end:['Hər cümlə (və bütün mətn) nöqtə, sual və ya nida işarəsi ilə bitir.','… for everybody.']};
       var g={},order=[];errList.forEach(function(e){if(!g[e.msg]){g[e.msg]=[];order.push(e.msg)}g[e.msg].push(e)});
-      return '<p class="es-h">⚠️ Səhvlər və izahı <small style="font-weight:400;color:var(--mute)">('+order.length+' qayda · '+errList.length+' yer)</small></p><div class="es-errs">'+order.map(function(k,i){var L=g[k],r=L[0].r,R=typeof r==='number'?ERR[r]:null,why=R?R[2]:EXTRA[r][0],ok=R?R[3]:EXTRA[r][1];
+      return '<p class="es-h">⚠️ Səhvlər və izahı <small style="font-weight:400;color:var(--mute)">('+order.length+' qayda · '+errList.length+' yer)</small></p><div class="es-errs">'+order.map(function(k,i){var L=g[k],r=L[0].r,R=typeof r==='number'?ERR[r]:null,why=R?R[2]:r==='lt'?(L[0].why||''):EXTRA[r][0],ok=R?R[3]:r==='lt'?'':EXTRA[r][1];
         return '<div class="es-err"><b class="n">'+(i+1)+'</b><div><b>'+esc(k)+'</b>'+(L.length>1?' <small>×'+L.length+' (1 səhv sayılır)</small>':'')+
-        '<ul>'+L.slice(0,4).map(function(e){var w=t.slice(e.s,e.e);return '<li><s>'+esc(w.trim()||'…')+'</s>'+(e.r==='end'?' → <ins>nöqtə qoyun</ins>':e.fix&&e.fix.trim()!==w.trim()?' → <ins>'+esc(e.fix.trim())+'</ins>':'')+'</li>'}).join('')+'</ul>'+
-        '<p>💡 '+esc(why)+'</p>'+(ok?'<p class="ex">✓ '+esc(ok)+'</p>':'')+'</div></div>'}).join('')+'</div>';}
+        '<ul>'+L.slice(0,4).map(function(e){var w=t.slice(e.s,e.e);return '<li><s>'+esc(w.trim()||'…')+'</s>'+(e.r==='lt'&&e.fix?' → <ins>'+esc(e.fix)+'</ins>':e.r==='end'?' → <ins>nöqtə qoyun</ins>':e.fix&&e.fix.trim()!==w.trim()?' → <ins>'+esc(e.fix.trim())+'</ins>':'')+'</li>'}).join('')+'</ul>'+
+        (why?'<p>💡 '+esc(why)+'</p>':'')+(r==='lt'&&L[0].en?'<p class="en">EN: '+esc(L[0].en)+'</p>':'')+(ok?'<p class="ex">✓ '+esc(ok)+'</p>':'')+'</div></div>'}).join('')+'</div>';}
     var msg='Salam, Rəşad müəllim! Saytda '+(kind==='op'?'opinion paragraph':'story')+' yoxladım. İlkin bal: '+fmt(tot)+' / 5.\n'+($('esTopic').value?'Mövzu: '+$('esTopic').value+'\n':'')+'\n'+t;
     $('esOut').innerHTML='<div class="es-score"><div class="big">'+fmt(tot)+' <small>/ 5</small></div><div style="flex:1"><b>İlkin qiymətləndirmə</b><div class="es-bar"><i style="width:'+(tot/5*100)+'%"></i></div><small style="color:var(--mute)">'+wc+' söz · '+S.length+' cümlə</small></div></div>'+
       (zeroAll?'<p class="es-warn" style="margin-top:0"><b>Qeyd 2:</b> A meyarı 0 bal aldığı üçün B, C, D qiymətləndirilmir və yekun bal 0-dır.</p>':'')+'<ul class="es-crit">'+Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'</span><span class="m">'+(OFF[k]?'— ':fmt(sc[k])+' ')+'/ '+CRIT[k][1]+'</span></li>'}).join('')+'</ul>'+
@@ -1955,9 +2002,14 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
       (bad.length?'<p class="es-h">✏️ Necə yaxşılaşdırmaq olar</p><ul class="es-list bad">'+bad.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
       errHtml()+
       '<p class="es-h">Mətniniz <small style="font-weight:400;color:var(--mute)">(qırmızı: səhv · yaşıl: bağlayıcı sözlər)</small></p><div class="es-mark">'+h+'</div>'+
-      '<p class="es-warn">Bu, avtomatik ilkin yoxlamadır: quruluşu, bağlayıcıları, həcmi və tipik səhvləri yoxlayır. Bütün səhvləri tapmaya bilər. Dəqiq DİM balını müəllim verir.</p>'+
+      '<p class="es-warn">Bu, avtomatik ilkin yoxlamadır: quruluşu, bağlayıcıları, həcmi və tipik səhvləri yoxlayır. Qrammatika üçün mətn LanguageTool xidmətində də yoxlanılır. Bütün səhvləri tapmaya bilər. Dəqiq DİM balını müəllim verir.</p>'+
       '<div class="es-act"><a class="vx-btn pri" style="text-decoration:none" href="https://wa.me/994557313266?text='+encodeURIComponent(msg)+'">Müəllimə göndər (WhatsApp)</a><button class="vx-btn" type="button" id="esAgain">Yenidən yaz</button></div>';
     $('esAgain').onclick=function(){$('esText').focus()};
+    var stl=document.createElement('p');stl.className='es-lt';
+    stl.innerHTML=ltState==='wait'?'<span class="sp"></span> Dərin qrammatik yoxlama gedir…':ltState==='ok'?'✓ Dərin qrammatik yoxlama aparıldı':'Dərin yoxlama alınmadı (internet?) — yalnız əsas qaydalar yoxlanıb';
+    var sb=$('esOut').querySelector('.es-score'); if(sb) sb.after(stl);
+    if(ext===undefined){ var tt=t; ltCheck(tt,function(r){ if($('esText').value.replace(/\r/g,'').trim()!==tt) return; ltState=r?'ok':'fail'; check(r||[]); }); }
+    else return;
     var hh=(document.querySelector('header.top')||{offsetHeight:140}).offsetHeight+12;
     if(window.innerWidth<860) window.scrollTo({top:$('esOut').getBoundingClientRect().top+window.scrollY-hh,behavior:'smooth'});
   }
