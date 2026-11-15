@@ -914,6 +914,15 @@ header.top .tabs a.hl-g.mob{display:inline-flex!important}
 @media(max-width:860px){header.top .tabs-in,header.top:not(.compact) .tabs-in{justify-content:flex-start!important;gap:3px 0!important;padding:8px 6px 10px!important}
 header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-size:.86rem!important;padding:5px 8px!important}}
 @media(max-width:370px){header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-size:.8rem!important;padding:5px 6px!important}}
+
+.ytm{position:fixed;inset:0;z-index:300;background:rgba(10,12,20,.88);display:flex;align-items:center;justify-content:center;padding:16px;animation:maIn .2s ease}
+.ytm[hidden]{display:none}
+.ytm-box{width:min(960px,100%);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.ytm-bar{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;background:#14213D;color:#fff}
+.ytm-bar b{flex:1;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ytm-bar button{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:1.2rem;cursor:pointer}
+.ytm-v{position:relative;aspect-ratio:16/9;background:#000}
+.ytm-v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
@@ -1486,6 +1495,7 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
       </form>
     </div>
   </section>
+<div class="ytm" id="ytm" hidden role="dialog" aria-modal="true" aria-label="Video"><div class="ytm-box"><div class="ytm-bar"><b id="ytmT">Video</b><button type="button" id="ytmX" aria-label="Bağla">✕</button></div><div class="ytm-v" id="ytmV"></div></div></div>
 </main>
 
 <footer>
@@ -2191,6 +2201,28 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   secs.forEach(function(x){var b=document.createElement('div');b.className='sec-back wrap';b.innerHTML='<a href="#">← Ana səhifə</a>';x.insertBefore(b,x.firstChild)});
 })();
 
+
+/* YouTube videolarını saytın içində aç */
+(function(){
+  var m=document.getElementById('ytm'),V=document.getElementById('ytmV'),T=document.getElementById('ytmT');if(!m)return;
+  function parse(u){try{var x=new URL(u);if(!/youtube\.com|youtu\.be/.test(x.hostname))return null;
+    var id=x.hostname==='youtu.be'?x.pathname.slice(1):x.searchParams.get('v'),list=x.searchParams.get('list');
+    if(id)return 'https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1&origin='+encodeURIComponent(location.origin)+(list?'&list='+list:'');
+    if(list)return 'https://www.youtube-nocookie.com/embed/videoseries?list='+list+'&autoplay=1&rel=0&playsinline=1';
+    var sh=x.pathname.match(/\/shorts\/([\w-]+)/);if(sh)return 'https://www.youtube-nocookie.com/embed/'+sh[1]+'?autoplay=1&playsinline=1';
+    }catch(e){}return null}
+  function close(){m.hidden=true;V.innerHTML='';document.body.style.overflow=''}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="youtube.com/watch"],a[href*="youtube.com/playlist"],a[href*="youtu.be/"],a[href*="youtube.com/shorts/"]');if(!a)return;
+    var src=parse(a.href);if(!src)return;e.preventDefault();
+    var t=a.querySelector('b');T.textContent=t?t.textContent:(a.textContent||'Video').trim().slice(0,80);
+    V.innerHTML='<iframe src="'+src+'" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video"></iframe>';
+    m.hidden=false;document.body.style.overflow='hidden';
+  });
+  document.getElementById('ytmX').onclick=close;
+  m.addEventListener('click',function(e){if(e.target===m)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
+})();
 /* active tab */
 (function(){
   var links=[].slice.call(document.querySelectorAll('.tabs a')),map={};
