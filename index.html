@@ -1897,7 +1897,7 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     COMMA_PARENTHESIS_WHITESPACE:['Vergül / nöqtə ətrafında boşluq','Vergül və nöqtə əvvəlki sözə bitişik yazılır, boşluq ondan SONRA qoyulur: park, and…'],
     EN_QUOTES:['Dırnaq işarəsi','Dırnaq işarələrini düzgün qoyun.']
   };
-  var SKIPCAT=/^(STYLE|REDUNDANCY|PLAIN_ENGLISH|BRITISH_ENGLISH|AMERICAN_ENGLISH|REPETITIONS_STYLE|TEXT_ANALYSIS)$/;
+  var SKIPCAT=/^(PUNCTUATION|TYPOGRAPHY|STYLE|REDUNDANCY|PLAIN_ENGLISH|BRITISH_ENGLISH|AMERICAN_ENGLISH|REPETITIONS_STYLE|TEXT_ANALYSIS)$/;
   function ltCheck(t,cb){ if(LTC[t]) return cb(LTC[t]);
     var c=new AbortController(), tm=setTimeout(function(){c.abort()},12000);
     fetch('https://api.languagetool.org/v2/check',{method:'POST',signal:c.signal,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'language=en-GB&level=default&text='+encodeURIComponent(t)})
@@ -1911,12 +1911,12 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     var T=TARGET[kind];
     /* grammar/mechanics */
     var errs=[];
-    ERR.forEach(function(e,ri){var re=new RegExp(e[0].source,e[0].flags.indexOf('g')<0?e[0].flags+'g':e[0].flags),m;
+    ERR.forEach(function(e,ri){if(ri>=ERR.length-2)return;var re=new RegExp(e[0].source,e[0].flags.indexOf('g')<0?e[0].flags+'g':e[0].flags),m;
       while((m=re.exec(t))){ var pre=(ri===0&&m[1]!=null)?m[1].length:0, st=m.index+pre, en=m.index+m[0].length; if(en>st){var mm=m.slice();if(ri===0)mm[0]=m[0].slice(pre);errs.push({s:st,e:en,msg:e[1],r:ri,fix:e[4](mm)});marks.push([st,en,'bad'])} if(m[0].length===0)re.lastIndex++; }});
     S.forEach(function(s){ if(/^[a-z]/.test(s)){var i=t.indexOf(s),w0=s.match(/^\S+/)[0];errs.push({s:i,e:i+w0.length,msg:'Cümlə böyük hərflə başlayır',r:'cap',fix:w0.charAt(0).toUpperCase()+w0.slice(1)});marks.push([i,i+w0.length,'bad'])} });
-    if(!/[.!?]["”']?$/.test(t)) errs.push({s:t.length-1,e:t.length,msg:'Cümlənin sonunda nöqtə',r:'end',fix:''});
+    if(false) errs.push({s:t.length-1,e:t.length,msg:'Cümlənin sonunda nöqtə',r:'end',fix:''});
     if(ext&&ext.length){ ext.forEach(function(m){ var cat=m.rule&&m.rule.category&&m.rule.category.id||'MISC', id=m.rule&&m.rule.id||'';
-        if(SKIPCAT.test(cat)) return; var st=m.offset,en=m.offset+m.length, w=t.slice(st,en);
+        if(SKIPCAT.test(cat)||/WHITESPACE|COMMA|PUNCT|QUOTE/.test(id)) return; var st=m.offset,en=m.offset+m.length, w=t.slice(st,en);
         if(cat==='TYPOS'&&/^[A-ZƏ]/.test(w)&&st>0&&!/[.!?]\s*$/.test(t.slice(0,st))) return; /* xüsusi adlar */
         if(errs.some(function(e){return st<e.e&&en>e.s})) return;
         var az=LTAZ[id]||LTAZ[id.replace(/_\d+$/,'')], rep=(m.replacements||[]).slice(0,2).map(function(r){return r.value}).join(' / ');
