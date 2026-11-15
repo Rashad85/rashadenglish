@@ -689,6 +689,93 @@ html{scroll-padding-top:138px}
 .exam.full{position:fixed;inset:0;z-index:200;margin:0;border:0;border-radius:0;display:flex;flex-direction:column}
 .exam.full iframe{flex:1;height:auto;min-height:0}
 body.exam-open{overflow:hidden}
+
+/* ===== RN Vocabulary (native) ===== */
+.vx{display:grid;gap:18px}
+.vx-k{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8B1E3F;margin:0}
+.vx-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px}
+.vx-wotd{position:relative;overflow:hidden;background:linear-gradient(150deg,#14213D,#22325A);color:#fff;border-radius:22px;padding:24px;display:grid;gap:8px;align-content:start}
+.vx-wotd:after{content:"Aa";position:absolute;right:-6px;bottom:-40px;font-family:var(--font-display);font-weight:800;font-size:9rem;color:rgba(255,255,255,.06);line-height:1}
+.vx-wotd .vx-k{color:#E9C46A}
+.vx-wotd-w{display:flex;align-items:center;gap:12px}
+.vx-wotd-w b{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.1;overflow-wrap:anywhere}
+.vx-wotd-a{font-size:1.15rem;color:#F3D3DD;margin:0}
+.vx-wotd-x{font-size:.9rem;color:#B7C0D4;margin:0}
+.vx-say{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:1rem}
+.vx-searchbox{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;display:grid;gap:10px;align-content:start;position:relative}
+.vx-searchbox input{font:inherit;font-size:1.05rem;padding:14px 16px;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+.vx-searchbox input:focus{border-color:#8B1E3F;outline:none}
+.vx-res[hidden],.vx-subs[hidden],.vx-study[hidden],.vx-decks[hidden]{display:none!important}
+.vx-res{display:grid;gap:4px;max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:14px;padding:6px;background:var(--card)}
+.vx-res div{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;font-size:.95rem}
+.vx-res div:nth-child(odd){background:var(--paper)}
+.vx-res b{overflow-wrap:anywhere}.vx-res span{color:var(--mute);overflow-wrap:anywhere}
+.vx-res small{font-size:.72rem;color:#8B1E3F;white-space:nowrap}
+.vx-me{display:flex;align-items:center;gap:14px;padding-top:8px;border-top:1px dashed var(--line);font-size:.95rem}
+.vx-me small{color:var(--mute)}
+.vx-ring{--p:0;width:64px;height:64px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(#8B1E3F calc(var(--p)*1%),var(--line) 0)}
+.vx-ring span{width:50px;height:50px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.8rem}
+.vx-cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.vx-cats::-webkit-scrollbar{display:none}
+.vx-cats button,.vx-subs button{flex:none;font:600 .92rem var(--font-body);border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 16px;cursor:pointer}
+.vx-cats button i{font-style:normal;color:var(--mute);font-weight:500;margin-left:4px}
+.vx-cats button[aria-selected="true"]{background:#8B1E3F;border-color:#8B1E3F;color:#fff}.vx-cats button[aria-selected="true"] i{color:#F3D3DD}
+.vx-subs{display:flex;gap:6px;flex-wrap:wrap}
+.vx-subs button{padding:6px 12px;font-size:.85rem}
+.vx-subs button[aria-pressed="true"]{background:#14213D;border-color:#14213D;color:#fff}
+.vx-decks{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.vx-load{color:var(--mute)}
+.vx-deck{text-align:left;font:inherit;color:var(--ink);cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:8px;align-content:start;transition:transform .15s,border-color .15s}
+.vx-deck:hover{transform:translateY(-2px);border-color:#8B1E3F}
+.vx-deck b{font-family:var(--font-display);font-size:1rem;line-height:1.25}
+.vx-deck span{font-size:.85rem;color:var(--mute)}
+.vx-deck .vx-mini{height:6px;border-radius:99px;background:var(--line);overflow:hidden}.vx-deck .vx-mini i{display:block;height:100%;background:#2E9E5B}
+.vx-deck.done{border-color:#2E9E5B}.vx-deck.done b:after{content:" ✓";color:#2E9E5B}
+.vx-study{background:var(--card);border:2px solid #14213D;border-radius:22px;padding:20px;display:grid;gap:14px}
+.vx-study-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.vx-back{font:600 .9rem var(--font-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+.vx-st{flex:1;min-width:180px}.vx-st h3{font-size:1.2rem;margin:2px 0 0}
+.vx-modes{display:flex;flex-wrap:wrap;gap:6px}
+.vx-modes button{font:600 .88rem var(--font-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:8px 12px;cursor:pointer}
+.vx-modes button[aria-pressed="true"]{background:#14213D;border-color:#14213D;color:#fff}
+.vx-prog{height:8px;border-radius:99px;background:var(--line);overflow:hidden}.vx-prog i{display:block;height:100%;width:0;background:#8B1E3F;transition:width .3s}
+/* flashcard */
+.vx-card{display:block;perspective:1200px;width:100%;max-width:560px;margin:6px auto 0;height:300px;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:inherit}
+.vx-card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.vx-card.flip .in{transform:rotateY(180deg)}
+.vx-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;display:grid;place-items:center;align-content:center;gap:10px;padding:26px;text-align:center}
+.vx-face.f{background:var(--paper);border:2px solid var(--line)}
+.vx-face.b{transform:rotateY(180deg);background:#8B1E3F;color:#fff}
+.vx-face .w{font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;overflow-wrap:anywhere}
+.vx-face .h{font-size:.85rem;color:var(--mute)}
+.vx-face.b .w{font-size:clamp(1.3rem,4.4vw,1.9rem)}.vx-face.b .h{color:#F3D3DD}
+.vx-card-ctl{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:6px}
+.vx-btn{font:600 1rem var(--font-body);border-radius:14px;padding:12px 20px;cursor:pointer;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.vx-btn.yes{background:#2E9E5B;border-color:#2E9E5B;color:#fff}.vx-btn.no{border-color:#8B1E3F;color:#8B1E3F}
+.vx-btn.pri{background:#8B1E3F;border-color:#8B1E3F;color:#fff}
+.vx-meta{display:flex;justify-content:center;gap:16px;color:var(--mute);font-size:.9rem;font-variant-numeric:tabular-nums}
+/* quiz */
+.vx-q{max-width:620px;margin:0 auto;display:grid;gap:12px}
+.vx-qw{text-align:center;display:grid;gap:4px;padding:10px}
+.vx-qw b{font-family:var(--font-display);font-size:clamp(1.4rem,4.6vw,2rem);overflow-wrap:anywhere}
+.vx-qw small{color:var(--mute)}
+.vx-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vx-opt{font:600 1rem var(--font-body);text-align:left;padding:14px 16px;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;overflow-wrap:anywhere}
+.vx-opt:hover{border-color:#14213D}
+.vx-opt.ok{background:rgba(46,158,91,.14);border-color:#2E9E5B}.vx-opt.bad{background:rgba(139,30,63,.1);border-color:#8B1E3F}
+.vx-done{text-align:center;display:grid;gap:10px;justify-items:center;padding:20px}
+.vx-done b{font-family:var(--font-display);font-size:3rem;color:#8B1E3F;line-height:1}
+.vx-timer{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:#8B1E3F;text-align:center;font-variant-numeric:tabular-nums}
+/* list */
+.vx-list{display:grid;gap:2px;max-height:520px;overflow:auto;border-radius:14px;border:1px solid var(--line)}
+.vx-list div{display:grid;grid-template-columns:28px 1fr 1fr 36px;gap:10px;align-items:center;padding:9px 12px;font-size:.95rem}
+.vx-list div:nth-child(odd){background:var(--paper)}
+.vx-list b{overflow-wrap:anywhere}.vx-list span{color:var(--mute);overflow-wrap:anywhere}
+.vx-list em{font-style:normal;color:#2E9E5B;text-align:center}
+.vx-list button{border:0;background:none;cursor:pointer;font-size:1rem}
+@media (max-width:820px){.vx-top{grid-template-columns:1fr}}
+@media (max-width:520px){.vx-opts{grid-template-columns:1fr}.vx-card{height:260px}.vx-res div{grid-template-columns:1fr 1fr}.vx-res small{display:none}.vx-list div{grid-template-columns:1fr 1fr 30px}.vx-list div>i{display:none}}
+@media (prefers-reduced-motion:reduce){.vx-card .in{transition:none}}
 </style>
 </head>
 <body>
@@ -709,7 +796,7 @@ body.exam-open{overflow:hidden}
   <nav class="tabs" aria-label="Bölmələr">
     <div class="wrap tabs-shell">
       <button class="tab-arrow l" id="tabL" aria-label="Sola sürüşdür" hidden>‹</button>
-      <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#sozler">Lüğət</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
+      <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#sozler">RN Vocabulary: DİM üçün söz bazası</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
       <button class="tab-arrow r" id="tabR" aria-label="Sağa sürüşdür">›</button>
     </div>
   </nav>
@@ -1081,9 +1168,9 @@ body.exam-open{overflow:hidden}
       <div class="sec-head">
         <span class="sec-num">10</span>
         <div>
-          <span class="eyebrow" style="margin-bottom:8px">Pulsuz · birbaşa saytda</span>
+          <span class="eyebrow" style="margin-bottom:8px">Pulsuz · qeydiyyatsız</span>
           <h2>RN Vocabulary: DİM üçün söz bazası</h2>
-          <p>DİM imtahanlarına lazım olan zəngin söz ehtiyatı bir yerdə. Mövzunu seç, kartlarla öyrən, özünü yoxla. Tərcümələr Azərbaycan dilindədir.</p>
+          <p>DİM imtahanlarına lazım olan zəngin söz ehtiyatı bir yerdə. Mövzunu seçin, kartlarla öyrənin, testlə özünüzü yoxlayın, 60 saniyəlik yarışda rekord qırın. İrəliləyişiniz yadda qalır.</p>
         </div>
       </div>
       <div class="v-stats">
@@ -1093,9 +1180,46 @@ body.exam-open{overflow:hidden}
         <div><b>472</b><span>feil</span></div>
         <div><b>1 155</b><span>sinonim və antonim</span></div>
       </div>
-      <div class="v-frame">
-        <div class="v-bar"><span class="v-dots"><i></i><i></i><i></i></span><b>RN Vocabulary</b><a href="vocab.html">Tam ekranda aç ↗</a></div>
-        <iframe src="vocab.html" title="RN Vocabulary" loading="lazy"></iframe>
+      <div class="vx" id="vx">
+        <!-- top: word of the day + search -->
+        <div class="vx-top">
+          <div class="vx-wotd" id="vxWotd">
+            <p class="vx-k">Günün sözü</p>
+            <div class="vx-wotd-w"><b id="vxWw">…</b><button class="vx-say" id="vxWs" type="button" aria-label="Səsləndir">🔊</button></div>
+            <p class="vx-wotd-a" id="vxWa"></p>
+            <p class="vx-wotd-x" id="vxWx"></p>
+          </div>
+          <div class="vx-searchbox">
+            <label for="vxQ" class="vx-k">Söz axtar · 5 559 söz</label>
+            <input id="vxQ" type="search" placeholder="İngiliscə və ya azərbaycanca yazın: achieve, qohum…" autocomplete="off">
+            <div class="vx-res" id="vxRes" hidden></div>
+            <div class="vx-me">
+              <div class="vx-ring" id="vxRing" style="--p:0"><span id="vxPct">0%</span></div>
+              <div><b id="vxLearned">0</b> söz öyrənmisiniz<br><small id="vxStreak">Hər gün bir az: kartları açın, “Bilirəm” deyin.</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- categories -->
+        <div class="vx-cats" id="vxCats" role="tablist" aria-label="Bölmələr"></div>
+        <div class="vx-subs" id="vxSubs" hidden></div>
+        <div class="vx-decks" id="vxDecks"><p class="vx-load">Söz bazası yüklənir…</p></div>
+
+        <!-- study panel -->
+        <div class="vx-study" id="vxStudy" hidden>
+          <div class="vx-study-head">
+            <button class="vx-back" id="vxBack" type="button">← Mövzular</button>
+            <div class="vx-st"><p class="vx-k" id="vxDg"></p><h3 id="vxDt"></h3></div>
+            <div class="vx-modes" role="group" aria-label="Rejim">
+              <button type="button" data-m="cards" aria-pressed="true">🃏 Kartlar</button>
+              <button type="button" data-m="quiz" aria-pressed="false">✅ Test</button>
+              <button type="button" data-m="speed" aria-pressed="false">⚡ 60 san</button>
+              <button type="button" data-m="list" aria-pressed="false">📋 Siyahı</button>
+            </div>
+          </div>
+          <div class="vx-prog"><i id="vxBar"></i></div>
+          <div id="vxBody"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1438,6 +1562,154 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   document.querySelectorAll('a[href="#yoxla"]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();open()})});
   if(location.hash==='#yoxla'||location.hash==='#sinaq')open();
 })();
+/* ===== RN Vocabulary (native) ===== */
+(function(){
+  var root=document.getElementById('vx'); if(!root) return;
+  var $=function(id){return document.getElementById(id)};
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var KEY='rn.vocab.v1', P={};
+  try{P=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){P={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}}
+  var D=null, cat=null, sub=null, deck=null, mode='cards', TOTAL=0;
+  var CATS=[['İsimlər','🏷️'],['Məktəb sözləri','🎒'],['Feillər','⚙️'],['Sinonimlər','🔁'],['Antonimlər','↔️'],['Sinonimlər lüğəti','📖']];
+  var GLABEL={'İsimlər':'Mövzu sözləri','Məktəb sözləri':'Dərslik sözləri','Feillər':'Feillər','Sinonimlər':'Sinonimlər','Antonimlər':'Antonimlər','Sinonimlər lüğəti':'Sinonim lüğəti'};
+
+  /* normalize an item to {q,a,x} */
+  function norm(d,it){
+    if(d.k==='verb') return {q:it[0],a:it[2]||it[1],x:it[2]?it[1]:''};
+    if(d.k==='syn') return {q:it[0],a:it[1]+(it[2]?' · '+it[2]:''),x:'sinonimi'};
+    if(d.k==='ant') return {q:it[0],a:it[1]+(it[2]?' · '+it[2]:''),x:'antonimi'};
+    return {q:it[0],a:it[1],x:it[2]||''};
+  }
+  function clean(s){return String(s).replace(/\s*\[[^\]]*\]/g,'').trim()}
+  function kid(d,i){return d.id+':'+i}
+  function known(d,i){return !!P[kid(d,i)]}
+  function deckKnown(d){var n=0;for(var i=0;i<d.i.length;i++)if(P[kid(d,i)])n++;return n}
+  function say(t){try{var u=new SpeechSynthesisUtterance(clean(String(t).split(',')[0]));u.lang='en-GB';u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+
+  function stats(){
+    var n=Object.keys(P).filter(function(k){return P[k]}).length;
+    $('vxLearned').textContent=n.toLocaleString('az');
+    var p=TOTAL?Math.round(n/TOTAL*1000)/10:0; $('vxRing').style.setProperty('--p',Math.min(100,p)); $('vxPct').textContent=(p<1&&n?'<1':Math.round(p))+'%';
+  }
+  function wotd(){
+    var all=[];D.forEach(function(d){if(d.k==='word'||d.k==='verb')d.i.forEach(function(it,i){all.push([d,i])})});
+    var day=Math.floor(Date.now()/864e5), pick=all[(day*2654435761>>>0)%all.length], w=norm(pick[0],pick[0].i[pick[1]]);
+    $('vxWw').textContent=clean(w.q); $('vxWa').textContent=w.a; $('vxWx').textContent=(w.x?w.x+' · ':'')+pick[0].t.split(' — ')[0];
+    $('vxWs').onclick=function(){say(w.q)};
+  }
+  function renderCats(){
+    $('vxCats').innerHTML=CATS.map(function(c){var n=0;D.forEach(function(d){if(d.g===c[0])n+=d.i.length});
+      return '<button role="tab" type="button" data-c="'+esc(c[0])+'" aria-selected="'+(cat===c[0])+'">'+c[1]+' '+esc(GLABEL[c[0]])+'<i>'+n+'</i></button>'}).join('');
+    [].forEach.call($('vxCats').children,function(b){b.onclick=function(){cat=b.dataset.c;sub=null;closeStudy();renderCats();renderDecks()}});
+  }
+  function renderDecks(){
+    var ds=D.filter(function(d){return d.g===cat});
+    var subs=[];ds.forEach(function(d){if(d.s&&subs.indexOf(d.s)<0)subs.push(d.s)});
+    var sb=$('vxSubs'); sb.hidden=!subs.length;
+    if(subs.length){ if(!sub||subs.indexOf(sub)<0)sub=subs[0];
+      sb.innerHTML=subs.map(function(s){return '<button type="button" data-s="'+esc(s)+'" aria-pressed="'+(s===sub)+'">'+esc(s)+'</button>'}).join('');
+      [].forEach.call(sb.children,function(b){b.onclick=function(){sub=b.dataset.s;renderDecks()}});
+      ds=ds.filter(function(d){return d.s===sub}); }
+    $('vxDecks').innerHTML=ds.map(function(d){var k=deckKnown(d),n=d.i.length;
+      return '<button type="button" class="vx-deck'+(k===n?' done':'')+'" data-id="'+d.id+'"><b>'+esc(d.t)+'</b><span>'+n+' söz · '+k+' öyrənilib</span><div class="vx-mini"><i style="width:'+Math.round(k/n*100)+'%"></i></div></button>'}).join('');
+    [].forEach.call($('vxDecks').children,function(b){b.onclick=function(){openDeck(b.dataset.id)}});
+  }
+  /* search */
+  var qT;
+  $('vxQ').addEventListener('input',function(){clearTimeout(qT);qT=setTimeout(search,150)});
+  function search(){
+    var q=$('vxQ').value.trim().toLowerCase(), box=$('vxRes');
+    if(!D||q.length<2){box.hidden=true;return}
+    var out=[];
+    for(var a=0;a<D.length&&out.length<40;a++){var d=D[a];for(var i=0;i<d.i.length&&out.length<40;i++){var w=norm(d,d.i[i]);
+      if(w.q.toLowerCase().indexOf(q)>=0||w.a.toLowerCase().indexOf(q)>=0) out.push('<div><b>'+esc(clean(w.q))+'</b><span>'+esc(w.a)+'</span><small>'+esc(d.t.split(' — ')[0])+'</small></div>')}}
+    box.innerHTML=out.length?out.join(''):'<div><span>Tapılmadı. Başqa söz yoxlayın.</span></div>'; box.hidden=false;
+  }
+  /* study */
+  var order=[], pos=0, flipped=false, qs=null, timer=null;
+  function closeStudy(){clearInterval(timer);$('vxStudy').hidden=true;$('vxDecks').hidden=false;$('vxSubs').hidden=!$('vxSubs').children.length;deck=null}
+  function openDeck(id){
+    deck=D.filter(function(d){return d.id===id})[0]; if(!deck)return;
+    $('vxDecks').hidden=true;$('vxSubs').hidden=true;$('vxStudy').hidden=false;
+    $('vxDg').textContent=GLABEL[deck.g]+(deck.s?' · '+deck.s:'');$('vxDt').textContent=deck.t;
+    setMode('cards'); var hh=(document.querySelector('header.top')||{offsetHeight:140}).offsetHeight+12; window.scrollTo({top:$('vxStudy').getBoundingClientRect().top+window.scrollY-hh,behavior:'smooth'});
+  }
+  $('vxBack').onclick=function(){closeStudy();renderDecks();$('vxCats').scrollIntoView({behavior:'smooth',block:'center'})};
+  [].forEach.call(root.querySelectorAll('.vx-modes button'),function(b){b.onclick=function(){setMode(b.dataset.m)}});
+  function setMode(m){mode=m;clearInterval(timer);
+    [].forEach.call(root.querySelectorAll('.vx-modes button'),function(b){b.setAttribute('aria-pressed',b.dataset.m===m)});
+    if(m==='cards')startCards(); else if(m==='quiz')startQuiz(false); else if(m==='speed')startQuiz(true); else renderList();}
+  function bar(p){$('vxBar').style.width=Math.max(0,Math.min(100,p))+'%'}
+  /* cards */
+  function startCards(){
+    var idx=deck.i.map(function(_,i){return i}), rest=idx.filter(function(i){return !known(deck,i)});
+    order=shuffle(rest.length?rest:idx); pos=0; drawCard();
+  }
+  function drawCard(){
+    var k=deckKnown(deck),n=deck.i.length; bar(k/n*100);
+    if(pos>=order.length){ $('vxBody').innerHTML='<div class="vx-done"><b>'+k+' / '+n+'</b><p>'+(k===n?'Əla! Bu mövzunun bütün sözlərini bilirsiniz 🎉':'Dövrə bitdi. Bilmədiyiniz sözləri yenidən təkrarlayın.')+'</p><div class="vx-card-ctl"><button class="vx-btn pri" id="vxAgain" type="button">Yenidən</button><button class="vx-btn" id="vxToQuiz" type="button">✅ Testlə yoxla</button></div></div>';
+      $('vxAgain').onclick=startCards; $('vxToQuiz').onclick=function(){setMode('quiz')}; renderDecksQuiet(); return; }
+    var i=order[pos], w=norm(deck,deck.i[i]); flipped=false;
+    $('vxBody').innerHTML='<button class="vx-card" id="vxCard" type="button" aria-label="Kartı çevir"><div class="in"><div class="vx-face f"><span class="w">'+esc(clean(w.q))+'</span><span class="h">'+(w.x&&deck.k==='word'?esc(w.x)+' · ':'')+'çevirmək üçün toxunun</span></div><div class="vx-face b"><span class="w">'+esc(w.a)+'</span><span class="h">'+(deck.k==='verb'&&w.x?esc(w.x):deck.k==='syn'||deck.k==='ant'?esc(clean(w.q))+' — '+w.x:'')+'</span></div></div></button>'+
+      '<div class="vx-card-ctl"><button class="vx-btn" id="vxSay" type="button">🔊 Dinlə</button><button class="vx-btn no" id="vxNo" type="button">Təkrar ↺</button><button class="vx-btn yes" id="vxYes" type="button">Bilirəm ✓</button></div>'+
+      '<div class="vx-meta"><span>'+(pos+1)+' / '+order.length+'</span><span>Öyrənilib: '+k+' / '+n+'</span></div>';
+    var c=$('vxCard'); c.onclick=function(){flipped=!flipped;c.classList.toggle('flip',flipped)};
+    $('vxSay').onclick=function(){say(w.q)};
+    $('vxYes').onclick=function(){P[kid(deck,i)]=1;save();stats();pos++;drawCard()};
+    $('vxNo').onclick=function(){delete P[kid(deck,i)];save();stats();order.push(i);pos++;drawCard()};
+  }
+  function renderDecksQuiet(){ /* refresh deck progress silently */ }
+  /* quiz & speed */
+  function startQuiz(speed){
+    var items=deck.i.map(function(it,i){return {i:i,w:norm(deck,it)}}); if(items.length<4){$('vxBody').innerHTML='<p>Bu mövzuda test üçün azı 4 söz lazımdır.</p>';return}
+    qs={list:shuffle(items).slice(0,speed?items.length:Math.min(10,items.length)),p:0,ok:0,speed:speed,end:speed?Date.now()+60000:0,items:items};
+    if(speed){ timer=setInterval(function(){var s=Math.max(0,Math.ceil((qs.end-Date.now())/1000)); var t=$('vxT'); if(t)t.textContent=s+' san'; bar(s/60*100); if(s<=0){clearInterval(timer);quizDone()}},200); }
+    drawQ();
+  }
+  function drawQ(){
+    if(qs.p>=qs.list.length){ if(qs.speed){qs.list=qs.list.concat(shuffle(qs.items));} else return quizDone(); }
+    if(!qs.speed) bar(qs.p/qs.list.length*100);
+    var cur=qs.list[qs.p], rev=Math.random()<.35 && deck.k!=='syn' && deck.k!=='ant';
+    var others=shuffle(qs.items.filter(function(x){return x.i!==cur.i})).slice(0,3);
+    var opts=shuffle([cur].concat(others));
+    var prompt=rev?cur.w.a:clean(cur.w.q), lab=function(x){return rev?clean(x.w.q):x.w.a};
+    var hint=deck.k==='syn'?'sinonimini seçin':deck.k==='ant'?'antonimini seçin':rev?'ingiliscəsini seçin':'tərcüməsini seçin';
+    $('vxBody').innerHTML='<div class="vx-q">'+(qs.speed?'<div class="vx-timer" id="vxT">60 san</div>':'')+'<div class="vx-qw"><small>'+(qs.p+1)+(qs.speed?'':' / '+qs.list.length)+' · '+hint+'</small><b>'+esc(prompt)+'</b></div><div class="vx-opts">'+
+      opts.map(function(o,k){return '<button class="vx-opt" type="button" data-k="'+k+'">'+esc(lab(o))+'</button>'}).join('')+'</div><div class="vx-meta"><span>Düz: '+qs.ok+'</span></div></div>';
+    [].forEach.call($('vxBody').querySelectorAll('.vx-opt'),function(b){b.onclick=function(){
+      var pick=opts[+b.dataset.k], good=pick.i===cur.i;
+      [].forEach.call($('vxBody').querySelectorAll('.vx-opt'),function(x){x.disabled=true; if(opts[+x.dataset.k].i===cur.i)x.classList.add('ok')});
+      if(good){qs.ok++;P[kid(deck,cur.i)]=1}else{b.classList.add('bad');delete P[kid(deck,cur.i)]}
+      save();stats(); qs.p++; setTimeout(function(){ if(!qs.speed||Date.now()<qs.end) drawQ(); }, good?(qs.speed?250:600):1100);
+    }});
+  }
+  function quizDone(){
+    var tot=qs.speed?qs.p:qs.list.length, best=0, bk='rn.vocab.best.'+deck.id;
+    if(qs.speed){try{best=+localStorage.getItem(bk)||0;if(qs.ok>best)localStorage.setItem(bk,qs.ok)}catch(e){}}
+    bar(100);
+    $('vxBody').innerHTML='<div class="vx-done"><b>'+qs.ok+(qs.speed?'':' / '+tot)+'</b><p>'+(qs.speed?'60 saniyədə düzgün cavab'+(qs.ok>best?' · yeni rekord! 🏆':' · rekordunuz: '+best):(qs.ok===tot?'Mükəmməl! 🎉':qs.ok>=tot*.7?'Çox yaxşı! 👏':'Kartlarla bir az da təkrarlayın.'))+'</p><div class="vx-card-ctl"><button class="vx-btn pri" id="vxRe" type="button">Yenidən</button><button class="vx-btn" id="vxToCards" type="button">🃏 Kartlar</button></div></div>';
+    $('vxRe').onclick=function(){setMode(qs.speed?'speed':'quiz')}; $('vxToCards').onclick=function(){setMode('cards')};
+  }
+  function renderList(){
+    var k=deckKnown(deck); bar(k/deck.i.length*100);
+    $('vxBody').innerHTML='<div class="vx-list">'+deck.i.map(function(it,i){var w=norm(deck,it);
+      return '<div><i style="font-style:normal;color:var(--mute)">'+(i+1)+'</i><b>'+esc(clean(w.q))+(deck.k==='verb'&&w.x?' <small style="color:var(--mute);font-weight:400">('+esc(w.x)+')</small>':'')+'</b><span>'+esc(w.a)+(known(deck,i)?' <em>✓</em>':'')+'</span><button type="button" data-q="'+esc(w.q)+'" aria-label="Səsləndir">🔊</button></div>'}).join('')+'</div>';
+    [].forEach.call($('vxBody').querySelectorAll('button[data-q]'),function(b){b.onclick=function(){say(b.dataset.q)}});
+  }
+  /* load data lazily */
+  function load(){
+    if(D) return; D=[];
+    fetch('vocab-data.json').then(function(r){return r.json()}).then(function(j){
+      D=j; TOTAL=0; D.forEach(function(d){TOTAL+=d.i.length}); cat=CATS[0][0];
+      wotd(); stats(); renderCats(); renderDecks();
+    }).catch(function(){D=null;$('vxDecks').innerHTML='<p class="vx-load">Söz bazası yüklənmədi. Səhifəni yeniləyin.</p>'});
+  }
+  if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ if(es.some(function(e){return e.isIntersecting})){load();io.disconnect()} },{rootMargin:'800px'}); io.observe(root); } else load();
+  document.querySelectorAll('a[href="#sozler"]').forEach(function(a){a.addEventListener('click',load)});
+})();
+
 /* active tab */
 (function(){
   var links=[].slice.call(document.querySelectorAll('.tabs a')),map={};
