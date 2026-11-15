@@ -831,6 +831,20 @@ body.exam-open{overflow:hidden}
 .es-lt{font-size:.85rem;color:#6a6a75;margin:6px 0 10px;display:flex;align-items:center;gap:8px}
 .es-lt .sp{width:14px;height:14px;border:2px solid #e5c6cf;border-top-color:#8B1E3F;border-radius:50%;animation:esp 1s linear infinite}
 @keyframes esp{to{transform:rotate(360deg)}}
+
+.menu-btn{flex:none;display:flex;align-items:center;gap:8px;height:36px;padding:0 14px 0 12px;margin-right:8px;border-radius:12px;border:0;background:#fff;color:#8B1E3F;font:700 .92rem/1 inherit;font-family:inherit;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.menu-btn .hb{display:grid;gap:3px}.menu-btn .hb i{display:block;width:16px;height:2px;border-radius:2px;background:#8B1E3F;transition:.25s}
+.menu-btn[aria-expanded=true] .hb i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-btn[aria-expanded=true] .hb i:nth-child(2){opacity:0}
+.menu-btn[aria-expanded=true] .hb i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.menu-all{background:#fff;border-bottom:3px solid #8B1E3F;box-shadow:0 18px 30px -12px rgba(20,33,61,.35);max-height:calc(100vh - 150px);overflow:auto;animation:maIn .2s ease}
+@keyframes maIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.ma-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 0}
+.ma-grid a{display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;background:#FBF3F5;border:1px solid #F1D9E0;color:#2a1a20;text-decoration:none;font-weight:600;font-size:.95rem}
+.ma-grid a span{font-size:1.15rem}
+.ma-grid a:hover,.ma-grid a.on{background:#8B1E3F;color:#fff;border-color:#8B1E3F}
+@media(max-width:860px){.ma-grid{grid-template-columns:1fr 1fr}.menu-btn .mt{display:none}.menu-btn{padding:0 11px;margin-right:6px}}
+@media(max-width:360px){.ma-grid a{font-size:.85rem;padding:10px}}
 </style>
 </head>
 <body>
@@ -850,11 +864,13 @@ body.exam-open{overflow:hidden}
   </div>
   <nav class="tabs" aria-label="Bölmələr">
     <div class="wrap tabs-shell">
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuAll"><span class="hb"><i></i><i></i><i></i></span><span class="mt">Menyu</span></button>
       <button class="tab-arrow l" id="tabL" aria-label="Sola sürüşdür" hidden>‹</button>
       <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#sozler">RN Vocabulary: DİM üçün söz bazası</a><a href="#esse">Esse və Story yoxlama</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
       <button class="tab-arrow r" id="tabR" aria-label="Sağa sürüşdür">›</button>
     </div>
   </nav>
+  <div class="menu-all" id="menuAll" hidden><div class="wrap"><div class="ma-grid"><a href="#neticeler"><span>🏆</span>Nəticələr</a><a href="#sinaq-qrupu"><span>📝</span>Onlayn Sınaq Qrupu</a><a href="#sozler"><span>📚</span>RN Vocabulary</a><a href="#esse"><span>✍️</span>Esse və Story yoxlama</a><a href="#kurslar"><span>🎓</span>Kurslar</a><a href="#gunun-suali"><span>❓</span>Günün sualı</a><a href="#oyun"><span>🎮</span>Oyun: 400-ə çat</a><a href="#test"><span>⏱️</span>Səviyyə testi</a><a href="#kitab"><span>📕</span>«100 Sınaq» kitabı</a><a href="#video-izah"><span>▶️</span>Video izahlar</a><a href="#metod"><span>🎬</span>Dərs videoları</a><a href="#unvanlar"><span>📍</span>Ünvanlar</a><a href="#suallar"><span>💬</span>Suallar</a><a href="#qeydiyyat"><span>✅</span>Dərsə yazıl</a></div></div></div>
 </header>
 
 <main id="home">
@@ -2046,6 +2062,15 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   crit();live();
 })();
 
+
+/* full menu */
+(function(){var b=document.getElementById('menuBtn'),m=document.getElementById('menuAll');if(!b||!m)return;
+  function set(o){m.hidden=!o;b.setAttribute('aria-expanded',o);if(o){var cur=(document.querySelector('.tabs a.on')||{}).getAttribute;var h=cur?document.querySelector('.tabs a.on').getAttribute('href'):'';[].forEach.call(m.querySelectorAll('a'),function(a){a.classList.toggle('on',a.getAttribute('href')===h)})}}
+  b.onclick=function(e){e.stopPropagation();set(m.hidden)};
+  m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+  document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
 /* active tab */
 (function(){
   var links=[].slice.call(document.querySelectorAll('.tabs a')),map={};
