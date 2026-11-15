@@ -784,6 +784,39 @@ body.exam-open{overflow:hidden}
 .tabs a.on{background:#fff!important;color:#8B1E3F!important;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .tab-arrow{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.45)!important;color:#fff!important}
 .tabs-in{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 44px),transparent 100%)!important;mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 44px),transparent 100%)!important;padding-left:2px!important}
+
+/* ===== Esse və Story yoxlama ===== */
+.es{display:grid;gap:16px}
+.es-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.es-tabs button{font:inherit;text-align:left;cursor:pointer;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:14px 18px;display:grid;gap:2px}
+.es-tabs button b{font-family:var(--font-display);font-size:1.05rem}.es-tabs button span{color:var(--mute);font-size:.9rem}
+.es-tabs button[aria-selected="true"]{border-color:#8B1E3F;background:#8B1E3F;color:#fff}.es-tabs button[aria-selected="true"] span{color:#F3D3DD}
+.es-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.es-in,.es-out{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:8px}
+.es-in input,.es-in textarea{font:inherit;font-size:1rem;line-height:1.55;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--ink);width:100%;resize:vertical}
+.es-in input:focus,.es-in textarea:focus{border-color:#8B1E3F;outline:none}
+.es-live{display:flex;flex-wrap:wrap;gap:12px;font-size:.88rem;color:var(--mute);font-variant-numeric:tabular-nums}
+.es-live #esTip{color:#8B1E3F;font-weight:600}
+.es-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.es-crit{list-style:none;margin:6px 0;padding:0;display:grid;gap:8px}
+.es-crit li{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;background:var(--paper);border-radius:12px;padding:10px 12px;font-size:.95rem}
+.es-crit .l{width:32px;height:32px;border-radius:50%;background:#14213D;color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.85rem}
+.es-crit .m{font-family:var(--font-display);font-weight:700;color:#8B1E3F;white-space:nowrap;font-variant-numeric:tabular-nums}
+.es-crit small{display:block;color:var(--mute);font-size:.82rem;margin-top:2px}
+.es-note{color:var(--mute);font-size:.92rem}
+.es-score{display:flex;align-items:center;gap:16px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.es-score .big{font-family:var(--font-display);font-weight:800;font-size:3rem;line-height:1;color:#8B1E3F;font-variant-numeric:tabular-nums}
+.es-score .big small{font-size:1.1rem;color:var(--mute)}
+.es-bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}.es-bar i{display:block;height:100%;background:#8B1E3F}
+.es-h{font-family:var(--font-display);font-size:1rem;margin:10px 0 2px}
+.es-list{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.95rem}
+.es-list.good li::marker{color:#2E9E5B}.es-list.bad li::marker{color:#8B1E3F}
+.es-mark{background:var(--paper);border-radius:12px;padding:12px 14px;line-height:1.7;font-size:.97rem;white-space:pre-wrap;max-height:300px;overflow:auto}
+.es-mark mark{background:rgba(139,30,63,.14);color:inherit;border-bottom:2px solid #8B1E3F;border-radius:3px;padding:0 1px}
+.es-mark mark.ok{background:rgba(46,158,91,.14);border-color:#2E9E5B}
+.es-warn{font-size:.85rem;color:var(--mute);background:var(--tint2);border-radius:12px;padding:10px 12px}
+@media (max-width:860px){.es-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.es-tabs button{padding:12px}}
 </style>
 </head>
 <body>
@@ -804,7 +837,7 @@ body.exam-open{overflow:hidden}
   <nav class="tabs" aria-label="Bölmələr">
     <div class="wrap tabs-shell">
       <button class="tab-arrow l" id="tabL" aria-label="Sola sürüşdür" hidden>‹</button>
-      <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#sozler">RN Vocabulary: DİM üçün söz bazası</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
+      <div class="tabs-in" id="tabsIn"><a href="#neticeler">Nəticələr</a><a href="#sinaq-qrupu">Onlayn Sınaq Qrupu</a><a href="#sozler">RN Vocabulary: DİM üçün söz bazası</a><a href="#esse">Esse və Story yoxlama</a><a href="#kurslar">Kurslar</a><a href="#gunun-suali">Günün sualı</a><a href="#oyun">Oyun</a><a href="#test">Səviyyə testi</a><a href="#kitab">Kitab</a><a href="#video-izah">Video izahlar</a><a href="#metod">Dərs videoları</a><a href="#unvanlar">Ünvanlar</a><a href="#suallar">Suallar</a></div>
       <button class="tab-arrow r" id="tabR" aria-label="Sağa sürüşdür">›</button>
     </div>
   </nav>
@@ -1066,10 +1099,46 @@ body.exam-open{overflow:hidden}
     </div>
   </section>
 
-  <section id="kurslar">
+  <section id="esse">
     <div class="wrap">
       <div class="sec-head">
         <span class="sec-num">04</span>
+        <div>
+          <span class="eyebrow" style="margin-bottom:8px">Pulsuz · dərhal nəticə</span>
+          <h2>Esse və Story yoxlama</h2>
+          <p>Yazını yapışdırın, DİM meyarları üzrə (A–D, 5 bal) ilkin yoxlamanı dərhal görün: səhvlər, çatışmayan hissələr və necə yaxşılaşdırmaq olar.</p>
+        </div>
+      </div>
+      <div class="es">
+        <div class="es-tabs" role="tablist" aria-label="Sinif">
+          <button type="button" role="tab" data-k="op" aria-selected="true"><b>11-ci sinif</b><span>Opinion paragraph (esse)</span></button>
+          <button type="button" role="tab" data-k="st" aria-selected="false"><b>9-cu sinif</b><span>Story (şəkillər əsasında)</span></button>
+        </div>
+        <div class="es-grid">
+          <div class="es-in">
+            <label class="vx-k" for="esTopic">Mövzu / tapşırıq (istəyə görə)</label>
+            <input id="esTopic" type="text" placeholder="Məs.: Some people think that students should wear uniforms…">
+            <label class="vx-k" for="esText" style="margin-top:6px">Yazınız</label>
+            <textarea id="esText" rows="11" placeholder="Opinion paragraph-ı buraya yazın və ya yapışdırın…"></textarea>
+            <div class="es-live"><span id="esWc">0 söz</span><span id="esSc">0 cümlə</span><span id="esTip"></span></div>
+            <div class="es-act"><button class="vx-btn pri" id="esGo" type="button">Meyarlarla yoxla ✓</button><button class="vx-btn" id="esEx" type="button">Nümunə ilə sına</button></div>
+          </div>
+          <div class="es-out" id="esOut">
+            <div class="es-empty">
+              <p class="vx-k">DİM meyarları</p>
+              <ul class="es-crit" id="esCritInfo"></ul>
+              <p class="es-note">Yazını yazın və <b>“Meyarlarla yoxla”</b> düyməsinə basın.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kurslar">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">05</span>
         <div>
           <h2>Kurslar</h2>
           <p>Qruplar səviyyəyə və sinfə görə yığılır. Qiymət və cədvəl üçün zəng edin və ya WhatsApp-a yazın.</p>
@@ -1112,7 +1181,7 @@ body.exam-open{overflow:hidden}
   <section id="gunun-suali">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">05</span>
+        <span class="sec-num">06</span>
         <div>
           <h2>Gündəlik məşq</h2>
           <p>Hər gün bir sual, bir dəqiqəlik sürət testi. Ardıcıl günlər topla, seriyanı qırma.</p>
@@ -1138,7 +1207,7 @@ body.exam-open{overflow:hidden}
   <section id="oyun">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">06</span>
+        <span class="sec-num">07</span>
         <div>
           <h2>400-ə çat</h2>
           <p>DİM cavab kartı ilə oyun. Düzgün dairəni tez seç, bal yığ və 400/400-ə, respublika 1-cisi səviyyəsinə çat.</p>
@@ -1151,7 +1220,7 @@ body.exam-open{overflow:hidden}
   <section id="test">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">07</span>
+        <span class="sec-num">08</span>
         <div>
           <h2>Onlayn səviyyə testi</h2>
           <p>15 sual, təxminən 7 dəqiqə. Sonda balınızı, səviyyənizi və səhv cavabların düzgün variantlarını görəcəksiniz.</p>
@@ -1166,7 +1235,7 @@ body.exam-open{overflow:hidden}
       <video class="bookvid" src="book.mp4" poster="book-poster.jpg" controls playsinline preload="metadata" aria-label="«100 Sınaq» kitabının tanıtım videosu"></video>
       <div>
         <div class="sec-head" style="margin-bottom:12px">
-          <span class="sec-num">08</span>
+          <span class="sec-num">09</span>
           <div>
             <h2>«100 Sınaq» kitabı</h2>
             <p>XI sinif şagirdləri və abituriyentlər üçün yeni sınaq toplusu. Buraxılış imtahanının yeni modelinə uyğun: dinləmə, qrammatika, leksika, oxu və opinion paraqraf.</p>
@@ -1188,7 +1257,7 @@ body.exam-open{overflow:hidden}
   <section id="video-izah">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">09</span>
+        <span class="sec-num">10</span>
         <div>
           <h2>Video izahlar</h2>
           <p>DİM test toplularının və qrammatik mövzuların izahı, YouTube kanalımda. Mövzunu tap, sualların izahına bax.</p>
@@ -1208,7 +1277,7 @@ body.exam-open{overflow:hidden}
   <section id="metod">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">10</span>
+        <span class="sec-num">11</span>
         <div>
           <h2>Sınaqdan sonra yalnız bal yox, tam analiz</h2>
           <p>Sinifdə yazılan hər sınaq DİM buraxılış formatındadır və öz yoxlama proqramımla yoxlanır.</p>
@@ -1235,7 +1304,7 @@ body.exam-open{overflow:hidden}
   <section id="unvanlar">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">11</span>
+        <span class="sec-num">12</span>
         <div>
           <h2>Dərs keçilən yerlər</h2>
           <p>Dəqiq ünvan qeydiyyatdan sonra göndərilir.</p>
@@ -1252,7 +1321,7 @@ body.exam-open{overflow:hidden}
   <section id="suallar">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">12</span>
+        <span class="sec-num">13</span>
         <div><h2>Tez-tez verilən suallar</h2></div>
       </div>
       <div class="faq">
@@ -1270,7 +1339,7 @@ body.exam-open{overflow:hidden}
     <div class="wrap contact-grid">
       <div>
         <div class="sec-head" style="margin-bottom:0">
-          <span class="sec-num">13</span>
+          <span class="sec-num">14</span>
           <div>
             <h2>Qeydiyyat</h2>
             <p>Formu doldurun, müraciətiniz hazır mətn kimi WhatsApp-da açılacaq. Göndərmək üçün sadəcə «Send» düyməsini sıxın.</p>
@@ -1716,6 +1785,139 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
   }
   if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ if(es.some(function(e){return e.isIntersecting})){load();io.disconnect()} },{rootMargin:'800px'}); io.observe(root); } else load();
   document.querySelectorAll('a[href="#sozler"]').forEach(function(a){a.addEventListener('click',load)});
+})();
+
+/* ===== Esse və Story yoxlama ===== */
+(function(){
+  var $=function(id){return document.getElementById(id)}; if(!$('esText')) return;
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var kind='op';
+  var CRIT={A:['Tapşırığın yerinə yetirilməsi',1],B:['Mövzunun əhatəsi və məntiqi ardıcıllıq',2],C:['Qrammatik qaydalara əməl olunma',1],D:['Söz ehtiyatının müxtəlifliyi',1]};
+  var INFO={op:{A:'Fikir aydın bildirilib, tapşırıq tam yerinə yetirilib, həcm kifayətdir',B:'Mövzu cümləsi → səbəblər və nümunələr → nəticə cümləsi',C:'Zamanlar, uzlaşma, artikl, böyük hərf və durğu işarələri',D:'Müxtəlif sözlər, bağlayıcılar, təkrar yoxdur'},
+            st:{A:'Şəkillərə uyğun hekayə, keçmiş zamanda, kifayət qədər həcm',B:'Başlanğıc → hadisələrin ardıcıllığı → sonluq',C:'Keçmiş zaman formaları, uzlaşma, böyük hərf və durğu',D:'Müxtəlif fellər, sifətlər, ardıcıllıq sözləri'}};
+  var TARGET={op:[100,160],st:[60,120]};
+  var EX={op:{t:'Some people think that students should wear school uniforms. Do you agree?',x:"In my opinion, students should wear school uniforms for several reasons. Firstly, uniforms make all students look equal, so nobody feels poor or rich at school. Secondly, they save time in the morning because students do not have to choose what to wear every day. Moreover, uniforms help students to concentrate on their lessons instead of fashion. For example, in my school everyone wears the same clothes and we feel like one team. However, some people say that uniforms limit freedom, but students can still show their personality in other ways. To sum up, I strongly believe that school uniforms are useful for both students and teachers."},
+          st:{t:'Look at the pictures and write a story.',x:"Last summer Ali and his little sister went to the park near their house. It was a sunny day and they were very happy. First, they played football on the green grass. Then Ali kicked the ball too hard and it fell into the lake. His sister started to cry because it was her favourite ball. Suddenly, an old man came with a long stick and pulled the ball out of the water. The children thanked him politely. Finally, they went home and told their parents about the kind man. They will never forget that day."}};
+  var OPIN=/\b(in my opinion|i (strongly |firmly |really )?(think|believe|feel|agree|disagree|suppose|am sure|am convinced)|from my point of view|as far as i am concerned|personally,? i|it seems to me|i would say)\b/i;
+  var REASON=/\b(firstly|first of all|first|secondly|second|thirdly|third|moreover|furthermore|in addition|additionally|besides|also|another reason|one reason|the main reason|what is more|on top of that)\b/gi;
+  var EXAMPLE=/\b(for example|for instance|such as|like when|to illustrate)\b/gi;
+  var CONTRAST=/\b(however|on the other hand|although|though|even though|but|nevertheless|whereas|despite|in spite of)\b/gi;
+  var CONCL=/\b(in conclusion|to sum up|to conclude|all in all|in short|to summarize|to summarise|therefore|that is why|that's why|overall|finally|as a result|consequently)\b/i;
+  var SEQ=/\b(first|firstly|at first|then|after that|afterwards|next|later|suddenly|meanwhile|soon|while|when|as soon as|before|after|finally|in the end|at last|eventually|at that moment|immediately|a few minutes later|the next day)\b/gi;
+  var OPEN=/^(once upon a time|one (day|morning|evening|night|sunny day|summer|winter)|last (summer|winter|week|month|year|sunday|saturday|weekend)|it was|yesterday|a few (days|weeks|years) ago|many years ago|long ago|on (a|one)|in the morning)/i;
+  var END=/\b(finally|in the end|at last|eventually|since then|from that day|never forget|happily|learned a lesson|learnt a lesson|that was|it was the best|went home)\b/i;
+  var IRR='was were went saw came took had did made said told found ran felt thought got knew left gave began became brought bought caught fell heard kept lost met put sat stood woke wrote ate drank flew grew threw broke chose drove forgot hid hit hurt let lay paid read rode rang rose sang sank slept spoke spent stole swam taught tore understood won wore built sent sold shut shot shook sold could would'.split(' ');
+  var STOP='a an the and or but if so to of in on at for with by from as is am are was were be been being it its this that these those i you he she we they me him her us them my your his our their not no do does did have has had will would can could should must may might very too also then than there here what which who when where why how all any some more most such only just about into over after before again'.split(' ');
+  var ERR=[
+    [/(^|[^A-Za-z'])i(?=[\s,.'!?])/g,'“i” → “I” (həmişə böyük hərflə)','C'],
+    [/\b(\w+) \1\b/gi,'Eyni söz iki dəfə təkrarlanıb','C'],
+    [/\bmore (better|worse|bigger|smaller|easier|happier|faster|older|younger|cheaper|larger|longer|shorter|stronger)\b/gi,'“more” + -er olmaz (məs.: better, more better yox)','C'],
+    [/\bmost (best|worst|biggest|easiest|happiest)\b/gi,'“most” + -est olmaz','C'],
+    [/\b(didn't|did not|doesn't|does not|don't|do not) (went|saw|came|took|had|made|got|ate|gave|knew|thought|told|said|found|ran|wrote|bought|was|were|likes|goes|has|does|wants|plays)\b/gi,'Köməkçi feildən sonra feilin əsas forması gəlir (didn’t go)','C'],
+    [/\b(he|she|it) (don't|do not|have not|haven't)\b/gi,'3-cü şəxs təkdə: doesn’t / hasn’t','C'],
+    [/\b(he|she|it) (have|go|do|want|like|play|make|think|say|live|work)\b(?! to\b)/gi,'3-cü şəxs təkdə feilə -s artırılır (he goes)','C'],
+    [/\b(people|children|students|teachers) (is|was|has)\b/gi,'Cəm isimlə: are / were / have','C'],
+    [/\b(informations|advices|furnitures|homeworks|knowledges|equipments|childs|peoples|womans|mans|tooths|foots|mouses|luggages|breads|moneys|newses)\b/gi,'Bu sözün cəm forması belə deyil / sayılmayan isimdir','C'],
+    [/\b(can|must|should|could|will|may|might) to\b/gi,'Modal feildən sonra “to” işlənmir','C'],
+    [/\b(can|must|should|could|will|may|might) (goes|plays|does|has|went|played|likes)\b/gi,'Modal feildən sonra feilin əsas forması gəlir','C'],
+    [/\ba (?=[aeio]\w)/gi,'Sait səslə başlayan sözdən əvvəl “an” işlənir','C'],
+    [/\b(explain me|discuss about|married with|despite of|listen music|enter (in|into) the room|according to me)\b/gi,'Ümumi səhv ifadə','C'],
+    [/\bsince (\d+|two|three|four|five|six|ten|many|several) (years|days|months|weeks|hours)\b/gi,'Müddətlə “for” işlənir (for 3 years)','C'],
+    [/ {2,}/g,'Artıq boşluq','C'],
+    [/ [,.!?;:]/g,'Durğu işarəsindən əvvəl boşluq qoyulmur','C']
+  ];
+  function words(t){return (t.match(/[A-Za-z][A-Za-z'’-]*/g)||[])}
+  function sentences(t){return t.split(/(?<=[.!?])\s+/).map(function(s){return s.trim()}).filter(Boolean)}
+  function step(v,max){var r=Math.max(0,Math.min(1,v/max)),S=[0,1/3,1/2,2/3,1],b=S[0];S.forEach(function(s){if(Math.abs(s-r)<Math.abs(b-r))b=s});return b*max}
+  function fmt(x){return (Math.round(x*100)/100).toString().replace('.',',')}
+  function crit(){ $('esCritInfo').innerHTML=Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'<small>'+INFO[kind][k]+'</small></span><span class="m">'+CRIT[k][1]+' bal</span></li>'}).join('') }
+  function live(){var t=$('esText').value,w=words(t).length,s=sentences(t).length,T=TARGET[kind];
+    $('esWc').textContent=w+' söz';$('esSc').textContent=s+' cümlə';
+    $('esTip').textContent=w===0?'':w<T[0]?'Tövsiyə: azı '+T[0]+' söz':w>T[1]?'Bir az uzundur, qısaldın':'Həcm yaxşıdır ✓';}
+  [].forEach.call(document.querySelectorAll('.es-tabs button'),function(b){b.onclick=function(){kind=b.dataset.k;
+    [].forEach.call(document.querySelectorAll('.es-tabs button'),function(x){x.setAttribute('aria-selected',x===b)});
+    $('esText').placeholder=kind==='op'?'Opinion paragraph-ı buraya yazın və ya yapışdırın…':'Şəkillərə əsasən hekayənizi buraya yazın…';
+    reset();live();}});
+  function reset(){$('esOut').innerHTML='<div class="es-empty"><p class="vx-k">DİM meyarları</p><ul class="es-crit" id="esCritInfo"></ul><p class="es-note">Yazını yazın və <b>“Meyarlarla yoxla”</b> düyməsinə basın.</p></div>';crit()}
+  $('esText').addEventListener('input',live);
+  $('esEx').onclick=function(){$('esTopic').value=EX[kind].t;$('esText').value=EX[kind].x;live();check()};
+  $('esGo').onclick=check;
+  function check(){
+    var t=$('esText').value.replace(/\r/g,'').trim(); if(words(t).length<15){$('esOut').innerHTML='<p class="es-note">Yoxlamaq üçün azı 15 sözlük mətn yazın.</p>';return}
+    var W=words(t), wc=W.length, S=sentences(t), low=t.toLowerCase(), good=[], bad=[], marks=[];
+    var paras=t.split(/\n\s*\n/).filter(function(p){return p.trim()}).length;
+    var T=TARGET[kind];
+    /* grammar/mechanics */
+    var errs=[];
+    ERR.forEach(function(e){var re=new RegExp(e[0].source,e[0].flags.indexOf('g')<0?e[0].flags+'g':e[0].flags),m;
+      while((m=re.exec(t))){ var st=m.index+(m[1]!=null&&e[1].indexOf('“i”')===0?m[1].length:0), en=m.index+m[0].length; if(en>st){errs.push({s:st,e:en,msg:e[1]});marks.push([st,en,'bad'])} if(m[0].length===0)re.lastIndex++; }});
+    S.forEach(function(s){ if(/^[a-z]/.test(s)){var i=t.indexOf(s);errs.push({s:i,e:i+1,msg:'Cümlə böyük hərflə başlamalıdır'});marks.push([i,i+Math.min(s.length,12),'bad'])} });
+    if(!/[.!?]["”']?$/.test(t)) errs.push({s:t.length-1,e:t.length,msg:'Mətn nöqtə ilə bitməlidir'});
+    /* linkers */
+    function count(re){var n=0;low.replace(re,function(m,_,o){n++;return m});return n}
+    function markRe(re){var r=new RegExp(re.source,'gi'),m;while((m=r.exec(t))){marks.push([m.index,m.index+m[0].length,'ok']);if(!m[0].length)r.lastIndex++}}
+    var A=0,B=0,C=0,D=0;
+    /* D: vocabulary */
+    var content=W.map(function(w){return w.toLowerCase().replace(/[’']s$/,'')}).filter(function(w){return STOP.indexOf(w)<0&&w.length>2});
+    var uniq={};content.forEach(function(w){uniq[w]=(uniq[w]||0)+1});
+    var ttr=content.length?Object.keys(uniq).length/content.length:0;
+    var overused=Object.keys(uniq).filter(function(w){return uniq[w]>=4&&!/^(students?|school|people|uniforms?|children)$/.test(w)});
+    var longw=content.filter(function(w){return w.length>=8}).length/Math.max(1,content.length);
+    D=Math.min(1,(ttr>=.75?.7:ttr>=.62?.55:ttr>=.5?.4:.2)+(longw>.18?.3:longw>.1?.2:.1)-(overused.length?.15:0));
+    if(ttr>=.62) good.push('Söz ehtiyatı müxtəlifdir'); else bad.push('Eyni sözlər çox təkrarlanır, sinonimlərdən istifadə edin');
+    if(overused.length) bad.push('Çox təkrarlanan sözlər: '+overused.slice(0,4).join(', '));
+    /* C */
+    C=Math.max(0,1-errs.length*0.17);
+    if(!errs.length) good.push('Mexaniki və tipik qrammatik səhv tapılmadı');
+    if(kind==='op'){
+      var first=S[0]||'', last=S[S.length-1]||'';
+      var hasOp=OPIN.test(low), opFirst=OPIN.test(first.toLowerCase())||/\b(should|must|agree|disagree|better|believe)\b/i.test(first);
+      var rs=count(REASON), ex=count(EXAMPLE), ct=count(CONTRAST), cc=CONCL.test(last.toLowerCase())||CONCL.test(S.slice(-2).join(' ').toLowerCase());
+      markRe(OPIN);markRe(REASON);markRe(EXAMPLE);markRe(CONTRAST);markRe(CONCL);
+      A=(hasOp?.5:.1)+(wc>=T[0]?.5:wc>=T[0]*.8?.35:wc>=T[0]*.6?.2:0);
+      if(hasOp) good.push('Fikriniz aydın bildirilib'); else bad.push('Öz fikrinizi açıq bildirin: “In my opinion…”, “I strongly believe…”');
+      if(wc<T[0]) bad.push('Həcm azdır ('+wc+' söz). Tövsiyə: azı '+T[0]+' söz');
+      B=(opFirst?.5:.15)+Math.min(.7,rs*.25)+(ex?.25:0)+(ct?.15:0)+(cc?.45:0)-(paras>1?.3:0);
+      if(opFirst) good.push('Mövzu cümləsi (topic sentence) fikri bildirir'); else bad.push('Birinci cümlə mövzu cümləsi olsun və fikrinizi bildirsin');
+      if(rs>=2) good.push('Səbəblər bağlayıcılarla verilib ('+rs+')'); else bad.push('Azı 2 səbəb yazın: Firstly…, Secondly…, Moreover…');
+      if(!ex) bad.push('Fikri nümunə ilə əsaslandırın: “For example…”');
+      if(cc) good.push('Nəticə cümləsi var'); else bad.push('Sonda nəticə cümləsi yazın: “To sum up…”, “In conclusion…”');
+      if(paras>1) bad.push('Opinion paragraph bir abzasdan ibarət olmalıdır');
+    } else {
+      var past=W.filter(function(w){w=w.toLowerCase();return /ed$/.test(w)&&w.length>3||IRR.indexOf(w)>=0}).length;
+      var pres=W.filter(function(w){return /^(am|is|are|do|does|has|go|goes|come|comes|play|plays)$/i.test(w)}).length;
+      var sq=count(SEQ), op=OPEN.test(t.trim()), en=END.test(S.slice(-2).join(' ').toLowerCase());
+      markRe(SEQ);
+      A=(past>=6&&past>pres*2?.5:past>=3?.3:.1)+(wc>=T[0]?.5:wc>=T[0]*.75?.33:.15);
+      if(past>=6&&past>pres*2) good.push('Hekayə keçmiş zamanda yazılıb'); else bad.push('Hekayəni keçmiş zamanda yazın (went, saw, was…)');
+      if(wc<T[0]) bad.push('Həcm azdır ('+wc+' söz). Tövsiyə: azı '+T[0]+' söz');
+      B=(op?.5:.15)+Math.min(.9,sq*.22)+(en?.5:.1)-(S.length<4?.3:0);
+      if(op) good.push('Hekayənin yaxşı başlanğıcı var'); else bad.push('Başlanğıc yazın: “Last summer…”, “One day…”');
+      if(sq>=3) good.push('Hadisələr ardıcıllıq sözləri ilə bağlanıb ('+sq+')'); else bad.push('Ardıcıllıq sözləri işlədin: First, Then, Suddenly, After that…');
+      if(en) good.push('Hekayənin sonluğu var'); else bad.push('Sonluq yazın: “Finally…”, “In the end…”, “They will never forget…”');
+      if(!/["“]/.test(t)) bad.push('Hekayəni canlı etmək üçün qısa dialoq və ya hiss bildirən sifətlər əlavə edə bilərsiniz');
+    }
+    var lf=Math.min(1,wc/T[0]); B=B*Math.min(1,lf+0.15); D=D*Math.min(1,lf+0.25); C=C*Math.min(1,lf+0.4);
+    if(wc<T[0]*0.5) bad.unshift('Mətn çox qısadır: meyarların hamısı üzrə bal aşağı düşür');
+    var sc={A:step(A,1),B:step(B,2),C:step(C,1),D:step(D,1)}, tot=sc.A+sc.B+sc.C+sc.D;
+    /* marked text */
+    marks.sort(function(a,b){return a[0]-b[0]||(a[2]==='bad'?-1:1)}); var h='',p=0;
+    marks.forEach(function(m){ if(m[0]<p) return; h+=esc(t.slice(p,m[0]))+'<mark class="'+(m[2]==='ok'?'ok':'')+'">'+esc(t.slice(m[0],m[1]))+'</mark>'; p=m[1]; }); h+=esc(t.slice(p));
+    var seen={}, errList=errs.filter(function(e){var k=e.msg+'|'+t.slice(e.s,e.e).toLowerCase();if(seen[k])return false;seen[k]=1;return true});
+    var msg='Salam, Rəşad müəllim! Saytda '+(kind==='op'?'opinion paragraph':'story')+' yoxladım. İlkin bal: '+fmt(tot)+' / 5.\n'+($('esTopic').value?'Mövzu: '+$('esTopic').value+'\n':'')+'\n'+t;
+    $('esOut').innerHTML='<div class="es-score"><div class="big">'+fmt(tot)+' <small>/ 5</small></div><div style="flex:1"><b>İlkin qiymətləndirmə</b><div class="es-bar"><i style="width:'+(tot/5*100)+'%"></i></div><small style="color:var(--mute)">'+wc+' söz · '+S.length+' cümlə</small></div></div>'+
+      '<ul class="es-crit">'+Object.keys(CRIT).map(function(k){return '<li><span class="l">'+k+'</span><span>'+CRIT[k][0]+'</span><span class="m">'+fmt(sc[k])+' / '+CRIT[k][1]+'</span></li>'}).join('')+'</ul>'+
+      (good.length?'<p class="es-h">✅ Güclü tərəflər</p><ul class="es-list good">'+good.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
+      (bad.length?'<p class="es-h">✏️ Necə yaxşılaşdırmaq olar</p><ul class="es-list bad">'+bad.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'')+
+      (errList.length?'<p class="es-h">⚠️ Səhvlər ('+errList.length+')</p><ul class="es-list bad">'+errList.slice(0,12).map(function(e){return '<li><b>'+esc(t.slice(e.s,e.e).trim()||'…')+'</b> — '+esc(e.msg)+'</li>'}).join('')+'</ul>':'')+
+      '<p class="es-h">Mətniniz <small style="font-weight:400;color:var(--mute)">(qırmızı: səhv · yaşıl: bağlayıcı sözlər)</small></p><div class="es-mark">'+h+'</div>'+
+      '<p class="es-warn">Bu, avtomatik ilkin yoxlamadır: quruluşu, bağlayıcıları, həcmi və tipik səhvləri yoxlayır. Bütün səhvləri tapmaya bilər. Dəqiq DİM balını müəllim verir.</p>'+
+      '<div class="es-act"><a class="vx-btn pri" style="text-decoration:none" href="https://wa.me/994557313266?text='+encodeURIComponent(msg)+'">Müəllimə göndər (WhatsApp)</a><button class="vx-btn" type="button" id="esAgain">Yenidən yaz</button></div>';
+    $('esAgain').onclick=function(){$('esText').focus()};
+    var hh=(document.querySelector('header.top')||{offsetHeight:140}).offsetHeight+12;
+    if(window.innerWidth<860) window.scrollTo({top:$('esOut').getBoundingClientRect().top+window.scrollY-hh,behavior:'smooth'});
+  }
+  crit();live();
 })();
 
 /* active tab */
