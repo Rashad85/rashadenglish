@@ -943,6 +943,10 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
 .jg small{color:var(--mute);font-size:.85rem}
 .jg-err{color:#B3202A;font-size:.9rem;margin:0}
 .jg-ok p{margin:0 0 8px}
+
+.promo-band{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#FFF1E0,#FFE3C2);border:2px dashed #F0B26B;border-radius:18px;padding:16px 18px;margin:0 0 22px;color:#5c2f00}
+.promo-band .pb-gift{font-size:38px;line-height:1}
+.promo-band div{flex:1 1 260px;display:grid;gap:4px}.promo-band b{font-size:1.08rem;color:#7a3e00}.promo-band span{font-size:.95rem}
 </style>
 </head>
 <body>
@@ -980,7 +984,7 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
   <div class="hero">
     <div class="wrap hero-grid">
       <div>
-        <a class="hero-pill" href="#sinaq-qrupu">Onlayn Sınaq Qrupu · 1 dekabrdan <b>20 ₼ / ay</b></a><br>
+        <a class="hero-pill" href="#sinaq-qrupu">🎁 1 dekabra qədər <b>2 sınaq pulsuz</b> · Onlayn Sınaq Qrupu</a><br>
         <span class="eyebrow">İngilis dili müəllimi · Rəşad Nəsibov</span>
         <h1>İngilis dilindən <span class="mark">yüksək bal</span> üçün sistemli hazırlıq</h1>
         <p class="lead">2026-cı ildə şagirdlərimdən ikisi qəbul imtahanında respublika 1-cisi oldu, 66 nəfəri universitetə qəbul olundu. Abituriyent və buraxılış imtahanlarına yeni model üzrə hazırlıq. Mövzu üzrə dərslər, mütəmadi sınaqlar, esse təhlili və hər şagirdin nəticəsinə fərdi nəzarət.</p>
@@ -1106,6 +1110,12 @@ header.top .tabs a,header.top .tabs-in a,header.top:not(.compact) .tabs a{font-s
           <h2>Onlayn Sınaq Qrupu</h2>
           <p>DİM buraxılış imtahanı formatında onlayn sınaqlar. Evdən, telefondan, real imtahan şəraitində. Nəticəni gör, səhvindən öyrən, hər sınaqda güclən.</p>
         </div>
+      </div>
+
+      <div class="promo-band">
+        <span class="pb-gift">🎁</span>
+        <div><b>1 dekabra qədər PULSUZ: General Exam 4 və 5</b><span>Aşağıdakı pəncərədə “🎁 Pulsuz sınaq” düyməsini bas, adını yaz — iş nömrən dərhal verilir. Bəyənsən, qrupa yazılarsan.</span></div>
+        <button class="btn accent" type="button" id="promoGo">Pulsuz sına →</button>
       </div>
 
       <div class="band-foot" id="yoxla">
@@ -2275,6 +2285,9 @@ function rnDayNum(d){d=d||new Date();return Math.floor(Date.UTC(d.getFullYear(),
     fetch(u).then(function(r){return r.json()}).then(function(j){done(!!(j&&j.ok))}).catch(function(){done(false)});
   });
 })();
+
+/* Pulsuz sınaq düyməsi: sınaq pəncərəsini açır */
+(function(){ var b=document.getElementById('promoGo'); if(!b) return; b.onclick=function(){ var o=document.getElementById('examOpen'), ex=document.getElementById('exam'); if(ex&&ex.hidden&&o) o.click(); var t=ex||o; if(t) setTimeout(function(){ window.scrollTo({top:t.getBoundingClientRect().top+scrollY-10,behavior:'smooth'}); },150); }; })();
 /* active tab */
 (function(){
   var links=[].slice.call(document.querySelectorAll('.tabs a')),map={};
