@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>«100 Sınaq» kitabı — Dinləmələr · Rəşad Nəsibov</title>
+<meta name="description" content="Rəşad Nəsibovun «100 Sınaq» (XI sinif, 2026–2027) kitabının dinləmə tapşırıqları (1–4). Reklamsız, telefondan birbaşa dinlə.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1E2A4A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14213D;--bordo:#8B1E3F;--line:#D9DEE7;--mute:#5B6478;--bg:#F6F4F1;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Rubik,system-ui,sans-serif}
+a{color:inherit}
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.logo{width:42px;height:42px;border-radius:50%;background:#1E2A4A;color:#fff;display:grid;place-items:center;font:700 16px Unbounded,sans-serif;text-decoration:none;position:relative}
+.logo::after{content:"";position:absolute;bottom:9px;left:13px;right:13px;height:2px;background:#C8102E}
+.top b{font:700 16px Unbounded,sans-serif;display:block}
+.top small{color:var(--mute)}
+.top .back{margin-left:auto;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:500;font-size:14px;background:#fff}
+h1{font:800 clamp(26px,6vw,40px)/1.15 Unbounded,sans-serif;margin:26px 0 8px}
+h1 span{color:var(--bordo)}
+.lead{color:var(--mute);margin:0 0 18px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tools input{flex:1;min-width:180px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff}
+.tools button{border:0;border-radius:14px;padding:12px 16px;font:600 15px Rubik,sans-serif;background:var(--ink);color:#fff;cursor:pointer}
+.grp{font:700 13px Unbounded,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--bordo);margin:22px 0 10px}
+.list{display:grid;gap:10px}
+.it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;scroll-margin-top:16px}
+.it .n{width:48px;height:48px;border-radius:12px;background:#F1E6EA;color:var(--bordo);display:grid;place-items:center;font:700 16px Unbounded,sans-serif}
+.it h3{margin:0;font:600 16px Rubik,sans-serif}
+.it small{color:var(--mute)}
+.it audio{width:100%;height:40px;margin-top:6px;grid-column:1/-1}
+.it.off{opacity:.55}
+.it.off .n{background:#ECEEF2;color:var(--mute)}
+.it.hl{border-color:var(--bordo);box-shadow:0 0 0 3px rgba(139,30,63,.15)}
+.note{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:12px 14px;color:var(--mute);font-size:14px;margin:18px 0}
+footer{color:var(--mute);font-size:14px;padding:30px 0 50px;text-align:center}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/" aria-label="Ana səhifə">RN</a>
+  <div><b>Rəşad Nəsibov</b><small>İngilis dili müəllimi</small></div>
+  <a class="back" href="/#kitab">← Sayta qayıt</a>
+</div></header>
+
+<main class="wrap">
+  <h1>«100 Sınaq» kitabı — <span>Dinləmələr</span></h1>
+  <p class="lead">XI sinif · 2026–2027. Hər sınağın 1–4-cü tapşırıqları üçün dinləmə mətni. Reklamsız, telefondan birbaşa dinlə.</p>
+  <div class="tools">
+    <input id="q" type="number" min="1" max="100" inputmode="numeric" placeholder="Sınağın nömrəsini yaz (1–100)">
+    <button id="go" type="button">Tap</button>
+  </div>
+  <div id="list"></div>
+  <p class="note">Boz rəngdə olan sınaqların dinləməsi tezliklə əlavə olunacaq. Kitabdakı QR kodlar da işləməyə davam edir.</p>
+</main>
+<footer>© 2026 RN – Rashad Nasibov · <a href="/">rashadenglish.com</a></footer>
+
+<script>
+/* Hazır olan dinləmələr: yeni fayl əlavə edəndə nömrəsini bu siyahıya yaz və audio/N.mp3 kimi yüklə */
+const READY = [1, 2, 3, 4, 5, 6, 7, 12, 16];
+const L = document.getElementById('list');
+const grp = (a, b, t) => `<div class="grp">${t}</div><div class="list">` + Array.from({ length: b - a + 1 }, (_, i) => a + i).map(n => {
+  const ok = READY.includes(n);
+  return `<div class="it${ok ? '' : ' off'}" id="s${n}"><div class="n">${n}</div><div><h3>Sınaq ${n}</h3><small>${ok ? 'Dinləmə · tapşırıq 1–4' : 'Tezliklə'}</small></div>` +
+    (ok ? `<audio controls preload="none" src="audio/${n}.mp3"></audio>` : '') + `</div>`;
+}).join('') + `</div>`;
+L.innerHTML = grp(1, 40, 'Sınaq 1–40 · mövzular üzrə') + grp(41, 100, 'Sınaq 41–100 · ümumi');
+/* bir dinləmə başlayanda digərlərini dayandır */
+L.addEventListener('play', e => { document.querySelectorAll('audio').forEach(a => { if (a !== e.target) a.pause(); }); }, true);
+function jump(n) {
+  const el = document.getElementById('s' + n); if (!el) return;
+  document.querySelectorAll('.it.hl').forEach(x => x.classList.remove('hl'));
+  el.classList.add('hl'); el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (history.replaceState) history.replaceState(null, '', '#' + n);
+}
+document.getElementById('go').onclick = () => jump(parseInt(document.getElementById('q').value, 10));
+document.getElementById('q').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('go').click(); });
+const h = parseInt(location.hash.slice(1), 10); if (h) setTimeout(() => jump(h), 200);
+window.addEventListener('hashchange', () => { const n = parseInt(location.hash.slice(1), 10); if (n) jump(n); });
+
+/* ziyarət sayğacı (yalnız müəllim görür) */
+(function () {
+  try {
+    const L2 = localStorage; if (L2.getItem('rn.nocount') || /bot|crawl|spider|preview|headless/i.test(navigator.userAgent)) return;
+    const d = new Date(), day = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    const nv = !L2.getItem('rn.vid'); if (nv) L2.setItem('rn.vid', String(Date.now()));
+    const u = L2.getItem('rn.vday') !== day; L2.setItem('rn.vday', day);
+    const r = document.referrer || '', ua = navigator.userAgent || '';
+    const s = /Instagram/i.test(ua) || /instagram|igsh/i.test(r) ? 'ig' : /FBAN|FBAV/i.test(ua) || /facebook/i.test(r) ? 'fb' : /google\./i.test(r) ? 'g' : /whatsapp/i.test(r) ? 'wa' : (r && r.indexOf(location.hostname) < 0 ? 'o' : 'd');
+    fetch('https://script.google.com/macros/s/AKfycbxwAwJ15f6OfCxEHxvOhkOA-zdciBbp8A10UhVkSa4ZfN8wf2lkk4cNKJMPGxveKFFI/exec?a=hit&u=' + (u ? 1 : 0) + '&n=' + (nv ? 1 : 0) + '&m=' + (/Mobi|Android|iPhone|iPad/i.test(ua) ? 1 : 0) + '&s=' + s, { mode: 'no-cors' }).catch(() => {});
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
