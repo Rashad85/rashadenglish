@@ -251,6 +251,7 @@ const TOPICS = {
  pc:  {name:"Past Continuous (when / while)", icon:"🎬", color:"#14a3c7", tip:"was/were + V-ing. Uzun hərəkət (Past Continuous) + qəfil hərəkət (when + Past Simple). while + iki uzun hərəkət."},
  prc: {name:"Present Continuous: gələcək plan", icon:"📅", color:"#f2b705", tip:"Razılaşdırılmış plan: am/is/are + V-ing (tonight, this weekend). Gələcək üçün will, be going to, Present Continuous çox vaxt hamısı düzdür; Past Simple heç vaxt."},
  pp:  {name:"Present Perfect", icon:"✅", color:"#22a06b", tip:"have/has + V3. just/already have ilə V3 arasında; yet sonda. since + nöqtə, for + müddət; ago → Past Simple."},
+ adj: {name:"Adjectives & Adverbs", icon:"🎨", color:"#d9480f", tip:"Qısa sifət: -er / the -est (taller, the tallest); uzun sifət: more / the most. as ... as / not so ... as içində adi forma. look, smell, taste, sound, feel + sifət. hard ≠ hardly, high ≠ highly, late ≠ lately. fewer + sayılan, less + sayılmayan."},
  pas: {name:"Passive Voice", icon:"🏗️", color:"#7a5cff", tip:"be + V3: is/are + V3, was/were + V3, will be + V3. when/if-dən sonra Present Passive: when the tables are laid."}
 };
 
@@ -379,6 +380,25 @@ const QUIZ = [
  {t:"pp",q:"We ___ each other for ten years.",o:["have known","knew","know","are knowing"]},
  {t:"pp",q:"The bus ___ already ___.",o:["has, left","did, leave","is, left","was, leaving"]},
  {t:"pp",q:"Leyla has worked here since she ___ university.",o:["finished","has finished","finishes","will finish"],e:"since + Past Simple"},
+ // adj
+ {t:"adj",q:"Which is the ___ way to the railway station?",o:["shortest","short","more short","most shortest"],e:"the + qısa sifət + -est"},
+ {t:"adj",q:"My suitcase is ___ than my sister's.",o:["heavier","heavy","more heavier","heaviest"],e:"than → müqayisə dərəcəsi: heavy → heavier"},
+ {t:"adj",q:"Today's homework was ___ than yesterday's.",o:["easier","easy","more easier","the easiest"]},
+ {t:"adj",q:"Jeyhun is 14 and his cousin is 18. His cousin is four years ___ than him.",o:["older","younger","elder","oldest"],e:"than ilə older işlənir (elder than olmur)"},
+ {t:"adj",q:"Shahdag is one of ___ mountains in Azerbaijan.",o:["the highest","the higher","most high","the most highest"],e:"one of + the + üstünlük dərəcəsi"},
+ {t:"adj",q:"The film wasn't ___ the book.",o:["so interesting as","as interesting","more interesting","most interesting"],e:"not so/as + adi forma + as"},
+ {t:"adj",q:"We have ___ homework today than last week.",o:["less","fewer","few","least"],e:"homework sayılmır → less"},
+ {t:"adj",q:"There were ___ pupils in the classroom than usual.",o:["fewer","less","little","least"],e:"pupils sayılır → fewer"},
+ {t:"adj",q:"These roses smell ___ .",o:["wonderful","wonderfully","wonder","more wonderfully"],e:"smell + sifət"},
+ {t:"adj",q:"Gunay plays the piano very ___ .",o:["beautifully","beautiful","beauty","more beautiful"],e:"Feili təsvir edir → zərf"},
+ {t:"adj",q:"Ilkin answered the question ___ than his classmates.",o:["more quickly","quicklier","most quickly","quick"]},
+ {t:"adj",q:"The box was so heavy that I could ___ carry it.",o:["hardly","hard","harder","hardest"],e:"hardly = çətinliklə, demək olar ki, yox"},
+ {t:"adj",q:"Lala works ___ because she wants to become a doctor.",o:["hard","hardly","harder than","hardest"]},
+ {t:"adj",q:"This jacket isn't warm ___ for the mountains.",o:["enough","too","very","much"],e:"sifət + enough"},
+ {t:"adj",q:"The eagle flew ___ above the hills.",o:["high","highly","higher than","highest"],e:"Hündürlük → high; highly = çox (highly recommended)"},
+ {t:"adj",q:"Elnur doesn't eat fast food, and his brother doesn't ___ .",o:["either","too","neither","also"],e:"İnkar cümlədə → either"},
+ {t:"adj",q:"Which word is an adverb?",o:["badly","friendly","lovely","bad"],e:"friendly, lovely -ly ilə bitsə də sifətdir"},
+ {t:"adj",q:"My cat is very ___, but my dog is even ___ .",o:["lazy, lazier","lazily, lazier","lazy, more lazier","lazier, lazy"]},
  // pas
  {t:"pas",q:"Football ___ all over the world.",o:["is played","plays","was played","are played"]},
  {t:"pas",q:"Tea ___ in Lankaran.",o:["is grown","grows","was grown","are grown"]},
@@ -414,6 +434,11 @@ const CARDS = [
  {t:"prc",q:"Razılaşdırılmış gələcək plan",a:"am / is / are + V-ing",ex:"We <b>are going</b> to Gabala this weekend."},
  {t:"pp",q:"just · already · yet — yeri?",a:"just/already: have + ___ + V3<br>yet: cümlənin sonu",ex:"She has <b>just</b> left. · I haven't finished <b>yet</b>."},
  {t:"pp",q:"since yoxsa for?",a:"since + nöqtə · for + müddət",ex:"<b>since</b> 2015 · <b>for</b> ten years"},
+ {t:"adj",q:"tall, cheap, easy → ?",a:"-er / the -est",ex:"<b>taller</b>, the <b>cheapest</b>, <b>easier</b>"},
+ {t:"adj",q:"beautiful, interesting → ?",a:"more / the most",ex:"<b>more beautiful</b>, the <b>most interesting</b>"},
+ {t:"adj",q:"look · smell · taste · sound · feel + ?",a:"Sifət (zərf yox!)",ex:"The roses smell <b>wonderful</b>. <s>wonderfully</s>"},
+ {t:"adj",q:"hard / hardly · high / highly · late / lately",a:"Mənaları fərqlidir!",ex:"work <b>hard</b> · can <b>hardly</b> carry · fly <b>high</b> · <b>highly</b> recommended"},
+ {t:"adj",q:"fewer yoxsa less?",a:"fewer + sayılan · less + sayılmayan",ex:"<b>fewer</b> pupils · <b>less</b> homework"},
  {t:"pas",q:"Passive düsturu",a:"be + V3",ex:"is <b>grown</b> · was <b>built</b> · will be <b>announced</b>"},
  {t:"pas",q:"when / if + passive (gələcək)",a:"Present Passive",ex:"when the tables <b>are laid</b> · <s>will be laid</s>"}
 ];
@@ -440,6 +465,11 @@ const TF = [
  {t:"pp",s:"I haven't finished my project yet.",ok:true},
  {t:"pp",s:"They have moved to Sumgait five years ago.",ok:false,fix:"They moved ... ago"},
  {t:"pp",s:"We have known each other since ten years.",ok:false,fix:"for ten years"},
+ {t:"adj",s:"These roses smell wonderfully.",ok:false,fix:"smell wonderful"},
+ {t:"adj",s:"The box was so heavy that I could hardly carry it.",ok:true},
+ {t:"adj",s:"There were less pupils than usual.",ok:false,fix:"fewer pupils"},
+ {t:"adj",s:"My suitcase is more heavier than yours.",ok:false,fix:"heavier"},
+ {t:"adj",s:"Elnur doesn't eat fast food, and his brother doesn't either.",ok:true},
  {t:"pas",s:"Tea is grown in Lankaran.",ok:true},
  {t:"pas",s:"These cakes was made by my sister.",ok:false,fix:"were made"},
  {t:"pas",s:"The guests will come in when the tables will be laid.",ok:false,fix:"when the tables are laid"}
@@ -619,7 +649,7 @@ async function submitResult(topic, pts, corr, total){
   if (!API_URL) { el.textContent = "Reytinq hələ qoşulmayıb — nəticən yalnız bu cihazda saxlanıldı."; saveLocal(topic, pts, corr, total); return; }
   el.textContent = "Nəticə reytinqə göndərilir…";
   try {
-    const r = await fetch(API_URL, { method: "POST", body: JSON.stringify({ name: user.full, topic, score: pts, correct: corr, total }) });
+    const r = await fetch(API_URL, { method: "POST", body: JSON.stringify({ name: user.full, topic, topicName: tName(topic), score: pts, correct: corr, total }) });
     const j = await r.json();
     el.textContent = j.ok ? "✅ Nəticən reytinq cədvəlinə yazıldı!" : "Nəticə yazılmadı: " + (j.error || "");
   } catch (e) { el.textContent = "İnternet bağlantısını yoxla — nəticə göndərilmədi."; }
