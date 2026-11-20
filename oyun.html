@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qrammatika Sınaqları — RN English</title>
+<meta name="description" content="Rəşad Nəsibov — ingilis dili qrammatika sınaqları, flashcard oyunu və reytinq cədvəli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14183a;--card:#fff;--ink:#1c1f3a;--muted:#6b7090;--yellow:#ffc93c;--green:#2ec4a0;--red:#ff5c6c;--blue:#4d8dff;--purple:#9b6bff;--orange:#ff9a3c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{font-family:'Nunito',system-ui,sans-serif;background:radial-gradient(1200px 600px at 50% -10%,#2b3380 0%,var(--bg) 60%);background-attachment:fixed;color:#fff;min-height:100vh;-webkit-tap-highlight-color:transparent}
+button,input{font-family:inherit}
+button{cursor:pointer;border:none}
+.wrap{max-width:760px;margin:0 auto;padding:18px 16px 48px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none}
+.logo{width:42px;height:42px;border-radius:12px;background:var(--yellow);color:var(--ink);display:grid;place-items:center;font-weight:900;font-size:17px;box-shadow:0 4px 0 #c99a1d}
+.brand h1{font-size:19px;font-weight:900;line-height:1.1}
+.brand small{display:block;font-size:12px;color:#aab0e0;font-weight:700}
+.hbtns{display:flex;gap:8px;align-items:center}
+.hbtn{background:rgba(255,255,255,.1);color:#fff;padding:9px 13px;border-radius:12px;font-weight:800;font-size:14px}
+.user{font-size:13px;font-weight:800;color:#dfe2ff;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hidden{display:none!important}
+.hero{text-align:center;margin:8px 0 20px}
+.hero h2{font-size:28px;font-weight:900;line-height:1.15}
+.hero h2 span{color:var(--yellow)}
+.hero p{color:#c3c8ef;margin-top:8px;font-weight:600}
+.panel{background:var(--card);color:var(--ink);border-radius:24px;padding:26px 22px;box-shadow:0 8px 0 rgba(0,0,0,.25)}
+.panel h3{font-size:22px;font-weight:900;margin-bottom:6px}
+.panel p.sub{color:var(--muted);font-weight:700;margin-bottom:18px}
+label{display:block;font-weight:800;font-size:14px;margin:12px 0 6px}
+input[type=text]{width:100%;padding:14px 16px;border-radius:14px;border:2px solid #e3e3f0;font-size:17px;font-weight:700;color:var(--ink);outline:none}
+input[type=text]:focus{border-color:var(--purple)}
+.err{color:var(--red);font-weight:800;font-size:14px;margin-top:10px;min-height:20px}
+.modes{display:grid;gap:12px}
+.mode{display:flex;align-items:center;gap:16px;text-align:left;padding:16px 18px;border-radius:20px;color:var(--ink);background:var(--card);box-shadow:0 6px 0 rgba(0,0,0,.25);transition:transform .12s;width:100%}
+.mode:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.mode .ic{width:54px;height:54px;flex:none;border-radius:16px;display:grid;place-items:center;font-size:26px}
+.mode h3{font-size:18px;font-weight:900}
+.mode p{font-size:14px;color:var(--muted);font-weight:600;margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.tcard{background:var(--card);color:var(--ink);border-radius:18px;padding:16px;text-align:left;box-shadow:0 6px 0 rgba(0,0,0,.25);border-top:6px solid var(--c);transition:transform .12s;width:100%}
+.tcard:active{transform:translateY(3px)}
+.tcard .ti{font-size:26px}
+.tcard h4{font-size:16px;font-weight:900;margin:6px 0 4px;line-height:1.25}
+.tcard small{color:var(--muted);font-weight:700;font-size:13px}
+.tcard .mine{display:block;margin-top:6px;font-weight:900;font-size:13px;color:var(--purple)}
+.sec-title{font-size:18px;font-weight:900;margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.1);color:#dfe2ff;font-weight:800;font-size:13px}
+.chip.on{background:var(--yellow);color:var(--ink)}
+.row{display:flex;gap:10px}
+.row>button{flex:1}
+.btn{padding:15px;border-radius:16px;font-weight:900;font-size:16px;color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.25);transition:transform .1s;width:100%}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.b-green{background:var(--green)}.b-red{background:var(--red)}.b-blue{background:var(--blue)}.b-ghost{background:rgba(255,255,255,.12)}.b-yellow{background:var(--yellow);color:var(--ink)}.b-purple{background:var(--purple)}
+/* cards */
+.fc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:800;color:#c3c8ef;font-size:14px}
+.scene{perspective:1200px;height:320px;margin-bottom:16px}
+.flip{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.3,.7,.3,1.2);transform-style:preserve-3d;cursor:pointer}
+.flip.turned{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;padding:28px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.25)}
+.front{background:var(--card);color:var(--ink)}
+.back{transform:rotateY(180deg);color:#fff}
+.tag{display:inline-block;font-size:12px;font-weight:900;padding:4px 10px;border-radius:999px;color:#fff}
+.face .tag{position:absolute;top:16px;left:18px}
+.front .q{font-size:23px;font-weight:900;line-height:1.3}
+.hint{position:absolute;bottom:16px;font-size:12px;color:var(--muted);font-weight:700}
+.back .a{font-size:21px;font-weight:900;margin-bottom:14px;line-height:1.3}
+.back .ex{background:rgba(255,255,255,.2);padding:12px 14px;border-radius:14px;font-size:16px;font-weight:700;line-height:1.45}
+.ex b{color:var(--yellow)}
+s{opacity:.7}
+/* quiz */
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px}
+.pill{background:rgba(255,255,255,.1);padding:8px 12px;border-radius:12px;font-weight:900;font-size:15px}
+.pill.streak{color:var(--orange)}
+.bar{height:10px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.bar>i{display:block;height:100%;background:var(--yellow);border-radius:99px;transition:width .25s}
+.timer>i{background:var(--green);transition:width .1s linear}
+.timer.low>i{background:var(--red)}
+.qcard{background:var(--card);color:var(--ink);border-radius:24px;padding:22px 20px;box-shadow:0 8px 0 rgba(0,0,0,.25);margin:14px 0}
+.qcard .tag{margin-bottom:12px}
+.qtext{font-size:21px;font-weight:800;line-height:1.45}
+.qtext small{display:block;font-size:16px;color:var(--muted);margin-top:6px}
+.gap{display:inline-block;min-width:64px;border-bottom:3px solid var(--purple);color:var(--purple);text-align:center;font-weight:900}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{background:var(--card);color:var(--ink);padding:15px 10px;border-radius:16px;font-weight:800;font-size:16px;box-shadow:0 5px 0 rgba(0,0,0,.25);transition:transform .1s,background .2s}
+.opt:active{transform:translateY(3px)}
+.opt.right{background:var(--green);color:#fff}
+.opt.wrong{background:var(--red);color:#fff;animation:shake .35s}
+.opt.dim{opacity:.45}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.explain{margin-top:14px;padding:14px 16px;border-radius:16px;font-weight:700;line-height:1.45;display:none}
+.explain.show{display:block}
+.explain.ok{background:rgba(46,196,160,.18);border:2px solid var(--green)}
+.explain.no{background:rgba(255,92,108,.15);border:2px solid var(--red)}
+.next{margin-top:12px;display:none}
+.next.show{display:block}
+.pop{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%) scale(.6);font-size:40px;font-weight:900;color:var(--yellow);opacity:0;pointer-events:none;text-shadow:0 4px 0 rgba(0,0,0,.3);white-space:nowrap}
+.pop.go{animation:pop .8s ease-out}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-90%) scale(1)}}
+.tf-sent{font-size:22px;font-weight:800;line-height:1.4;text-align:center;min-height:96px;display:flex;align-items:center;justify-content:center}
+.tf-fix{text-align:center;margin-top:10px;font-weight:800;min-height:26px}
+.tf-fix.ok{color:var(--green)}.tf-fix.no{color:var(--red)}
+.kbd{text-align:center;color:#9aa0d0;font-size:12px;font-weight:700;margin-top:10px}
+/* result */
+.result{text-align:center}
+.stars{font-size:44px;letter-spacing:6px;margin-bottom:6px}
+.big{font-size:52px;font-weight:900;color:var(--purple);line-height:1.1;margin:8px 0}
+.result p{color:var(--muted);font-weight:700}
+.saved{margin-top:10px;font-weight:800;font-size:14px}
+.review{text-align:left;margin-top:16px;max-height:260px;overflow:auto}
+.review div{padding:10px 12px;border-radius:12px;background:#f4f4fb;margin-bottom:8px;font-size:14px;font-weight:700;line-height:1.4}
+.review b{color:#16a383}
+/* leaderboard */
+.lb{width:100%;border-collapse:collapse;margin-top:6px}
+.lb th{text-align:left;font-size:12px;color:var(--muted);font-weight:900;padding:8px 6px;border-bottom:2px solid #eee;text-transform:uppercase}
+.lb td{padding:11px 6px;border-bottom:1px solid #f0f0f6;font-weight:800;font-size:15px}
+.lb td.r{width:44px;font-size:18px;text-align:center}
+.lb td.s{text-align:right;color:var(--purple);font-weight:900}
+.lb th.s{text-align:right}
+.lb tr.me td{background:#fff6d9}
+.lb .small{font-size:12px;color:var(--muted);font-weight:700}
+.note{background:#f4f4fb;border-radius:14px;padding:14px;font-weight:700;color:var(--muted);text-align:center;margin-top:10px}
+footer{text-align:center;color:#7d83b8;font-size:12px;font-weight:700;margin-top:28px}
+footer a{color:#aab0e0}
+@media (max-width:520px){.user{display:none}.hbtn{padding:8px 10px}}
+@media (max-width:420px){.tcard{padding:13px}.tcard h4{font-size:14.5px}.qtext{font-size:18px}.front .q{font-size:20px}.opt{font-size:14px}.scene{height:300px}.hero h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="/">
+      <div class="logo">RN</div>
+      <div><h1>Qrammatika Sınaqları</h1><small>Rəşad Nəsibov · İngilis dili</small></div>
+    </a>
+    <div class="hbtns">
+      <span class="user hidden" id="userTag"></span>
+      <button class="hbtn hidden" id="homeBtn">← Menyu</button>
+    </div>
+  </header>
+
+  <!-- LOGIN -->
+  <section id="login" class="hidden">
+    <div class="hero"><h2>Zamanları <span>oynayaraq</span> öyrən!</h2><p>Mövzu sınaqları · Qayda kartları · Reytinq cədvəli</p></div>
+    <form class="panel" id="loginForm">
+      <h3>Daxil ol</h3>
+      <p class="sub">Adın reytinq cədvəlində görünəcək.</p>
+      <label for="fName">Ad</label>
+      <input type="text" id="fName" maxlength="30" autocomplete="given-name" placeholder="Məsələn: Aysu">
+      <label for="lName">Soyad</label>
+      <input type="text" id="lName" maxlength="30" autocomplete="family-name" placeholder="Məsələn: Məhərrəmli">
+      <div class="err" id="loginErr"></div>
+      <button class="btn b-purple" type="submit" style="margin-top:6px">Başla 🚀</button>
+    </form>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="hidden">
+    <div class="hero"><h2>Salam, <span id="helloName"></span>! 👋</h2><p>Bir mövzu seç və sınağa başla</p></div>
+    <div class="modes">
+      <button class="mode" data-go="lb"><div class="ic" style="background:#fff1cc">🏆</div><div><h3>Reytinq cədvəli</h3><p>Ən yaxşı şagirdlər</p></div></button>
+      <button class="mode" data-go="mixed"><div class="ic" style="background:#e9e1ff">🎯</div><div><h3>Ümumi sınaq</h3><p>Bütün mövzulardan 20 sual</p></div></button>
+    </div>
+    <div class="sec-title">📚 Mövzu sınaqları</div>
+    <div class="grid" id="topicGrid"></div>
+    <div class="sec-title">🎮 Məşq oyunları</div>
+    <div class="modes">
+      <button class="mode" data-go="cards"><div class="ic" style="background:#e3f0ff">🃏</div><div><h3>Qayda kartları</h3><p>Kartı çevir, qaydanı yadda saxla</p></div></button>
+      <button class="mode" data-go="tf"><div class="ic" style="background:#d8f6ee">⚡</div><div><h3>Düz yoxsa səhv?</h3><p>60 saniyəlik sürət raundu</p></div></button>
+    </div>
+    <div style="text-align:center;margin-top:18px"><button class="hbtn" id="logoutBtn">Başqa ad ilə daxil ol</button></div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="cards" class="hidden">
+    <div class="chips" id="cardChips"></div>
+    <div class="fc-top"><span id="fcCount"></span><span>✅ <span id="fcKnown">0</span> bilirəm</span></div>
+    <div class="scene"><div class="flip" id="flip">
+      <div class="face front"><span class="tag" id="fcTag"></span><div class="q" id="fcQ"></div><div class="hint">Çevirmək üçün toxun 👆</div></div>
+      <div class="face back" id="fcBack"><div class="a" id="fcA"></div><div class="ex" id="fcEx"></div></div>
+    </div></div>
+    <div class="row"><button class="btn b-red" id="fcAgain">🔁 Təkrar</button><button class="btn b-green" id="fcKnow">✓ Bilirəm</button></div>
+    <div class="row" style="margin-top:10px"><button class="btn b-ghost" id="fcPrev">←</button><button class="btn b-ghost" id="fcShuffle">🔀 Qarışdır</button><button class="btn b-ghost" id="fcNext">→</button></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="hud"><span class="pill" id="qNum">1/10</span><span class="pill streak" id="qStreak">🔥 0</span><span class="pill" id="qScore">⭐ 0</span></div>
+    <div class="bar"><i id="qProg" style="width:0"></i></div>
+    <div class="bar timer" id="timerBar"><i id="qTime" style="width:100%"></i></div>
+    <div class="qcard"><span class="tag" id="qTag"></span><div class="qtext" id="qText"></div></div>
+    <div class="opts" id="qOpts"></div>
+    <div class="explain" id="qExplain"></div>
+    <button class="btn b-yellow next" id="qNext">Növbəti →</button>
+  </section>
+
+  <!-- TRUE / FALSE -->
+  <section id="tf" class="hidden">
+    <div class="hud"><span class="pill" id="tfTime">⏱ 60</span><span class="pill streak" id="tfStreak">🔥 0</span><span class="pill" id="tfScore">⭐ 0</span></div>
+    <div class="bar timer"><i id="tfBar" style="width:100%"></i></div>
+    <div class="qcard"><div class="tf-sent" id="tfSent"></div><div class="tf-fix" id="tfFix"></div></div>
+    <div class="row"><button class="btn b-red" id="tfNo" style="font-size:20px;padding:20px">✗ Səhv</button><button class="btn b-green" id="tfYes" style="font-size:20px;padding:20px">✓ Düz</button></div>
+    <div class="kbd">Klaviatura: ← səhv · → düz</div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="hidden">
+    <div class="panel result">
+      <div class="stars" id="rStars"></div>
+      <h3 id="rTitle" style="font-size:26px"></h3>
+      <div class="big" id="rScore"></div>
+      <p id="rInfo"></p>
+      <div class="saved" id="rSaved"></div>
+      <div class="review" id="rReview"></div>
+      <div class="row" style="margin-top:18px">
+        <button class="btn b-ghost" style="color:var(--ink);background:#eceaf7" id="rMenu">Menyu</button>
+        <button class="btn b-yellow" id="rLb">🏆 Reytinq</button>
+        <button class="btn b-blue" id="rAgain">Yenidən</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section id="lb" class="hidden">
+    <div class="chips" id="lbChips"></div>
+    <div class="panel">
+      <h3 id="lbTitle">🏆 Reytinq</h3>
+      <p class="sub" id="lbSub"></p>
+      <div id="lbBody"></div>
+    </div>
+  </section>
+
+  <footer>RN – Rashad Nasibov · <a href="/">rashadenglish.com</a></footer>
+</div>
+<div class="pop" id="pop"></div>
+
+<script>
+const TOPICS = {
+ ps:  {name:"Present & Past Simple", icon:"🕰️", color:"#4d8dff", tip:"usually / every day → V1(+s); yesterday / ago / last → V2."},
+ pq:  {name:"Past Simple: sual və inkar", icon:"❓", color:"#3b6fe0", tip:"did / didn't / Did ...? sonra feil həmişə V1 olur: didn't have, Did you take."},
+ fut: {name:"will / be going to", icon:"🔮", color:"#ff9a3c", tip:"I think / I'm sure / anında qərar → will + V1. Hazır plan və 'Look!' sübutu → be going to + V1."},
+ time:{name:"when / as soon as / before / after", icon:"⏳", color:"#2ec4a0", tip:"Bu bağlayıcılardan sonra gələcək mənada Present Simple işlənir (will yox); baş cümlədə will. Keçmişdə hər ikisi Past Simple."},
+ c1:  {name:"First Conditional", icon:"🔀", color:"#ff5c6c", tip:"If + Present Simple, will + V1. if-dən sonra will olmur; inkar: doesn't rain / won't want."},
+ c0:  {name:"Zero Conditional", icon:"🧪", color:"#e0457b", tip:"Ümumi həqiqət: if / when + Present Simple, Present Simple."},
+ used:{name:"used to", icon:"📼", color:"#9b6bff", tip:"Keçmiş vərdiş: used to + V1. İnkar və sualda: didn't use to / Did ... use to."},
+ pc:  {name:"Past Continuous (when / while)", icon:"🎬", color:"#14a3c7", tip:"was/were + V-ing. Uzun hərəkət (Past Continuous) + qəfil hərəkət (when + Past Simple). while + iki uzun hərəkət."},
+ prc: {name:"Present Continuous: gələcək plan", icon:"📅", color:"#f2b705", tip:"Razılaşdırılmış plan: am/is/are + V-ing (tonight, this weekend). Gələcək üçün will, be going to, Present Continuous çox vaxt hamısı düzdür; Past Simple heç vaxt."},
+ pp:  {name:"Present Perfect", icon:"✅", color:"#22a06b", tip:"have/has + V3. just/already have ilə V3 arasında; yet sonda. since + nöqtə, for + müddət; ago → Past Simple."},
+ pas: {name:"Passive Voice", icon:"🏗️", color:"#7a5cff", tip:"be + V3: is/are + V3, was/were + V3, will be + V3. when/if-dən sonra Present Passive: when the tables are laid."}
+};
+
+/* q: sual (___ boşluq), o: variantlar (birincisi DÜZGÜN cavabdır — oyunda qarışdırılır), e: izah (istəyə görə) */
+const QUIZ = [
+ // ps
+ {t:"ps",q:"Nigar usually ___ the bus to school.",o:["takes","take","took","is taking"],e:"usually + she → V1+s"},
+ {t:"ps",q:"Every summer my uncle ___ fish in the lake.",o:["catches","catch","caught","has caught"]},
+ {t:"ps",q:"Elvin usually walks home, but yesterday he ___ a taxi.",o:["took","takes","has taken","take"],e:"yesterday → Past Simple"},
+ {t:"ps",q:"Last weekend the children ___ a snowman in the yard.",o:["built","build","have built","builds"]},
+ {t:"ps",q:"We ___ a lovely flat when we were in Istanbul.",o:["rented","rent","have rented","will rent"]},
+ {t:"ps",q:"There ___ many people at the wedding last Saturday.",o:["were","was","are","have been"],e:"many people (cəm) + last Saturday → were"},
+ {t:"ps",q:"Our team ___ the final three days ago.",o:["won","wins","has won","will win"],e:"ago → Past Simple"},
+ {t:"ps",q:"– Have you tried sushi? – Yes, I ___ it in Baku last month.",o:["tried","have tried","try","will try"],e:"Vaxt göstərilib (last month) → Past Simple"},
+ {t:"ps",q:"The audience ___ loudly when the singer appeared on the stage.",o:["clapped","clap","claps","has clapped"]},
+ {t:"ps",q:"My grandmother ___ tea with lemon every evening.",o:["drinks","drank","drink","has drunk"]},
+ {t:"ps",q:"Everybody ___ the concert last night.",o:["enjoyed","enjoy","enjoys","have enjoyed"]},
+ {t:"ps",q:"Yesterday I ___ my homework and went to bed early.",o:["finished","finish","have finished","finishes"],e:"Ardıcıl keçmiş hərəkətlər → Past Simple"},
+ // pq
+ {t:"pq",q:"___ you ___ any souvenirs in Shaki last summer?",o:["Did, buy","Have, bought","Did, bought","Do, buy"]},
+ {t:"pq",q:"What ___ Murad ___ for his birthday last year?",o:["did, get","has, got","did, got","does, gets"]},
+ {t:"pq",q:"Kamal ___ the answer, so he asked the teacher.",o:["didn't know","doesn't know","didn't knew","hasn't known"]},
+ {t:"pq",q:"We ___ the museum yesterday because it was closed.",o:["didn't visit","don't visit","didn't visited","haven't visited"]},
+ {t:"pq",q:"___ anyone ___ my phone while I was in the kitchen?",o:["Did, see","Has, seen","Did, saw","Does, see"]},
+ {t:"pq",q:"Where ___ you ___ last New Year?",o:["did, celebrate","have, celebrated","do, celebrate","did, celebrated"]},
+ {t:"pq",q:"She ___ breakfast yesterday morning because she was late.",o:["didn't have","didn't had","hasn't had","doesn't have"]},
+ {t:"pq",q:"___ your sister ___ French at university?",o:["Did, study","Does, studied","Has, study","Did, studied"]},
+ {t:"pq",q:"The guests ___ the soup. They said it was too salty.",o:["didn't like","don't like","didn't liked","haven't like"]},
+ {t:"pq",q:"How long ___ the journey ___ last time?",o:["did, take","has, took","does, take","did, took"]},
+ {t:"pq",q:"I ___ to the party on Friday because I felt ill.",o:["didn't go","didn't went","don't go","haven't gone"]},
+ {t:"pq",q:"___ they ___ the match last Sunday?",o:["Did, win","Have, won","Did, won","Do, win"]},
+ // fut
+ {t:"fut",q:"I think our teacher ___ us a test tomorrow.",o:["will give","gives","gave","is going give"],e:"I think → will"},
+ {t:"fut",q:"Look at that glass on the edge of the table! It ___.",o:["is going to fall","will falls","falls","fell"],e:"Look! + sübut → be going to"},
+ {t:"fut",q:"We have already bought the paint. We ___ the kitchen next week.",o:["are going to paint","will painting","painted","are going paint"],e:"Hazır plan → be going to ('to' unutma!)"},
+ {t:"fut",q:"I'm sure Aysel ___ the competition.",o:["will win","wins","won","is going win"]},
+ {t:"fut",q:"In 30 years, cars ___ without drivers.",o:["will drive","drove","are going drive","drives"]},
+ {t:"fut",q:"My brother ___ a dentist. He has already applied to the medical university.",o:["is going to become","became","will becomes","becomes"]},
+ {t:"fut",q:"– The phone is ringing. – I ___ it!",o:["will answer","answered","am going answer","answer"],e:"Anında qərar → will"},
+ {t:"fut",q:"We believe the new bridge ___ the traffic problem.",o:["will solve","solved","has solved","solve"]},
+ {t:"fut",q:"Look at those black clouds! It ___ soon.",o:["is going to rain","rains","rained","has rained"]},
+ {t:"fut",q:"Rauf ___ in Baku at 6 o'clock tomorrow.",o:["will arrive","arrived","will arrives","has arrived"],e:"will + V1"},
+ {t:"fut",q:"They ___ a new school in our village next year — the plans are ready.",o:["are going to build","built","have built","are going build"]},
+ {t:"fut",q:"Don't worry. I ___ you with your homework.",o:["will help","helped","am going help","helps"]},
+ // time
+ {t:"time",q:"When Lala ___ to Paris, she will visit the Louvre.",o:["goes","will go","went","go"],e:"when + Present Simple"},
+ {t:"time",q:"I will phone you as soon as the plane ___.",o:["lands","will land","landed","land"]},
+ {t:"time",q:"Please switch off the lights before you ___ the room.",o:["leave","will leave","left","leaves"]},
+ {t:"time",q:"After the lesson ___, we will go to the canteen.",o:["finishes","will finish","finished","finish"]},
+ {t:"time",q:"What are you going to do when you ___ school?",o:["finish","will finish","finished","finishes"]},
+ {t:"time",q:"Tural ___ his bike when he gets home.",o:["will repair","repaired","has repaired","repair"],e:"Baş cümlə gələcəkdə → will"},
+ {t:"time",q:"She will tell you the news as soon as she ___ it.",o:["hears","will hear","heard","hear"]},
+ {t:"time",q:"We ___ dinner after Dad comes back from work.",o:["will have","had","have had","has"]},
+ {t:"time",q:"When Sabina opened the door, she ___ a big box.",o:["saw","sees","will see","has seen"],e:"Keçmiş hadisə → hər ikisi Past Simple"},
+ {t:"time",q:"My sister will start working after she ___ from university.",o:["graduates","will graduate","graduated","graduate"]},
+ {t:"time",q:"They won't leave until the rain ___.",o:["stops","will stop","stopped","stop"]},
+ {t:"time",q:"The children ran outside as soon as the bell ___.",o:["rang","rings","will ring","has rung"]},
+ // c1
+ {t:"c1",q:"If Leyla ___ the early bus, she will be at school on time.",o:["catches","will catch","caught","catch"]},
+ {t:"c1",q:"If you ___ now, you will get there by 10.",o:["leave","will leave","left","leaves"]},
+ {t:"c1",q:"If it ___ tomorrow, we'll go to the beach.",o:["doesn't rain","won't rain","didn't rain","don't rain"],e:"if-hissədə inkar: doesn't + V1"},
+ {t:"c1",q:"The match will be cancelled if the weather ___ bad.",o:["is","will be","was","are"]},
+ {t:"c1",q:"If you eat too many sweets, your teeth ___.",o:["will hurt","hurted","hurting","are hurt"]},
+ {t:"c1",q:"You ___ the exam if you work hard.",o:["will pass","passed","passes","passing"]},
+ {t:"c1",q:"If he ___ me, I will help him.",o:["asks","will ask","asked","ask"]},
+ {t:"c1",q:"If you don't wear a coat, you ___ a cold.",o:["will catch","caught","catches","catching"]},
+ {t:"c1",q:"Mum will be angry if we ___ home late.",o:["come","will come","came","comes"]},
+ {t:"c1",q:"If Orkhan ___ a scholarship, he will study abroad.",o:["gets","will get","got","get"]},
+ {t:"c1",q:"If you ___ hurry, you will miss the train.",o:["don't","won't","didn't","doesn't"]},
+ {t:"c1",q:"If you drink coffee now, you ___ at night.",o:["won't sleep","don't sleep","didn't sleep","wasn't sleep"],e:"Baş cümlədə inkar → won't + V1"},
+ // c0
+ {t:"c0",q:"If you heat ice, it ___.",o:["melts","will melts","melted","melting"],e:"Ümumi həqiqət → Present Simple"},
+ {t:"c0",q:"When people ___ more money, they usually spend more.",o:["earn","will earn","earned","earns"]},
+ {t:"c0",q:"Plants ___ if they don't get water.",o:["die","died","dies","dying"]},
+ {t:"c0",q:"If the weather ___ hot, people always go to the beach.",o:["is","will be","was","are"]},
+ {t:"c0",q:"Our flat always ___ nice if we keep it tidy.",o:["looks","looked","look","looking"]},
+ {t:"c0",q:"Many birds ___ to warm countries when winter comes.",o:["fly","flew","flies","flown"]},
+ {t:"c0",q:"If you mix red and white, you ___ pink.",o:["get","got","gets","getting"]},
+ {t:"c0",q:"When students listen carefully, they ___ the new rules.",o:["understand","understood","understands","understanding"]},
+ {t:"c0",q:"If water ___ 0°C, it freezes.",o:["reaches","will reach","reached","reach"]},
+ {t:"c0",q:"Metal ___ when you heat it.",o:["expands","expanded","expand","expanding"]},
+ // used
+ {t:"used",q:"I ___ ride a bike to school when I was ten.",o:["used to","use to","didn't used to","using to"]},
+ {t:"used",q:"My grandparents ___ live in a village, but now they live in Baku.",o:["used to","use to","are used","uses to"]},
+ {t:"used",q:"She ___ like vegetables, but now she loves them.",o:["didn't use to","didn't used to","not used to","doesn't used to"],e:"didn't-dən sonra use (d yoxdur)"},
+ {t:"used",q:"___ you use to watch cartoons as a child?",o:["Did","Do","Were","Have"]},
+ {t:"used",q:"There ___ a park here, but now it's a car park.",o:["used to be","use to be","used to being","uses to be"]},
+ {t:"used",q:"My dad ___ play football every Sunday when he was young.",o:["used to","use to","uses to","was use to"]},
+ {t:"used",q:"We ___ have a computer when I was little.",o:["didn't use to","didn't used to","don't use to","weren't use to"]},
+ {t:"used",q:"Where did you ___ go on holiday when you were a child?",o:["use to","used to","using to","uses to"]},
+ // pc
+ {t:"pc",q:"At 7 o'clock yesterday evening I ___ dinner.",o:["was cooking","cooked","am cooking","were cooking"],e:"Keçmişdə müəyyən an → Past Continuous"},
+ {t:"pc",q:"I ___ a shower when the doorbell rang.",o:["was having","had","were having","am having"]},
+ {t:"pc",q:"While Mum ___ the dishes, Dad was reading the newspaper.",o:["was washing","washed","were washing","washes"],e:"while + iki uzun hərəkət"},
+ {t:"pc",q:"We were walking in the park when it ___ to snow.",o:["started","was starting","starts","has started"],e:"Qəfil hərəkət → when + Past Simple"},
+ {t:"pc",q:"What ___ you ___ at midnight last night?",o:["were, doing","did, do","was, doing","were, did"]},
+ {t:"pc",q:"While I ___ the street, I saw an accident.",o:["was crossing","crossed","were crossing","am crossing"]},
+ {t:"pc",q:"The students ___ when the teacher came in.",o:["were talking","talked","was talking","are talking"]},
+ {t:"pc",q:"While the children were playing, their parents ___ tea.",o:["were drinking","drink","was drinking","have drunk"]},
+ {t:"pc",q:"Samir broke his arm while he ___ basketball.",o:["was playing","played","were playing","plays"]},
+ {t:"pc",q:"When the lights went out, we ___ a film.",o:["were watching","watch","was watching","have watched"]},
+ {t:"pc",q:"At this time yesterday it ___ heavily.",o:["was raining","is raining","were raining","rains"]},
+ {t:"pc",q:"While she ___ to music, her brother was doing his homework.",o:["was listening","listened","were listening","listens"]},
+ // prc
+ {t:"prc",q:"We ___ to Gabala this weekend. We've booked a hotel.",o:["are going","went","were going","have gone"]},
+ {t:"prc",q:"My friends and I ___ a film at the cinema tonight.",o:["are watching","watched","were watching","have watched"]},
+ {t:"prc",q:"Aysu ___ her cousin tomorrow — they arranged it last week.",o:["is meeting","met","was meeting","has met"]},
+ {t:"prc",q:"What ___ you ___ next Saturday?",o:["are, doing","did, do","were, doing","have, done"]},
+ {t:"prc",q:"They ___ a party for Nihad's birthday on Friday.",o:["are having","had","have had","were having"]},
+ {t:"prc",q:"I ___ to the dentist at 4 p.m. tomorrow.",o:["am going","went","was going","have gone"]},
+ {t:"prc",q:"We ___ dinner with our neighbours tonight.",o:["are having","had","were having","have had"]},
+ {t:"prc",q:"We ___ football next Sunday.<br><small>1) are playing 2) will play 3) played 4) are going to play</small>",o:["1, 2, 4","1, 3","2, 3","3, 4"],e:"Gələcək üçün 3 forma düzdür; Past Simple yox"},
+ {t:"prc",q:"She ___ her grandparents this weekend.<br><small>1) visited 2) is visiting 3) is going to visit 4) will visit</small>",o:["2, 3, 4","1, 2","1, 4","1, 3"]},
+ {t:"prc",q:"My parents ___ to Turkey next month.<br><small>1) are flying 2) flew 3) are going to fly 4) were flying</small>",o:["1, 3","2, 4","1, 2","3, 4"]},
+ // pp
+ {t:"pp",q:"I ___ my project yet.",o:["haven't finished","didn't finish","don't finish","wasn't finishing"],e:"yet → Present Perfect"},
+ {t:"pp",q:"Our guests ___ yet.",o:["haven't arrived","didn't arrive","don't arrive","weren't arriving"]},
+ {t:"pp",q:"She has ___ left. You can't see her now.",o:["just","yet","ago","since"],e:"just → have/has ilə V3 arasında"},
+ {t:"pp",q:"We ___ seen this film. Let's watch another one.",o:["have already","already have","are already","were already"]},
+ {t:"pp",q:"I ___ known Gunel since we were children.",o:["have","had","am","was"]},
+ {t:"pp",q:"My uncle ___ in Germany since 2015.",o:["has lived","lived","lives","is living"]},
+ {t:"pp",q:"They moved to Sumgait five years ___.",o:["ago","since","for","already"],e:"ago → Past Simple"},
+ {t:"pp",q:"I ___ two cups of tea today.",o:["have drunk","drank","drink","was drinking"],e:"today (bitməyib) → Present Perfect"},
+ {t:"pp",q:"Kamran ___ to London twice.",o:["has been","was","is","had being"]},
+ {t:"pp",q:"Have you done your homework ___?",o:["yet","already","just","ago"],e:"Sual cümləsinin sonunda yet"},
+ {t:"pp",q:"We ___ each other for ten years.",o:["have known","knew","know","are knowing"]},
+ {t:"pp",q:"The bus ___ already ___.",o:["has, left","did, leave","is, left","was, leaving"]},
+ {t:"pp",q:"Leyla has worked here since she ___ university.",o:["finished","has finished","finishes","will finish"],e:"since + Past Simple"},
+ // pas
+ {t:"pas",q:"Football ___ all over the world.",o:["is played","plays","was played","are played"]},
+ {t:"pas",q:"Tea ___ in Lankaran.",o:["is grown","grows","was grown","are grown"]},
+ {t:"pas",q:"The Maiden Tower ___ many centuries ago.",o:["was built","is built","built","were built"]},
+ {t:"pas",q:"These cakes ___ by my sister yesterday.",o:["were made","was made","are made","made"],e:"cakes (cəm) + yesterday → were + V3"},
+ {t:"pas",q:"The winners ___ tomorrow.",o:["will be announced","will announce","are announced","were announced"]},
+ {t:"pas",q:"The new stadium ___ next year.",o:["will be built","will build","was built","is built"]},
+ {t:"pas",q:"The guests will come in when the tables ___.",o:["are laid","will be laid","were laid","is laid"],e:"when + Present Passive"},
+ {t:"pas",q:"My bike ___ last night.",o:["was stolen","is stolen","stole","were stolen"]},
+ {t:"pas",q:"Letters ___ to our office every morning.",o:["are delivered","is delivered","were delivered","deliver"]},
+ {t:"pas",q:"The tests ___ by the teacher next Monday.",o:["will be checked","will check","were checked","are checking"]},
+ {t:"pas",q:"When forests ___, many animals lose their homes.",o:["are destroyed","will be destroyed","was destroyed","destroy"]},
+ {t:"pas",q:"These photos ___ in Shusha last summer.",o:["were taken","was taken","are taken","took"]}
+];
+
+const CARDS = [
+ {t:"ps",q:"usually, often, every day",a:"Present Simple<br>V1 / he-she-it → V1+s",ex:"Nigar usually <b>takes</b> the bus."},
+ {t:"ps",q:"yesterday, last week, ago",a:"Past Simple → V2",ex:"Our team <b>won</b> three days ago."},
+ {t:"pq",q:"did / didn't / Did ...? sonra feil?",a:"Həmişə V1",ex:"didn't <b>have</b> ✓ · <s>didn't had</s> ✗"},
+ {t:"pq",q:"– Have you tried sushi?<br>– Yes, I ... it last month.",a:"tried",ex:"Vaxt var (<b>last month</b>) → Past Simple"},
+ {t:"fut",q:"I think · I'm sure · I believe",a:"will + V1",ex:"I'm sure Aysel <b>will win</b>."},
+ {t:"fut",q:"Look at those clouds! It ...",a:"be going to",ex:"It <b>is going to rain</b>. ('to' unutma!)"},
+ {t:"time",q:"when · as soon as · before · after + gələcək",a:"Present Simple (will YOX)",ex:"When Lala <b>goes</b> to Paris, she <b>will visit</b> the Louvre."},
+ {t:"time",q:"Hadisə keçmişdə olubsa?",a:"Hər iki hissə Past Simple",ex:"When Sabina <b>opened</b> the door, she <b>saw</b> a box."},
+ {t:"c1",q:"First Conditional düsturu",a:"If + Present Simple, will + V1",ex:"If you <b>leave</b> now, you <b>will get</b> there by 10."},
+ {t:"c1",q:"if-dən sonra will?",a:"Xeyr!",ex:"If it <b>doesn't rain</b> ✓ · <s>If it won't rain</s> ✗"},
+ {t:"c0",q:"Ümumi həqiqət (Zero Conditional)",a:"If/When + Present Simple, Present Simple",ex:"If you heat ice, it <b>melts</b>."},
+ {t:"used",q:"Keçmiş vərdiş, indi yoxdur",a:"used to + V1",ex:"I <b>used to</b> ride a bike to school."},
+ {t:"used",q:"used to — inkar və sual",a:"didn't use to · Did ... use to?",ex:"She <b>didn't use to</b> like vegetables. <s>didn't used to</s>"},
+ {t:"pc",q:"Keçmişdə müəyyən anda gedən hərəkət",a:"was / were + V-ing",ex:"At 7 yesterday I <b>was cooking</b>."},
+ {t:"pc",q:"Uzun hərəkət + qəfil hərəkət",a:"Past Continuous + when + Past Simple",ex:"I <b>was having</b> a shower when the bell <b>rang</b>."},
+ {t:"pc",q:"while + ?",a:"İki paralel uzun hərəkət → hər ikisi Past Continuous",ex:"While Mum <b>was washing</b>, Dad <b>was reading</b>."},
+ {t:"prc",q:"Razılaşdırılmış gələcək plan",a:"am / is / are + V-ing",ex:"We <b>are going</b> to Gabala this weekend."},
+ {t:"pp",q:"just · already · yet — yeri?",a:"just/already: have + ___ + V3<br>yet: cümlənin sonu",ex:"She has <b>just</b> left. · I haven't finished <b>yet</b>."},
+ {t:"pp",q:"since yoxsa for?",a:"since + nöqtə · for + müddət",ex:"<b>since</b> 2015 · <b>for</b> ten years"},
+ {t:"pas",q:"Passive düsturu",a:"be + V3",ex:"is <b>grown</b> · was <b>built</b> · will be <b>announced</b>"},
+ {t:"pas",q:"when / if + passive (gələcək)",a:"Present Passive",ex:"when the tables <b>are laid</b> · <s>will be laid</s>"}
+];
+
+const TF = [
+ {t:"pq",s:"Kamal didn't knew the answer.",ok:false,fix:"didn't know"},
+ {t:"pq",s:"Did you buy any souvenirs in Shaki?",ok:true},
+ {t:"ps",s:"I have tried sushi last month.",ok:false,fix:"I tried sushi last month."},
+ {t:"ps",s:"Nigar usually takes the bus to school.",ok:true},
+ {t:"fut",s:"Look! The glass is going fall.",ok:false,fix:"is going to fall"},
+ {t:"fut",s:"I think our teacher will give us a test.",ok:true},
+ {t:"fut",s:"Rauf will arrives at 6 o'clock.",ok:false,fix:"will arrive"},
+ {t:"time",s:"When Lala will go to Paris, she will visit the Louvre.",ok:false,fix:"When Lala goes"},
+ {t:"time",s:"I will phone you as soon as the plane lands.",ok:true},
+ {t:"c1",s:"If it won't rain tomorrow, we'll go to the beach.",ok:false,fix:"If it doesn't rain"},
+ {t:"c1",s:"If you leave now, you will get there by 10.",ok:true},
+ {t:"c0",s:"If you heat ice, it melts.",ok:true},
+ {t:"used",s:"She didn't used to like vegetables.",ok:false,fix:"didn't use to"},
+ {t:"used",s:"My grandparents used to live in a village.",ok:true},
+ {t:"pc",s:"I was having a shower when the doorbell rang.",ok:true},
+ {t:"pc",s:"While Mum washed the dishes, Dad was reading.",ok:false,fix:"While Mum was washing"},
+ {t:"pc",s:"They was playing football at 5 yesterday.",ok:false,fix:"They were playing"},
+ {t:"prc",s:"We are going to Gabala this weekend.",ok:true},
+ {t:"pp",s:"I haven't finished my project yet.",ok:true},
+ {t:"pp",s:"They have moved to Sumgait five years ago.",ok:false,fix:"They moved ... ago"},
+ {t:"pp",s:"We have known each other since ten years.",ok:false,fix:"for ten years"},
+ {t:"pas",s:"Tea is grown in Lankaran.",ok:true},
+ {t:"pas",s:"These cakes was made by my sister.",ok:false,fix:"were made"},
+ {t:"pas",s:"The guests will come in when the tables will be laid.",ok:false,fix:"when the tables are laid"}
+];
+
+
+/* === Reytinq üçün Google Apps Script veb-tətbiqinin ünvanı === */
+const API_URL = "";
+
+const QTIME = 20;          // hər sual üçün saniyə
+const MIXED_COUNT = 20;    // ümumi sınaqda sual sayı
+
+const $ = id => document.getElementById(id);
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const store = { get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} } };
+const tName = t => t === "mixed" ? "Ümumi sınaq" : TOPICS[t].name;
+const tColor = t => t === "mixed" ? "#9b6bff" : TOPICS[t].color;
+const fmtQ = q => q.replace("___", '<span class="gap">?</span>');
+let actx = null;
+function beep(ok){ try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const o = actx.createOscillator(), g = actx.createGain(); o.type = "triangle"; o.frequency.value = ok ? 660 : 180; if (ok) o.frequency.setValueAtTime(880, actx.currentTime + .08); g.gain.setValueAtTime(.15, actx.currentTime); g.gain.exponentialRampToValueAtTime(.001, actx.currentTime + (ok ? .18 : .3)); o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + .32); } catch(e){} }
+function popText(t){ const p = $("pop"); p.textContent = t; p.classList.remove("go"); void p.offsetWidth; p.classList.add("go"); }
+
+/* ---------- user ---------- */
+let user = store.get("rn_user");
+const cleanName = s => s.replace(/\s+/g, " ").trim();
+function setUser(u){ user = u; store.set("rn_user", u); $("userTag").textContent = "👤 " + u.full; }
+$("loginForm").onsubmit = e => {
+  e.preventDefault();
+  const f = cleanName($("fName").value), l = cleanName($("lName").value);
+  const ok = s => /^[\p{L}][\p{L}'\- ]{1,29}$/u.test(s);
+  if (!ok(f) || !ok(l)) { $("loginErr").textContent = "Zəhmət olmasa adını və soyadını düzgün yaz."; return; }
+  const cap = s => s.charAt(0).toLocaleUpperCase("az") + s.slice(1);
+  setUser({ full: cap(f) + " " + cap(l) });
+  $("loginErr").textContent = ""; goMenu();
+};
+$("logoutBtn").onclick = () => { try { localStorage.removeItem("rn_user"); } catch(e){} user = null; show("login"); };
+
+/* ---------- navigation ---------- */
+const SECTIONS = ["login","menu","cards","quiz","tf","result","lb"];
+function show(id){
+  SECTIONS.forEach(s => $(s).classList.toggle("hidden", s !== id));
+  $("homeBtn").classList.toggle("hidden", id === "menu" || id === "login");
+  $("userTag").classList.toggle("hidden", !user || id === "login");
+  stopTimers(); window.scrollTo(0, 0);
+}
+$("homeBtn").onclick = () => goMenu();
+function goMenu(){ $("helloName").textContent = user.full.split(" ")[0]; renderTopicGrid(); show("menu"); }
+
+function myBest(t){ return (store.get("rn_best") || {})[t]; }
+function renderTopicGrid(){
+  $("topicGrid").innerHTML = Object.entries(TOPICS).map(([k, v]) => {
+    const n = QUIZ.filter(q => q.t === k).length, b = myBest(k);
+    return `<button class="tcard" style="--c:${v.color}" data-t="${k}"><div class="ti">${v.icon}</div><h4>${v.name}</h4><small>${n} sual</small>${b != null ? `<span class="mine">Ən yaxşı nəticən: ${b} xal</span>` : ""}</button>`;
+  }).join("");
+  $("topicGrid").querySelectorAll(".tcard").forEach(b => b.onclick = () => startQuiz(b.dataset.t));
+}
+document.querySelectorAll(".mode").forEach(b => b.onclick = () => {
+  const m = b.dataset.go;
+  if (m === "lb") openLb("all");
+  if (m === "mixed") startQuiz("mixed");
+  if (m === "cards") startCards("all");
+  if (m === "tf") startTf();
+});
+
+/* ---------- flashcards ---------- */
+let deck = [], fi = 0, known = new Set(), cardTopic = "all";
+function renderChips(el, cur, onPick, withAll){
+  const items = (withAll ? [["all", {name:"Hamısı"}]] : []).concat(Object.entries(TOPICS));
+  el.innerHTML = items.map(([k, v]) => `<button class="chip ${k === cur ? "on" : ""}" data-t="${k}">${v.icon ? v.icon + " " : ""}${v.name}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b => b.onclick = () => onPick(b.dataset.t));
+}
+function startCards(t){
+  cardTopic = t; deck = t === "all" ? CARDS.slice() : CARDS.filter(c => c.t === t); fi = 0; known = new Set();
+  renderChips($("cardChips"), t, startCards, true); show("cards"); drawCard();
+}
+function drawCard(){
+  const c = deck[fi]; $("flip").classList.remove("turned");
+  setTimeout(() => { $("fcTag").textContent = TOPICS[c.t].name; $("fcTag").style.background = TOPICS[c.t].color; $("fcQ").innerHTML = c.q; $("fcA").innerHTML = c.a; $("fcEx").innerHTML = c.ex; $("fcBack").style.background = TOPICS[c.t].color; }, 120);
+  $("fcCount").textContent = `Kart ${fi + 1} / ${deck.length}`; $("fcKnown").textContent = known.size;
+}
+$("flip").onclick = () => $("flip").classList.toggle("turned");
+$("fcNext").onclick = () => { fi = (fi + 1) % deck.length; drawCard(); };
+$("fcPrev").onclick = () => { fi = (fi - 1 + deck.length) % deck.length; drawCard(); };
+$("fcShuffle").onclick = () => { deck = shuffle(deck); fi = 0; drawCard(); };
+$("fcKnow").onclick = () => { known.add(deck[fi].q); beep(true); if (known.size === deck.length) popText("Əla! 🎉"); fi = (fi + 1) % deck.length; drawCard(); };
+$("fcAgain").onclick = () => { if (deck.length > 1) { const c = deck.splice(fi, 1)[0]; deck.push(c); if (fi >= deck.length) fi = 0; } drawCard(); };
+
+/* ---------- quiz ---------- */
+let qs = [], qi = 0, score = 0, streak = 0, correct = 0, qTimer = null, tfTimer = null, tLeft = 0, locked = false, mistakes = [], quizTopic = "mixed";
+function stopTimers(){ clearInterval(qTimer); clearInterval(tfTimer); }
+function startQuiz(t){
+  quizTopic = t;
+  let pool = t === "mixed" ? shuffle(QUIZ).slice(0, MIXED_COUNT) : shuffle(QUIZ.filter(q => q.t === t));
+  qs = pool.map(q => { const order = shuffle([0, 1, 2, 3]); return { ...q, opts: order.map(i => q.o[i]), ans: order.indexOf(0) }; });
+  qi = 0; score = 0; streak = 0; correct = 0; mistakes = []; show("quiz"); drawQ();
+}
+function drawQ(){
+  locked = false; const q = qs[qi];
+  $("qNum").textContent = `${qi + 1}/${qs.length}`; $("qProg").style.width = (qi / qs.length * 100) + "%";
+  $("qScore").textContent = "⭐ " + score; $("qStreak").textContent = "🔥 " + streak;
+  $("qTag").textContent = TOPICS[q.t].name; $("qTag").style.background = TOPICS[q.t].color;
+  $("qText").innerHTML = fmtQ(q.q);
+  $("qOpts").innerHTML = q.opts.map((o, i) => `<button class="opt" data-i="${i}">${o}</button>`).join("");
+  $("qOpts").querySelectorAll(".opt").forEach(b => b.onclick = () => answer(+b.dataset.i));
+  $("qExplain").className = "explain"; $("qNext").classList.remove("show");
+  tLeft = QTIME * 10; $("qTime").style.width = "100%"; $("timerBar").classList.remove("low");
+  clearInterval(qTimer);
+  qTimer = setInterval(() => { tLeft--; $("qTime").style.width = (tLeft / (QTIME * 10) * 100) + "%"; $("timerBar").classList.toggle("low", tLeft < 50); if (tLeft <= 0) { clearInterval(qTimer); answer(-1); } }, 100);
+}
+function answer(i){
+  if (locked) return; locked = true; clearInterval(qTimer);
+  const q = qs[qi], ok = i === q.ans;
+  $("qOpts").querySelectorAll(".opt").forEach((b, k) => b.classList.add(k === q.ans ? "right" : k === i ? "wrong" : "dim"));
+  if (ok) { streak++; correct++; const pts = 10 + Math.floor(tLeft / 40) + (streak >= 3 ? 2 : 0); score += pts; popText(streak >= 3 ? `🔥 x${streak}  +${pts}` : `+${pts}`); }
+  else { streak = 0; mistakes.push(q); }
+  beep(ok);
+  $("qScore").textContent = "⭐ " + score; $("qStreak").textContent = "🔥 " + streak;
+  const ex = $("qExplain"); ex.className = "explain show " + (ok ? "ok" : "no");
+  const why = q.e || TOPICS[q.t].tip;
+  ex.innerHTML = (ok ? "✅ Düzdür! " : (i < 0 ? "⏰ Vaxt bitdi! " : "❌ Səhvdir. ") + `Düzgün cavab: <b>${q.opts[q.ans]}</b>. `) + why;
+  $("qNext").textContent = qi === qs.length - 1 ? "Nəticəni gör 🏁" : "Növbəti →"; $("qNext").classList.add("show");
+}
+$("qNext").onclick = () => { qi++; if (qi < qs.length) drawQ(); else finish("quiz"); };
+
+/* ---------- true / false ---------- */
+let tfDeck = [], tfi = 0, tfScore = 0, tfStreak = 0, tfLeft = 60, tfLock = false, tfRight = 0, tfTotal = 0, tfMist = [];
+function startTf(){
+  tfDeck = shuffle(TF); tfi = 0; tfScore = 0; tfStreak = 0; tfRight = 0; tfTotal = 0; tfMist = []; tfLeft = 60; show("tf"); drawTf();
+  $("tfTime").textContent = "⏱ 60"; $("tfBar").style.width = "100%";
+  tfTimer = setInterval(() => { tfLeft--; $("tfTime").textContent = "⏱ " + tfLeft; $("tfBar").style.width = (tfLeft / 60 * 100) + "%"; if (tfLeft <= 0) { clearInterval(tfTimer); finish("tf"); } }, 1000);
+}
+function drawTf(){ if (tfi >= tfDeck.length) { tfDeck = shuffle(tfDeck); tfi = 0; } tfLock = false; $("tfSent").textContent = tfDeck[tfi].s; $("tfFix").textContent = ""; $("tfFix").className = "tf-fix"; $("tfScore").textContent = "⭐ " + tfScore; $("tfStreak").textContent = "🔥 " + tfStreak; }
+function tfAns(v){
+  if (tfLock || $("tf").classList.contains("hidden")) return; tfLock = true; tfTotal++;
+  const c = tfDeck[tfi], ok = v === c.ok;
+  if (ok) { tfStreak++; tfRight++; const p = 10 + (tfStreak >= 3 ? 5 : 0); tfScore += p; popText("+" + p); } else { tfStreak = 0; tfMist.push(c); }
+  beep(ok);
+  const f = $("tfFix"); f.className = "tf-fix " + (ok ? "ok" : "no");
+  f.textContent = (ok ? "✓ Düzdür! " : "✗ Yox! ") + (c.ok ? "Cümlə düzdür." : "Düzgün: " + c.fix);
+  $("tfScore").textContent = "⭐ " + tfScore; $("tfStreak").textContent = "🔥 " + tfStreak;
+  setTimeout(() => { tfi++; drawTf(); }, ok ? 700 : 1600);
+}
+$("tfYes").onclick = () => tfAns(true); $("tfNo").onclick = () => tfAns(false);
+document.addEventListener("keydown", e => { if ($("tf").classList.contains("hidden")) return; if (e.key === "ArrowRight") tfAns(true); if (e.key === "ArrowLeft") tfAns(false); });
+
+/* ---------- result ---------- */
+let lastMode = "quiz";
+function finish(mode){
+  lastMode = mode; show("result");
+  let pct, pts, info, list;
+  if (mode === "quiz") {
+    pct = correct / qs.length; pts = score; info = `${tName(quizTopic)} · ${qs.length} sualdan ${correct} düz`;
+    list = mistakes.map(q => `<div>${fmtQ(q.q)}<br>→ <b>${q.opts[q.ans]}</b></div>`);
+    const best = store.get("rn_best") || {}; if (best[quizTopic] == null || pts > best[quizTopic]) { best[quizTopic] = pts; store.set("rn_best", best); }
+    submitResult(quizTopic, pts, correct, qs.length);
+  } else {
+    pct = tfTotal ? tfRight / tfTotal : 0; pts = tfScore; info = `Düz yoxsa səhv? · ${tfTotal} cümlədən ${tfRight} düz`;
+    list = tfMist.map(c => `<div>${esc(c.s)}<br>→ <b>${c.ok ? "Cümlə düzdür" : esc(c.fix)}</b></div>`);
+    $("rSaved").textContent = "Bu məşq oyunudur, reytinqə düşmür.";
+  }
+  const stars = pct >= .9 ? 3 : pct >= .6 ? 2 : pct > 0 ? 1 : 0;
+  $("rStars").textContent = "⭐".repeat(stars) + "☆".repeat(3 - stars);
+  $("rTitle").textContent = stars === 3 ? "Möhtəşəm! 🎉" : stars === 2 ? "Çox yaxşı! 👏" : "Davam et! 💪";
+  $("rScore").textContent = pts + " xal"; $("rInfo").textContent = info;
+  $("rReview").innerHTML = list.length ? `<p style="margin-bottom:8px">Bu səhvlərə bir də bax:</p>` + list.join("") : "";
+  $("rLb").classList.toggle("hidden", mode !== "quiz");
+  if (stars === 3) popText("🏆");
+}
+$("rMenu").onclick = () => goMenu();
+$("rAgain").onclick = () => lastMode === "quiz" ? startQuiz(quizTopic) : startTf();
+$("rLb").onclick = () => openLb(quizTopic === "mixed" ? "all" : quizTopic);
+
+/* ---------- backend ---------- */
+async function submitResult(topic, pts, corr, total){
+  const el = $("rSaved");
+  if (!API_URL) { el.textContent = "Reytinq hələ qoşulmayıb — nəticən yalnız bu cihazda saxlanıldı."; saveLocal(topic, pts, corr, total); return; }
+  el.textContent = "Nəticə reytinqə göndərilir…";
+  try {
+    const r = await fetch(API_URL, { method: "POST", body: JSON.stringify({ name: user.full, topic, score: pts, correct: corr, total }) });
+    const j = await r.json();
+    el.textContent = j.ok ? "✅ Nəticən reytinq cədvəlinə yazıldı!" : "Nəticə yazılmadı: " + (j.error || "");
+  } catch (e) { el.textContent = "İnternet bağlantısını yoxla — nəticə göndərilmədi."; }
+}
+function saveLocal(topic, pts, corr, total){ const a = store.get("rn_local") || []; a.push({ name: user.full, topic, score: pts, correct: corr, total }); store.set("rn_local", a); }
+function buildBoard(rows){
+  const best = {}; // name|topic -> row
+  rows.forEach(r => { const k = r.name.toLocaleLowerCase("az") + "|" + r.topic; if (!best[k] || r.score > best[k].score) best[k] = r; });
+  const by = {}, overall = {};
+  Object.values(best).forEach(r => {
+    (by[r.topic] = by[r.topic] || []).push(r);
+    if (r.topic !== "mixed") { const k = r.name.toLocaleLowerCase("az"); const o = overall[k] = overall[k] || { name: r.name, score: 0, topics: 0 }; o.score += r.score; o.topics++; }
+  });
+  Object.values(by).forEach(a => a.sort((x, y) => y.score - x.score));
+  return { overall: Object.values(overall).sort((x, y) => y.score - x.score), topics: by };
+}
+
+/* ---------- leaderboard ---------- */
+let lbTopic = "all", lbCache = null;
+async function openLb(t){
+  lbTopic = t; show("lb");
+  const chips = [["all", "🏆 Ümumi reytinq"], ["mixed", "🎯 Ümumi sınaq"]].concat(Object.entries(TOPICS).map(([k, v]) => [k, v.icon + " " + v.name]));
+  $("lbChips").innerHTML = chips.map(([k, n]) => `<button class="chip ${k === t ? "on" : ""}" data-t="${k}">${n}</button>`).join("");
+  $("lbChips").querySelectorAll(".chip").forEach(b => b.onclick = () => openLb(b.dataset.t));
+  $("lbTitle").textContent = t === "all" ? "🏆 Ümumi reytinq" : (t === "mixed" ? "🎯 " : TOPICS[t].icon + " ") + tName(t);
+  $("lbSub").textContent = t === "all" ? "Hər mövzu sınağında ən yaxşı xalların cəmi" : "Hər şagirdin bu sınaqdakı ən yaxşı nəticəsi";
+  $("lbBody").innerHTML = `<div class="note">Yüklənir…</div>`;
+  let data;
+  try {
+    if (!API_URL) data = buildBoard(store.get("rn_local") || []);
+    else {
+      if (!lbCache || Date.now() - lbCache.at > 15000) { const r = await fetch(API_URL + "?t=" + Date.now()); const j = await r.json(); lbCache = { at: Date.now(), data: buildBoard(j.rows || []) }; }
+      data = lbCache.data;
+    }
+  } catch (e) { $("lbBody").innerHTML = `<div class="note">Reytinq yüklənmədi. İnterneti yoxla və yenidən cəhd et.</div>`; return; }
+  if (lbTopic !== t) return;
+  const list = t === "all" ? data.overall : (data.topics[t] || []);
+  const note = API_URL ? "" : `<div class="note">Reytinq hələ serverə qoşulmayıb — burada yalnız bu cihazdakı nəticələr görünür.</div>`;
+  if (!list.length) { $("lbBody").innerHTML = note + `<div class="note">Hələ nəticə yoxdur. İlk sən ol! 🚀</div>`; return; }
+  const medal = i => ["🥇","🥈","🥉"][i] || (i + 1);
+  const me = user ? user.full.toLocaleLowerCase("az") : "";
+  $("lbBody").innerHTML = note + `<table class="lb"><thead><tr><th></th><th>Ad Soyad</th><th class="s">Xal</th></tr></thead><tbody>` +
+    list.slice(0, 50).map((r, i) => `<tr class="${r.name.toLocaleLowerCase("az") === me ? "me" : ""}"><td class="r">${medal(i)}</td><td>${esc(r.name)}<div class="small">${t === "all" ? r.topics + " mövzu" : r.correct + "/" + r.total + " düz"}</div></td><td class="s">${r.score}</td></tr>`).join("") +
+    `</tbody></table>`;
+}
+
+/* ---------- start ---------- */
+if (user && user.full) { setUser(user); goMenu(); } else show("login");
+</script>
+</body>
+</html>
